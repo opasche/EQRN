@@ -4,6 +4,8 @@
 # EQRN: Extreme Quantile Regression Neural Networks for Conditionnal Risk Assessment
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A user-friendly framework for forecasting and extrapolating extreme
