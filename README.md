@@ -18,6 +18,25 @@ Application to Forecasting of Flood Risk” by Olivier C. Pasche and
 Sebastian Engelke
 ([ArXiv:2208.07590](https://arxiv.org/abs/2208.07590)).
 
+## Installation
+
+To install the development version of EQRN, simply run from R:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("opasche/EQRN")
+```
+
+When the package is first loaded after installation (e.g. with
+`library(EQRN)` or `EQRN::fct()`), the necessary backend software from
+the [`torch`](https://torch.mlverse.org/) dependency is automatically
+installed. (Alternatively, `EQRN::install_backend()` can be called to
+perform the backend installation manually.) For more information about
+the torch backend and troubleshooting, visit the [torch installation
+guide](https://torch.mlverse.org/docs/articles/installation.html).
+
+## Motivation
+
 Risk assessment for extreme events requires accurate estimation of high
 quantiles that go beyond the range of historical observations. When the
 risk depends on the values of observed predictors, regression techniques
@@ -37,23 +56,6 @@ traditional extreme value analysis and the predictions are able to adapt
 to distributional shifts as experienced in a changing climate. Our model
 can help authorities to manage flooding more effectively and to minimize
 their disastrous impacts through early warning systems.
-
-## Installation
-
-To install the development version of EQRN, simply run from R:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("opasche/EQRN")
-```
-
-When the package is first loaded after installation (e.g. with
-`library(EQRN)` or `EQRN::fct()`), the necessary backend software from
-the [`torch`](https://torch.mlverse.org/) dependency is automatically
-installed. (Alternatively, `EQRN::install_backend()` can be called to
-perform the backend installation manually.) For more information about
-the torch backend and troubleshooting, visit the [torch installation
-guide](https://torch.mlverse.org/docs/articles/installation.html).
 
 ## Basic Usage Example for Exchangeable Data
 
@@ -96,13 +98,19 @@ intermediateq_train <- predict(fit_grf, newdata=NULL, quantiles=c(interm_lvl))$p
 
 ### Step 2. Fit the tail model
 
+Fit the EQRN network on the training set, with the intermediate
+quantiles as a varying threshold. Here:
+
+-   the argument `shape_fixed=TRUE` removes covariate dependence from
+    the shape output,
+-   the argument `net_structure=c(5,5)` sets two hidden layers of 5
+    neurons each as an architecture,
+-   the network is trained for 100 epochs (with a seed for
+    reproducibility).
+
 ``` r
 library(EQRN)
 
-# Fit the EQRN network on the training set, with the intermetiate quantiles as a varying threshold.
-# - The argument 'shape_fixed=TRUE' removes covariate dependence from the shape output.
-# - The argument 'net_structure=c(5,5)' sets two hidden layers of 5 neurons each as an architecture.
-# - The network is trained for 100 epochs (with a seed for reproducibility).
 fit_eqrn <- EQRN_fit(X_train, y_train, intermediateq_train, interm_lvl,
                      shape_fixed=TRUE, net_structure=c(5,5), n_epochs=100, seed=42)
 #> Epoch: 1 out of 100 , average train loss: 2.404647
@@ -124,7 +132,9 @@ qpred_eqrn <- EQRN_predict(fit_eqrn, X_test, levels_predict, intermediateq_test)
 # Forecast the probability that Y_test would exceed a certain large value.
 large_value <- 10
 ppred_eqrn <- EQRN_excess_probability(large_value, fit_eqrn, X_test, intermediateq_test)
+```
 
+``` r
 # Print some predictions:
 hn <- 10
 results <- data.frame(X1=X_test[1:hn,1], X2=X_test[1:hn,2], pred_Y_Q_80=intermediateq_test[1:hn],

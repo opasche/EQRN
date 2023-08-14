@@ -71,8 +71,6 @@
 </h1></div>
 <!-- badges: start -->
 <p>A user-friendly framework for forecasting and extrapolating extreme measures of conditional risk using flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The implementation is based on the article “Neural Networks for Extreme Quantile Regression with an Application to Forecasting of Flood Risk” by Olivier C. Pasche and Sebastian Engelke (<a href="https://arxiv.org/abs/2208.07590" class="external-link">ArXiv:2208.07590</a>).</p>
-<p>Risk assessment for extreme events requires accurate estimation of high quantiles that go beyond the range of historical observations. When the risk depends on the values of observed predictors, regression techniques are used to interpolate in the predictor space. In this package we propose the EQRN model that combines tools from neural networks and extreme value theory into a method capable of extrapolation in the presence of complex predictor dependence. Neural networks can naturally incorporate additional structure in the data. The recurrent version of EQRN is able to capture complex sequential dependence in time series.</p>
-<p>In <a href="https://arxiv.org/abs/2208.07590" class="external-link">the corresponding article</a>, EQRN is applied to forecasting of flood risk in the Swiss Aare catchment. It exploits information from multiple covariates in space and time to provide one-day-ahead predictions of return levels and exceedances probabilities. This output complements the static return level from a traditional extreme value analysis and the predictions are able to adapt to distributional shifts as experienced in a changing climate. Our model can help authorities to manage flooding more effectively and to minimize their disastrous impacts through early warning systems.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -81,6 +79,12 @@
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"opasche/EQRN"</span><span class="op">)</span></code></pre></div>
 <p>When the package is first loaded after installation (e.g. with <code><a href="https://github.com/opasche/EQRN" class="external-link">library(EQRN)</a></code> or <code>EQRN::fct()</code>), the necessary backend software from the <a href="https://torch.mlverse.org/" class="external-link"><code>torch</code></a> dependency is automatically installed. (Alternatively, <code><a href="reference/install_backend.html">EQRN::install_backend()</a></code> can be called to perform the backend installation manually.) For more information about the torch backend and troubleshooting, visit the <a href="https://torch.mlverse.org/docs/articles/installation.html" class="external-link">torch installation guide</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
+<p>Risk assessment for extreme events requires accurate estimation of high quantiles that go beyond the range of historical observations. When the risk depends on the values of observed predictors, regression techniques are used to interpolate in the predictor space. In this package we propose the EQRN model that combines tools from neural networks and extreme value theory into a method capable of extrapolation in the presence of complex predictor dependence. Neural networks can naturally incorporate additional structure in the data. The recurrent version of EQRN is able to capture complex sequential dependence in time series.</p>
+<p>In <a href="https://arxiv.org/abs/2208.07590" class="external-link">the corresponding article</a>, EQRN is applied to forecasting of flood risk in the Swiss Aare catchment. It exploits information from multiple covariates in space and time to provide one-day-ahead predictions of return levels and exceedances probabilities. This output complements the static return level from a traditional extreme value analysis and the predictions are able to adapt to distributional shifts as experienced in a changing climate. Our model can help authorities to manage flooding more effectively and to minimize their disastrous impacts through early warning systems.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage-example-for-exchangeable-data">Basic Usage Example for Exchangeable Data<a class="anchor" aria-label="anchor" href="#basic-usage-example-for-exchangeable-data"></a>
@@ -117,13 +121,15 @@
 <div class="section level3">
 <h3 id="step-2-fit-the-tail-model">Step 2. Fit the tail model<a class="anchor" aria-label="anchor" href="#step-2-fit-the-tail-model"></a>
 </h3>
+<p>Fit the EQRN network on the training set, with the intermediate quantiles as a varying threshold. Here:</p>
+<ul>
+<li>the argument <code>shape_fixed=TRUE</code> removes covariate dependence from the shape output,</li>
+<li>the argument <code>net_structure=c(5,5)</code> sets two hidden layers of 5 neurons each as an architecture,</li>
+<li>the network is trained for 100 epochs (with a seed for reproducibility).</li>
+</ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/opasche/EQRN" class="external-link">EQRN</a></span><span class="op">)</span>
 
-<span class="co"># Fit the EQRN network on the training set, with the intermetiate quantiles as a varying threshold.</span>
-<span class="co"># - The argument 'shape_fixed=TRUE' removes covariate dependence from the shape output.</span>
-<span class="co"># - The argument 'net_structure=c(5,5)' sets two hidden layers of 5 neurons each as an architecture.</span>
-<span class="co"># - The network is trained for 100 epochs (with a seed for reproducibility).</span>
 <span class="va">fit_eqrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/EQRN_fit.html">EQRN_fit</a></span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span>, <span class="va">intermediateq_train</span>, <span class="va">interm_lvl</span>,
                      shape_fixed<span class="op">=</span><span class="cn">TRUE</span>, net_structure<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">)</span>, n_epochs<span class="op">=</span><span class="fl">100</span>, seed<span class="op">=</span><span class="fl">42</span><span class="op">)</span>
 <span class="co">#&gt; Epoch: 1 out of 100 , average train loss: 2.404647</span>
@@ -144,9 +150,9 @@
 
 <span class="co"># Forecast the probability that Y_test would exceed a certain large value.</span>
 <span class="va">large_value</span> <span class="op">&lt;-</span> <span class="fl">10</span>
-<span class="va">ppred_eqrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/EQRN_excess_probability.html">EQRN_excess_probability</a></span><span class="op">(</span><span class="va">large_value</span>, <span class="va">fit_eqrn</span>, <span class="va">X_test</span>, <span class="va">intermediateq_test</span><span class="op">)</span>
-
-<span class="co"># Print some predictions:</span>
+<span class="va">ppred_eqrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/EQRN_excess_probability.html">EQRN_excess_probability</a></span><span class="op">(</span><span class="va">large_value</span>, <span class="va">fit_eqrn</span>, <span class="va">X_test</span>, <span class="va">intermediateq_test</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Print some predictions:</span>
 <span class="va">hn</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>X1<span class="op">=</span><span class="va">X_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">1</span><span class="op">]</span>, X2<span class="op">=</span><span class="va">X_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">2</span><span class="op">]</span>, pred_Y_Q_80<span class="op">=</span><span class="va">intermediateq_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span><span class="op">]</span>,
                       pred_Y_Q_99.9<span class="op">=</span><span class="va">qpred_eqrn</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">1</span><span class="op">]</span>, pred_Y_Q_99.99<span class="op">=</span><span class="va">qpred_eqrn</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">2</span><span class="op">]</span>, Pr_Y_exceed_10<span class="op">=</span><span class="va">ppred_eqrn</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span><span class="op">]</span><span class="op">)</span>
