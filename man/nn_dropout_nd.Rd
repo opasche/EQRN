@@ -21,3 +21,4 @@ The constructor allows specifying:
 \item{inplace}{if set to TRUE, will do the operation in-place (default is FALSE).}
 }
 }
+\keyword{internal}

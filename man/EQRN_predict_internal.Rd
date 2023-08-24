@@ -36,3 +36,4 @@ Internal predict function for an EQRN_iid
 \examples{
 #TODO
 }
+\keyword{internal}

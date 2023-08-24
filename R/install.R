@@ -33,6 +33,7 @@ install_backend <- function(...) {
 #'
 #' @param ... Arguments passed to [torch::install_torch()].
 #' @import torch
+#' @keywords internal
 onload_backend_installer <- function(...) {
   if(!torch::torch_is_installed()){
     install_backend(...)

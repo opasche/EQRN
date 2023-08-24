@@ -28,3 +28,4 @@ Instantiate an optimizer for training an EQRN_iid network
 \examples{
 #TODO
 }
+\keyword{internal}

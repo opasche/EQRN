@@ -25,3 +25,4 @@ The constructor allows specifying:
 Gunter Klambauer, Thomas Unterthiner, Andreas Mayr, Sepp Hochreiter. Self-Normalizing Neural Networks.
 Advances in Neural Information Processing Systems 30 (NIPS 2017), 2017.
 }
+\keyword{internal}

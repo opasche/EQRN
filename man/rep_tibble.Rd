@@ -20,3 +20,4 @@ Tibble replicatior
 \examples{
 #rep_tibble(tibble::tibble(a=c(2,3), b=c(5,6)), 3)
 }
+\keyword{internal}

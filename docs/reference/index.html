@@ -44,7 +44,33 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="fitting-eqrn-tail-neural-networks">Fitting EQRN Tail Neural Networks<a class="anchor" aria-label="anchor" href="#fitting-eqrn-tail-neural-networks"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions to fit a tail GPD EQRN network to intermediate quantile exceedences</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="EQRN_fit_restart.html">EQRN_fit_restart()</a></code> 
+        </dt>
+        <dd>Wrapper for fitting EQRN with restart for stability</dd>
+      </dl><dl><dt>
+          
+          <code><a href="EQRN_fit.html">EQRN_fit()</a></code> 
+        </dt>
+        <dd>EQRN fit function for independent data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="EQRN_fit_seq.html">EQRN_fit_seq()</a></code> 
+        </dt>
+        <dd>EQRN fit function for sequential and time series data</dd>
+      </dl></div><div class="section level2">
+      <h2 id="predicting-using-fitted-eqrn-networks">Predicting using fitted EQRN networks<a class="anchor" aria-label="anchor" href="#predicting-using-fitted-eqrn-networks"></a></h2>
       
       
 
@@ -56,89 +82,14 @@
 
       <dl><dt>
           
-          <code><a href="batch_size_default.html">batch_size_default()</a></code> 
-        </dt>
-        <dd>Default batch size (internal)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="check_directory.html">check_directory()</a></code> 
-        </dt>
-        <dd>Check directory existence</dd>
-      </dl><dl><dt>
-          
-          <code><a href="check_X_matrix.html">check_X_matrix()</a></code> 
-        </dt>
-        <dd>Check the simulation X matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="compute_EQRN_GPDLoss.html">compute_EQRN_GPDLoss()</a></code> 
-        </dt>
-        <dd>Generalized Pareto likelihood loss of a EQRN_iid predictor</dd>
-      </dl><dl><dt>
-          
-          <code><a href="compute_EQRN_seq_GPDLoss.html">compute_EQRN_seq_GPDLoss()</a></code> 
-        </dt>
-        <dd>Generalized Pareto likelihood loss of a EQRN_seq predictor</dd>
-      </dl><dl><dt>
-          
-          <code><a href="decay_learning_rate.html">decay_learning_rate()</a></code> 
-        </dt>
-        <dd>Performs a learning rate decay step on an optimizer</dd>
-      </dl><dl><dt>
-          
-          <code><a href="default_device.html">default_device()</a></code> 
-        </dt>
-        <dd>Default torch device</dd>
-      </dl><dl><dt>
-          
-          <code><a href="end_doFuture_strategy.html">end_doFuture_strategy()</a></code> 
-        </dt>
-        <dd>End the currently set doFuture strategy</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_excess_probability.html">EQRN_excess_probability()</a></code> 
-        </dt>
-        <dd>Tail excess probability prediction using an EQRN_iid object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_excess_probability_seq.html">EQRN_excess_probability_seq()</a></code> 
-        </dt>
-        <dd>Tail excess probability prediction using an EQRN_seq object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_fit.html">EQRN_fit()</a></code> 
-        </dt>
-        <dd>EQRN fit function for independent data</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_fit_restart.html">EQRN_fit_restart()</a></code> 
-        </dt>
-        <dd>Wrapper for fitting EQRN with restart for stability</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_fit_seq.html">EQRN_fit_seq()</a></code> 
-        </dt>
-        <dd>EQRN fit function for sequential and time series data</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_load.html">EQRN_load()</a></code> 
-        </dt>
-        <dd>Load an EQRN object from disc</dd>
-      </dl><dl><dt>
-          
           <code><a href="EQRN_predict.html">EQRN_predict()</a></code> 
         </dt>
         <dd>Predict function for an EQRN_iid fitted object</dd>
       </dl><dl><dt>
           
-          <code><a href="EQRN_predict_internal.html">EQRN_predict_internal()</a></code> 
+          <code><a href="EQRN_predict_seq.html">EQRN_predict_seq()</a></code> 
         </dt>
-        <dd>Internal predict function for an EQRN_iid</dd>
-      </dl><dl><dt>
-          
-          <code><a href="EQRN_predict_internal_seq.html">EQRN_predict_internal_seq()</a></code> 
-        </dt>
-        <dd>Internal predict function for an EQRN_seq fitted object</dd>
+        <dd>Predict function for an EQRN_seq fitted object</dd>
       </dl><dl><dt>
           
           <code><a href="EQRN_predict_params.html">EQRN_predict_params()</a></code> 
@@ -151,14 +102,96 @@
         <dd>GPD parameters prediction function for an EQRN_seq fitted object</dd>
       </dl><dl><dt>
           
-          <code><a href="EQRN_predict_seq.html">EQRN_predict_seq()</a></code> 
+          <code><a href="EQRN_excess_probability.html">EQRN_excess_probability()</a></code> 
         </dt>
-        <dd>Predict function for an EQRN_seq fitted object</dd>
+        <dd>Tail excess probability prediction using an EQRN_iid object</dd>
       </dl><dl><dt>
+          
+          <code><a href="EQRN_excess_probability_seq.html">EQRN_excess_probability_seq()</a></code> 
+        </dt>
+        <dd>Tail excess probability prediction using an EQRN_seq object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="compute_EQRN_GPDLoss.html">compute_EQRN_GPDLoss()</a></code> 
+        </dt>
+        <dd>Generalized Pareto likelihood loss of a EQRN_iid predictor</dd>
+      </dl><dl><dt>
+          
+          <code><a href="compute_EQRN_seq_GPDLoss.html">compute_EQRN_seq_GPDLoss()</a></code> 
+        </dt>
+        <dd>Generalized Pareto likelihood loss of a EQRN_seq predictor</dd>
+      </dl></div><div class="section level2">
+      <h2 id="saving-and-loading">Saving and Loading<a class="anchor" aria-label="anchor" href="#saving-and-loading"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="EQRN_save.html">EQRN_save()</a></code> 
         </dt>
         <dd>Save an EQRN object on disc</dd>
+      </dl><dl><dt>
+          
+          <code><a href="EQRN_load.html">EQRN_load()</a></code> 
+        </dt>
+        <dd>Load an EQRN object from disc</dd>
+      </dl></div><div class="section level2">
+      <h2 id="neural-networks-helpers">Neural Networks Helpers<a class="anchor" aria-label="anchor" href="#neural-networks-helpers"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="install_backend.html">install_backend()</a></code> 
+        </dt>
+        <dd>Install Torch Backend</dd>
+      </dl><dl><dt>
+          
+          <code><a href="default_device.html">default_device()</a></code> 
+        </dt>
+        <dd>Default torch device</dd>
+      </dl><dl><dt>
+          
+          <code><a href="loss_GPD_tensor.html">loss_GPD_tensor()</a></code> 
+        </dt>
+        <dd>GPD tensor loss function for training a EQRN network</dd>
+      </dl><dl><dt>
+          
+          <code><a href="quantile_loss_tensor.html">quantile_loss_tensor()</a></code> 
+        </dt>
+        <dd>Tensor quantile loss function for training a QRN network</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_excesses.html">get_excesses()</a></code> 
+        </dt>
+        <dd>Computes rescaled excesses over the conditional quantiles</dd>
+      </dl><dl><dt>
+          
+          <code><a href="process_features.html">process_features()</a></code> 
+        </dt>
+        <dd>Feature processor for EQRN</dd>
+      </dl><dl><dt>
+          
+          <code><a href="perform_scaling.html">perform_scaling()</a></code> 
+        </dt>
+        <dd>Performs feature scaling without overfitting</dd>
+      </dl><dl><dt>
+          
+          <code><a href="mts_dataset.html">mts_dataset()</a></code> 
+        </dt>
+        <dd>Dataset creator for sequential data</dd>
       </dl><dl><dt>
           
           <code><a href="FC_GPD_net.html">FC_GPD_net()</a></code> 
@@ -171,179 +204,40 @@
         <dd>Self-normalized fully-connected network module for GPD parameter prediction</dd>
       </dl><dl><dt>
           
-          <code><a href="fit_GPD_unconditional.html">fit_GPD_unconditional()</a></code> 
+          <code><a href="Separated_GPD_SNN.html">Separated_GPD_SNN()</a></code> 
         </dt>
-        <dd>Maximum likelihood estimates for the GPD distribution using peaks over threshold</dd>
+        <dd>Self-normalized separated network module for GPD parameter prediction</dd>
       </dl><dl><dt>
           
-          <code><a href="fix_dimsimplif.html">fix_dimsimplif()</a></code> 
+          <code><a href="Recurrent_GPD_net.html">Recurrent_GPD_net()</a></code> 
         </dt>
-        <dd>(INTERNAL) Corrects a dimension simplification bug from the torch package</dd>
+        <dd>Recurrent network module for GPD parameter prediction</dd>
       </dl><dl><dt>
           
-          <code><a href="get_doFuture_operator.html">get_doFuture_operator()</a></code> 
+          <code><a href="QRNN_RNN_net.html">QRNN_RNN_net()</a></code> 
         </dt>
-        <dd>Get doFuture operator</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_excesses.html">get_excesses()</a></code> 
-        </dt>
-        <dd>Computes rescaled excesses over the conditional quantiles</dd>
-      </dl><dl><dt>
+        <dd>Recurrent quantile regression neural network module</dd>
+      </dl></div><div class="section level2">
+      <h2 id="extreme-value-analysis-helpers">Extreme Value Analysis Helpers<a class="anchor" aria-label="anchor" href="#extreme-value-analysis-helpers"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="GPD_excess_probability.html">GPD_excess_probability()</a></code> 
         </dt>
         <dd>Tail excess probability prediction based on conditional GPD parameters</dd>
       </dl><dl><dt>
           
-          <code><a href="GPD_quantiles.html">GPD_quantiles()</a></code> 
+          <code><a href="fit_GPD_unconditional.html">fit_GPD_unconditional()</a></code> 
         </dt>
-        <dd>Compute extreme quantile from GPD parameters</dd>
-      </dl><dl><dt>
-          
-          <code><a href="install_backend.html">install_backend()</a></code> 
-        </dt>
-        <dd>Install Torch Backend</dd>
-      </dl><dl><dt>
-          
-          <code><a href="instantiate_EQRN_network.html">instantiate_EQRN_network()</a></code> 
-        </dt>
-        <dd>Instantiates the default networks for training a EQRN_iid model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lagged_features.html">lagged_features()</a></code> 
-        </dt>
-        <dd>Covariate lagged replication for temporal dependence</dd>
-      </dl><dl><dt>
-          
-          <code><a href="last_elem.html">last_elem()</a></code> 
-        </dt>
-        <dd>Last element of a vector</dd>
-      </dl><dl><dt>
-          
-          <code><a href="legacy_names.html">legacy_names()</a></code> 
-        </dt>
-        <dd>Internal renaming function for back-compatibility</dd>
-      </dl><dl><dt>
-          
-          <code><a href="list2matrix.html">list2matrix()</a></code> 
-        </dt>
-        <dd>Convert a list to a matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="loss_GPD.html">loss_GPD()</a></code> 
-        </dt>
-        <dd>Generalized Pareto likelihood loss</dd>
-      </dl><dl><dt>
-          
-          <code><a href="loss_GPD_tensor.html">loss_GPD_tensor()</a></code> 
-        </dt>
-        <dd>GPD tensor loss function for training a EQRN network</dd>
-      </dl><dl><dt>
-          
-          <code><a href="make_folds.html">make_folds()</a></code> 
-        </dt>
-        <dd>Create cross-validation folds</dd>
-      </dl><dl><dt>
-          
-          <code><a href="matrix2list.html">matrix2list()</a></code> 
-        </dt>
-        <dd>Convert a matrix to a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="mean_absolute_error.html">mean_absolute_error()</a></code> 
-        </dt>
-        <dd>Mean absolute error</dd>
-      </dl><dl><dt>
-          
-          <code><a href="mean_squared_error.html">mean_squared_error()</a></code> 
-        </dt>
-        <dd>Mean squared error</dd>
-      </dl><dl><dt>
-          
-          <code><a href="mts_dataset.html">mts_dataset()</a></code> 
-        </dt>
-        <dd>Dataset creator for sequential data</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_exceedance_proba_error.html">multilevel_exceedance_proba_error()</a></code> 
-        </dt>
-        <dd>Multilevel 'quantile_exceedance_proba_error'</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_MAE.html">multilevel_MAE()</a></code> 
-        </dt>
-        <dd>Multilevel quantile MAEs</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_MSE.html">multilevel_MSE()</a></code> 
-        </dt>
-        <dd>Multilevel quantile MSEs</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_pred_bias.html">multilevel_pred_bias()</a></code> 
-        </dt>
-        <dd>Multilevel prediction bias</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_prop_below.html">multilevel_prop_below()</a></code> 
-        </dt>
-        <dd>Multilevel 'proportion_below'</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_q_loss.html">multilevel_q_loss()</a></code> 
-        </dt>
-        <dd>Multilevel quantile losses</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_q_pred_error.html">multilevel_q_pred_error()</a></code> 
-        </dt>
-        <dd>Multilevel 'quantile_prediction_error'</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_resid_var.html">multilevel_resid_var()</a></code> 
-        </dt>
-        <dd>Multilevel residual variance</dd>
-      </dl><dl><dt>
-          
-          <code><a href="multilevel_R_squared.html">multilevel_R_squared()</a></code> 
-        </dt>
-        <dd>Multilevel R squared</dd>
-      </dl><dl><dt>
-          
-          <code><a href="nn_alpha_dropout.html">nn_alpha_dropout()</a></code> 
-        </dt>
-        <dd>Alpha-dropout module</dd>
-      </dl><dl><dt>
-          
-          <code><a href="nn_dropout_nd.html">nn_dropout_nd()</a></code> 
-        </dt>
-        <dd>Dropout module</dd>
-      </dl><dl><dt>
-          
-          <code><a href="onload_backend_installer.html">onload_backend_installer()</a></code> 
-        </dt>
-        <dd>On-Load Torch Backend Internal Install helper</dd>
-      </dl><dl><dt>
-          
-          <code><a href="perform_scaling.html">perform_scaling()</a></code> 
-        </dt>
-        <dd>Performs feature scaling without overfitting</dd>
-      </dl><dl><dt>
-          
-          <code><a href="prediction_bias.html">prediction_bias()</a></code> 
-        </dt>
-        <dd>Prediction bias</dd>
-      </dl><dl><dt>
-          
-          <code><a href="prediction_residual_variance.html">prediction_residual_variance()</a></code> 
-        </dt>
-        <dd>Prediction residual variance</dd>
-      </dl><dl><dt>
-          
-          <code><a href="predict_GPD_semiconditional.html">predict_GPD_semiconditional()</a></code> 
-        </dt>
-        <dd>Predict semi-conditional extreme quantiles using peaks over threshold</dd>
+        <dd>Maximum likelihood estimates for the GPD distribution using peaks over threshold</dd>
       </dl><dl><dt>
           
           <code><a href="predict_unconditional_quantiles.html">predict_unconditional_quantiles()</a></code> 
@@ -351,29 +245,50 @@
         <dd>Predict unconditional extreme quantiles using peaks over threshold</dd>
       </dl><dl><dt>
           
-          <code><a href="process_features.html">process_features()</a></code> 
+          <code><a href="predict_GPD_semiconditional.html">predict_GPD_semiconditional()</a></code> 
         </dt>
-        <dd>Feature processor for EQRN</dd>
+        <dd>Predict semi-conditional extreme quantiles using peaks over threshold</dd>
       </dl><dl><dt>
           
-          <code><a href="proportion_below.html">proportion_below()</a></code> 
+          <code><a href="loss_GPD.html">loss_GPD()</a></code> 
         </dt>
-        <dd>Proportion of observations below conditional quantile vector</dd>
+        <dd>Generalized Pareto likelihood loss</dd>
       </dl><dl><dt>
           
-          <code><a href="QRNN_RNN_net.html">QRNN_RNN_net()</a></code> 
+          <code><a href="unconditional_train_valid_GPD_loss.html">unconditional_train_valid_GPD_loss()</a></code> 
         </dt>
-        <dd>Recurrent quantile regression neural network module</dd>
+        <dd>Unconditional GPD MLEs and their train-validation likelihoods</dd>
+      </dl><dl><dt>
+          
+          <code><a href="semiconditional_train_valid_GPD_loss.html">semiconditional_train_valid_GPD_loss()</a></code> 
+        </dt>
+        <dd>Semi-conditional GPD MLEs and their train-validation likelihoods</dd>
+      </dl><dl><dt>
+          
+          <code><a href="GPD_quantiles.html">GPD_quantiles()</a></code> 
+        </dt>
+        <dd>Compute extreme quantile from GPD parameters</dd>
+      </dl></div><div class="section level2">
+      <h2 id="intermediate-models">Intermediate Models<a class="anchor" aria-label="anchor" href="#intermediate-models"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="QRN_seq_fit.html">QRN_seq_fit()</a></code> 
+        </dt>
+        <dd>Recurrent QRN fitting function</dd>
       </dl><dl><dt>
           
           <code><a href="QRN_fit_multiple.html">QRN_fit_multiple()</a></code> 
         </dt>
         <dd>Wrapper for fitting a recurrent QRN with restart for stability</dd>
-      </dl><dl><dt>
-          
-          <code><a href="QRN_seq_fit.html">QRN_seq_fit()</a></code> 
-        </dt>
-        <dd>Recurrent QRN fitting function</dd>
       </dl><dl><dt>
           
           <code><a href="QRN_seq_predict.html">QRN_seq_predict()</a></code> 
@@ -389,81 +304,27 @@
           <code><a href="QRN_seq_predict_foldwise_sep.html">QRN_seq_predict_foldwise_sep()</a></code> 
         </dt>
         <dd>Sigle-fold foldwise fit-predict function using a recurrent QRN</dd>
+      </dl></div><div class="section level2">
+      <h2 id="accuracy-metrics">Accuracy metrics<a class="anchor" aria-label="anchor" href="#accuracy-metrics"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="mean_squared_error.html">mean_squared_error()</a></code> 
+        </dt>
+        <dd>Mean squared error</dd>
       </dl><dl><dt>
           
-          <code><a href="quantile_exceedance_proba_error.html">quantile_exceedance_proba_error()</a></code> 
+          <code><a href="mean_absolute_error.html">mean_absolute_error()</a></code> 
         </dt>
-        <dd>Quantile exceedance probability prediction calibration error</dd>
-      </dl><dl><dt>
-          
-          <code><a href="quantile_loss.html">quantile_loss()</a></code> 
-        </dt>
-        <dd>Quantile loss</dd>
-      </dl><dl><dt>
-          
-          <code><a href="quantile_loss_tensor.html">quantile_loss_tensor()</a></code> 
-        </dt>
-        <dd>Tensor quantile loss function for training a QRN network</dd>
-      </dl><dl><dt>
-          
-          <code><a href="quantile_prediction_error.html">quantile_prediction_error()</a></code> 
-        </dt>
-        <dd>Quantile prediction calibration error</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Recurrent_GPD_net.html">Recurrent_GPD_net()</a></code> 
-        </dt>
-        <dd>Recurrent network module for GPD parameter prediction</dd>
-      </dl><dl><dt>
-          
-          <code><a href="rep_tibble.html">rep_tibble()</a></code> 
-        </dt>
-        <dd>Tibble replicatior</dd>
-      </dl><dl><dt>
-          
-          <code><a href="rep_vector2matrix.html">rep_vector2matrix()</a></code> 
-        </dt>
-        <dd>Replicated vector to matrix</dd>
-      </dl><dl><dt>
-          
-          <code><a href="roundm.html">roundm()</a></code> 
-        </dt>
-        <dd>Mathematical number rounding</dd>
-      </dl><dl><dt>
-          
-          <code><a href="R_squared.html">R_squared()</a></code> 
-        </dt>
-        <dd>R squared</dd>
-      </dl><dl><dt>
-          
-          <code><a href="safe_save_rds.html">safe_save_rds()</a></code> 
-        </dt>
-        <dd>Safe RDS save</dd>
-      </dl><dl><dt>
-          
-          <code><a href="semiconditional_train_valid_GPD_loss.html">semiconditional_train_valid_GPD_loss()</a></code> 
-        </dt>
-        <dd>Semi-conditional GPD MLEs and their train-validation likelihoods</dd>
-      </dl><dl><dt>
-          
-          <code><a href="Separated_GPD_SNN.html">Separated_GPD_SNN()</a></code> 
-        </dt>
-        <dd>Self-normalized separated network module for GPD parameter prediction</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_optimizer.html">setup_optimizer()</a></code> 
-        </dt>
-        <dd>Instantiate an optimizer for training an EQRN_iid network</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_optimizer_seq.html">setup_optimizer_seq()</a></code> 
-        </dt>
-        <dd>Instantiate an optimizer for training an EQRN_seq network</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_doFuture_strategy.html">set_doFuture_strategy()</a></code> 
-        </dt>
-        <dd>Set a doFuture execution strategy</dd>
+        <dd>Mean absolute error</dd>
       </dl><dl><dt>
           
           <code><a href="square_loss.html">square_loss()</a></code> 
@@ -471,19 +332,115 @@
         <dd>Square loss</dd>
       </dl><dl><dt>
           
-          <code><a href="start_doParallel_strategy.html">start_doParallel_strategy()</a></code> 
+          <code><a href="quantile_loss.html">quantile_loss()</a></code> 
         </dt>
-        <dd>Start a doParallel execution strategy</dd>
+        <dd>Quantile loss</dd>
       </dl><dl><dt>
           
-          <code><a href="stop_doParallel_strategy.html">stop_doParallel_strategy()</a></code> 
+          <code><a href="prediction_bias.html">prediction_bias()</a></code> 
         </dt>
-        <dd>Stop the current doParallel strategy</dd>
+        <dd>Prediction bias</dd>
       </dl><dl><dt>
           
-          <code><a href="unconditional_train_valid_GPD_loss.html">unconditional_train_valid_GPD_loss()</a></code> 
+          <code><a href="prediction_residual_variance.html">prediction_residual_variance()</a></code> 
         </dt>
-        <dd>Unconditional GPD MLEs and their train-validation likelihoods</dd>
+        <dd>Prediction residual variance</dd>
+      </dl><dl><dt>
+          
+          <code><a href="R_squared.html">R_squared()</a></code> 
+        </dt>
+        <dd>R squared</dd>
+      </dl><dl><dt>
+          
+          <code><a href="proportion_below.html">proportion_below()</a></code> 
+        </dt>
+        <dd>Proportion of observations below conditional quantile vector</dd>
+      </dl><dl><dt>
+          
+          <code><a href="quantile_prediction_error.html">quantile_prediction_error()</a></code> 
+        </dt>
+        <dd>Quantile prediction calibration error</dd>
+      </dl><dl><dt>
+          
+          <code><a href="quantile_exceedance_proba_error.html">quantile_exceedance_proba_error()</a></code> 
+        </dt>
+        <dd>Quantile exceedance probability prediction calibration error</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_MSE.html">multilevel_MSE()</a></code> 
+        </dt>
+        <dd>Multilevel quantile MSEs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_MAE.html">multilevel_MAE()</a></code> 
+        </dt>
+        <dd>Multilevel quantile MAEs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_q_loss.html">multilevel_q_loss()</a></code> 
+        </dt>
+        <dd>Multilevel quantile losses</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_pred_bias.html">multilevel_pred_bias()</a></code> 
+        </dt>
+        <dd>Multilevel prediction bias</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_resid_var.html">multilevel_resid_var()</a></code> 
+        </dt>
+        <dd>Multilevel residual variance</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_R_squared.html">multilevel_R_squared()</a></code> 
+        </dt>
+        <dd>Multilevel R squared</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_prop_below.html">multilevel_prop_below()</a></code> 
+        </dt>
+        <dd>Multilevel 'proportion_below'</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_q_pred_error.html">multilevel_q_pred_error()</a></code> 
+        </dt>
+        <dd>Multilevel 'quantile_prediction_error'</dd>
+      </dl><dl><dt>
+          
+          <code><a href="multilevel_exceedance_proba_error.html">multilevel_exceedance_proba_error()</a></code> 
+        </dt>
+        <dd>Multilevel 'quantile_exceedance_proba_error'</dd>
+      </dl></div><div class="section level2">
+      <h2 id="other-helpers">Other Helpers<a class="anchor" aria-label="anchor" href="#other-helpers"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="check_directory.html">check_directory()</a></code> 
+        </dt>
+        <dd>Check directory existence</dd>
+      </dl><dl><dt>
+          
+          <code><a href="safe_save_rds.html">safe_save_rds()</a></code> 
+        </dt>
+        <dd>Safe RDS save</dd>
+      </dl><dl><dt>
+          
+          <code><a href="last_elem.html">last_elem()</a></code> 
+        </dt>
+        <dd>Last element of a vector</dd>
+      </dl><dl><dt>
+          
+          <code><a href="roundm.html">roundm()</a></code> 
+        </dt>
+        <dd>Mathematical number rounding</dd>
       </dl><dl><dt>
           
           <code><a href="vec2mat.html">vec2mat()</a></code> 
@@ -491,11 +448,37 @@
         <dd>Convert a vector to a matrix</dd>
       </dl><dl><dt>
           
+          <code><a href="make_folds.html">make_folds()</a></code> 
+        </dt>
+        <dd>Create cross-validation folds</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lagged_features.html">lagged_features()</a></code> 
+        </dt>
+        <dd>Covariate lagged replication for temporal dependence</dd>
+      </dl><dl><dt>
+          
           <code><a href="vector_insert.html">vector_insert()</a></code> 
         </dt>
         <dd>Insert value in vector</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_doFuture_operator.html">get_doFuture_operator()</a></code> 
+        </dt>
+        <dd>Get doFuture operator</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_doFuture_strategy.html">set_doFuture_strategy()</a></code> 
+        </dt>
+        <dd>Set a doFuture execution strategy</dd>
+      </dl><dl><dt>
+          
+          <code><a href="end_doFuture_strategy.html">end_doFuture_strategy()</a></code> 
+        </dt>
+        <dd>End the currently set doFuture strategy</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

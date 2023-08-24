@@ -12,3 +12,4 @@ onload_backend_installer(...)
 \description{
 On-Load Torch Backend Internal Install helper
 }
+\keyword{internal}

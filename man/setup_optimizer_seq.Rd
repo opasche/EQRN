@@ -24,3 +24,4 @@ Instantiate an optimizer for training an EQRN_seq network
 \examples{
 #TODO
 }
+\keyword{internal}

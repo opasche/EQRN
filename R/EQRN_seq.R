@@ -283,6 +283,7 @@ EQRN_predict_seq <- function(fit_eqrn, X, Y, quantiles_predict, intermediate_qua
 #' containing the conditional quantile estimates of the response associated to each covariate observation at each probability level.
 #'
 #' @examples #TODO
+#' @keywords internal
 EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, quantile_predict, intermediate_quantiles, interm_lvl,
                                       crop_predictions=FALSE, seq_len=fit_eqrn$seq_len, device=default_device()){
   
@@ -440,6 +441,7 @@ compute_EQRN_seq_GPDLoss <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL
 #' @import torch
 #'
 #' @examples #TODO
+#' @keywords internal
 setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"){
   if(optim_met!="adam"){stop("Other optim methods are deprecated.")}
   

@@ -46,3 +46,4 @@ Internal predict function for an EQRN_seq fitted object
 \examples{
 #TODO
 }
+\keyword{internal}

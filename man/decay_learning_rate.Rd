@@ -20,3 +20,4 @@ Performs a learning rate decay step on an optimizer
 \examples{
 #TODO
 }
+\keyword{internal}

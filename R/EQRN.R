@@ -1,4 +1,82 @@
 
+#' Wrapper for fitting EQRN with restart for stability
+#'
+#' @param X Matrix of covariates, for training.
+#' @param y Response variable vector to model the extreme conditional quantile of, for training.
+#' @param intermediate_quantiles Vector of intermediate conditional quantiles at level `interm_lvl`.
+#' @param interm_lvl Probability level for the intermediate quantiles `intermediate_quantiles`.
+#' @param number_fits Number of restarts.
+#' @param ... Other parameters given to either [EQRN_fit()] or [EQRN_fit_seq()], depending on the `data_type`.
+#' @param seed Integer random seed for reproducibility in network weight initialization.
+#' @param data_type Type of data dependence, must be one of `"iid"` (for iid observations) or `"seq"` (for sequentially dependent observations).
+#'
+#' @return An EQRN object of classes `c("EQRN_iid", "EQRN")` or `c("EQRN_seq", "EQRN")`, containing the fitted network,
+#' as well as all the relevant information for its usage in other functions.
+#' @export
+#'
+#' @examples #TODO
+EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fits=3, ..., seed=NULL, data_type=c("iid","seq")){#TODO: force_trainloss_select arg
+  #
+  data_type <- match.arg(data_type)
+  if(number_fits<1){stop("'number_fits' must be at least 1 in 'EQRN_fit_restart'.")}
+  
+  if(!is.null(seed)){torch::torch_manual_seed(seed)}
+  
+  if(data_type=="seq"){
+    fit_fct <- EQRN_fit_seq
+  }else{
+    fit_fct <- EQRN_fit
+  }
+  
+  fit_final <- fit_fct(X, y, intermediate_quantiles, interm_lvl, ...)
+  train_loss_final <- last_elem(fit_final$train_loss)
+  if(is.na(train_loss_final)){
+    train_loss_final <- Inf
+  }
+  do_validation <- !is.null(fit_final$valid_loss)
+  if(do_validation){
+    valid_loss_final <- last_elem(fit_final$valid_loss)
+    if(is.na(valid_loss_final)){
+      valid_loss_final <- Inf
+    }
+  }
+  
+  if(number_fits>=2){
+    for(i in 2:number_fits){
+      fit_temp <- fit_fct(X, y, intermediate_quantiles, interm_lvl, ...)
+      train_loss <- last_elem(fit_temp$train_loss)
+      
+      if(do_validation){
+        valid_loss <- last_elem(fit_temp$valid_loss)
+        if(!is.na(valid_loss)){
+          if(valid_loss < valid_loss_final){
+            fit_final <- fit_temp
+            valid_loss_final <- valid_loss
+            train_loss_final <- train_loss
+          }
+        }
+        
+      } else {
+        if(!is.na(train_loss)){
+          if(train_loss < train_loss_final){
+            fit_final <- fit_temp
+            train_loss_final <- train_loss
+          }
+        }
+      }
+    }
+  }
+  if(is.infinite(train_loss_final)){
+    warning("NaN final train loss in 'EQRN_fit_restart'.")
+  }
+  if(do_validation){
+    if(is.infinite(valid_loss_final)){
+      warning("NaN final validation loss in 'EQRN_fit_restart'.")
+    }
+  }
+  return(fit_final)
+}
+
 #' @title EQRN fit function for independent data
 #'
 #' @description Use the [EQRN_fit_restart()] wrapper instead, with `data_type="iid"`, for better stability using fitting restart.
@@ -269,6 +347,7 @@ EQRN_predict <- function(fit_eqrn, X, quantiles_predict, intermediate_quantiles,
 #' at each probability level `quantile_predict`.
 #'
 #' @examples #TODO
+#' @keywords internal
 EQRN_predict_internal <- function(fit_eqrn, X, quantile_predict, intermediate_quantiles, interm_lvl, device=default_device()){
   
   GPD_params_pred <- EQRN_predict_params(fit_eqrn, X, intermediate_quantiles,
@@ -427,6 +506,7 @@ compute_EQRN_GPDLoss <- function(fit_eqrn, X, y, intermediate_quantiles=NULL, in
 #' @import torch
 #'
 #' @examples #TODO
+#' @keywords internal
 instantiate_EQRN_network <- function(net_structure, shape_fixed, D_in, hidden_fct, p_drop=0,
                                      orthogonal_gpd=TRUE, device=default_device()){
   
@@ -474,6 +554,7 @@ instantiate_EQRN_network <- function(net_structure, shape_fixed, D_in, hidden_fc
 #' @import torch
 #'
 #' @examples #TODO
+#' @keywords internal
 setup_optimizer <- function(network, learning_rate, L2_pen, hidden_fct, optim_met="adam"){
   
   err_msg <- "Please give a valid activation function for 'hidden_fct' in EQRN or specify one of the character strings: 'SNN', 'SSNN'."
@@ -508,89 +589,12 @@ setup_optimizer <- function(network, learning_rate, L2_pen, hidden_fct, optim_me
 #' @import torch
 #'
 #' @examples #TODO
+#' @keywords internal
 decay_learning_rate <- function(optimizer, decay_rate){
   for (i in seq_along(optimizer$param_groups)){
     optimizer$param_groups[[i]]$lr <- decay_rate * optimizer$param_groups[[i]]$lr
   }
   optimizer
-}
-
-#' Wrapper for fitting EQRN with restart for stability
-#'
-#' @param X Matrix of covariates, for training.
-#' @param y Response variable vector to model the extreme conditional quantile of, for training.
-#' @param intermediate_quantiles Vector of intermediate conditional quantiles at level `interm_lvl`.
-#' @param interm_lvl Probability level for the intermediate quantiles `intermediate_quantiles`.
-#' @param number_fits Number of restarts.
-#' @param ... Other parameters given to either [EQRN_fit()] or [EQRN_fit_seq()], depending on the `data_type`.
-#' @param seed Integer random seed for reproducibility in network weight initialization.
-#' @param data_type Type of data dependence, must be one of `"iid"` (for iid observations) or `"seq"` (for sequentially dependent observations).
-#'
-#' @return An EQRN object of classes `c("EQRN_iid", "EQRN")` or `c("EQRN_seq", "EQRN")`, containing the fitted network,
-#' as well as all the relevant information for its usage in other functions.
-#' @export
-#'
-#' @examples #TODO
-EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fits=3, ..., seed=NULL, data_type=c("iid","seq")){#TODO: force_trainloss_select arg
-  #
-  data_type <- match.arg(data_type)
-  if(number_fits<1){stop("'number_fits' must be at least 1 in 'EQRN_fit_restart'.")}
-  
-  if(!is.null(seed)){torch::torch_manual_seed(seed)}
-  
-  if(data_type=="seq"){
-    fit_fct <- EQRN_fit_seq
-  }else{
-    fit_fct <- EQRN_fit
-  }
-  
-  fit_final <- fit_fct(X, y, intermediate_quantiles, interm_lvl, ...)
-  train_loss_final <- last_elem(fit_final$train_loss)
-  if(is.na(train_loss_final)){
-    train_loss_final <- Inf
-  }
-  do_validation <- !is.null(fit_final$valid_loss)
-  if(do_validation){
-    valid_loss_final <- last_elem(fit_final$valid_loss)
-    if(is.na(valid_loss_final)){
-      valid_loss_final <- Inf
-    }
-  }
-  
-  if(number_fits>=2){
-    for(i in 2:number_fits){
-      fit_temp <- fit_fct(X, y, intermediate_quantiles, interm_lvl, ...)
-      train_loss <- last_elem(fit_temp$train_loss)
-      
-      if(do_validation){
-        valid_loss <- last_elem(fit_temp$valid_loss)
-        if(!is.na(valid_loss)){
-          if(valid_loss < valid_loss_final){
-            fit_final <- fit_temp
-            valid_loss_final <- valid_loss
-            train_loss_final <- train_loss
-          }
-        }
-        
-      } else {
-        if(!is.na(train_loss)){
-          if(train_loss < train_loss_final){
-            fit_final <- fit_temp
-            train_loss_final <- train_loss
-          }
-        }
-      }
-    }
-  }
-  if(is.infinite(train_loss_final)){
-    warning("NaN final train loss in 'EQRN_fit_restart'.")
-  }
-  if(do_validation){
-    if(is.infinite(valid_loss_final)){
-      warning("NaN final validation loss in 'EQRN_fit_restart'.")
-    }
-  }
-  return(fit_final)
 }
 
 #' Save an EQRN object on disc
@@ -865,6 +869,7 @@ default_device <- function(){
 #' @return The fixed batch_size.
 #'
 #' @examples #TODO
+#' @keywords internal
 batch_size_default <- function(tensor_dat, batch_size=256){
   n <- length(tensor_dat)
   if(n==1){
@@ -888,6 +893,7 @@ batch_size_default <- function(tensor_dat, batch_size=256){
 #' @return The `eqrn_fit` object with updated attribute names and classes.
 #'
 #' @examples #TODO
+#' @keywords internal
 legacy_names <- function(eqrn_fit, classes=NULL){
   if(is.null(eqrn_fit$interm_lvl)){
     eqrn_fit$interm_lvl <- eqrn_fit$threshold
@@ -909,6 +915,7 @@ legacy_names <- function(eqrn_fit, classes=NULL){
 #' @return The fixed dl_i object
 #'
 #' @examples #TODO
+#' @keywords internal
 fix_dimsimplif <- function(dl_i, ..., responses=TRUE){
   dl_i[[1]] <- dl_i[[1]]$reshape(c(-1, ...))
   if(responses){

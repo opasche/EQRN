@@ -111,6 +111,7 @@ vec2mat <- function(v, axis=c("col","row")){
 #' @importFrom dplyr left_join select
 #'
 #' @examples #rep_tibble(tibble::tibble(a=c(2,3), b=c(5,6)), 3)
+#' @keywords internal
 rep_tibble <- function(tbl, m){
   tbl <-  tbl %>% tibble::rownames_to_column()
   
@@ -128,6 +129,7 @@ rep_tibble <- function(tbl, m){
 #' @return Matrix of replicated vector.
 #'
 #' @examples #rep_vector2matrix(c(2, 7, 3, 8), 3, "row")
+#' @keywords internal
 rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
   ## stack nrep of vec in (row|col) of a matrix
   
@@ -153,6 +155,7 @@ rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
 #' @return The list converted to a matrix, by stacking the elements of `lst` in the rows or columns of a matrix.
 #'
 #' @examples #list2matrix(list(2, 7, 3, 8), "row")
+#' @keywords internal
 list2matrix <- function(lst, dim = c("row", "col")){
   dim <- match.arg(dim)
   l <- length(lst)
@@ -175,6 +178,7 @@ list2matrix <- function(lst, dim = c("row", "col")){
 #' @return A list with elements corresponding to rows of `mat`.
 #'
 #' @examples #matrix2list(matrix(c(1, 2, 3, 4, 5, 6), ncol=2))
+#' @keywords internal
 matrix2list <- function(mat){
   split(mat, rep(1:nrow(mat), times = ncol(mat)))
 }
@@ -188,6 +192,7 @@ matrix2list <- function(mat){
 #' @return Returns TRUE if X is a matrix with dimension n * p. Otherwise an error is raised.
 #'
 #' @examples #check_X_matrix(matrix(c(1, 2, 3, 4, 5, 6), ncol=2), n=3, p=2)
+#' @keywords internal
 check_X_matrix <- function(X, n, p){
   cond_1 <- is.matrix(X)
   
@@ -402,6 +407,7 @@ end_doFuture_strategy <- function(){
 #' cl <- start_doParallel_strategy("parallel", n_workers=3)
 #' stop_doParallel_strategy("parallel", cl)
 #' }
+#' @keywords internal
 start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
                                       n_workers=NULL){
   
@@ -434,6 +440,7 @@ start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
 #' cl <- start_doParallel_strategy("parallel", n_workers=3)
 #' stop_doParallel_strategy("parallel", cl)
 #' }
+#' @keywords internal
 stop_doParallel_strategy <- function(strategy=c("sequential", "parallel"), cl){
   ## closes the doParallel execution strategy
   

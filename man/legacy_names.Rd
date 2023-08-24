@@ -20,3 +20,4 @@ Internal renaming function for back-compatibility
 \examples{
 #TODO
 }
+\keyword{internal}

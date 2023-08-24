@@ -20,3 +20,4 @@ Convert a list to a matrix
 \examples{
 #list2matrix(list(2, 7, 3, 8), "row")
 }
+\keyword{internal}

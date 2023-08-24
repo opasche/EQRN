@@ -22,3 +22,4 @@ The fixed dl_i object
 \examples{
 #TODO
 }
+\keyword{internal}

@@ -91,6 +91,7 @@ FC_GPD_net <- torch::nn_module(
 #' \item{p}{probability of an element to be zeroed (default is 0.5),}
 #' \item{inplace}{if set to TRUE, will do the operation in-place (default is FALSE).}
 #' }
+#' @keywords internal
 nn_dropout_nd <- torch::nn_module(
   "nn_dropout_nd",
   initialize = function(p = 0.5, inplace = FALSE) {
@@ -122,6 +123,7 @@ nn_dropout_nd <- torch::nn_module(
 #' @references
 #' Gunter Klambauer, Thomas Unterthiner, Andreas Mayr, Sepp Hochreiter. Self-Normalizing Neural Networks.
 #' Advances in Neural Information Processing Systems 30 (NIPS 2017), 2017.
+#' @keywords internal
 nn_alpha_dropout <- torch::nn_module(
   "nn_alpha_dropout",
   inherit = nn_dropout_nd,

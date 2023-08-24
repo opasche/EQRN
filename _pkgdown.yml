@@ -1,4 +1,119 @@
-url: ~
+url: https://opasche.github.io/EQRN/
 template:
   bootstrap: 5
+reference:
+- title: Fitting EQRN Tail Neural Networks
+  desc: Functions to fit a tail GPD EQRN network to intermediate quantile exceedences
+  contents: 
+  - EQRN_fit_restart
+  - EQRN_fit
+  - EQRN_fit_seq
+- title: Predicting using fitted EQRN networks
+  desc: 
+  contents:
+  - EQRN_predict
+  - EQRN_predict_seq
+  - EQRN_predict_params
+  - EQRN_predict_params_seq
+  - EQRN_excess_probability
+  - EQRN_excess_probability_seq
+  - compute_EQRN_GPDLoss
+  - compute_EQRN_seq_GPDLoss
+- title: Saving and Loading
+  desc: 
+  contents:
+  - EQRN_save
+  - EQRN_load
+- title: Neural Networks Helpers
+  desc: 
+  contents:
+  - install_backend
+  - default_device
+  - loss_GPD_tensor
+  - quantile_loss_tensor
+  - get_excesses
+  - process_features
+  - perform_scaling
+  - mts_dataset
+  - FC_GPD_net
+  - FC_GPD_SNN
+  - Separated_GPD_SNN
+  - Recurrent_GPD_net
+  - QRNN_RNN_net
+- title: Extreme Value Analysis Helpers
+  desc: 
+  contents:
+  - GPD_excess_probability
+  - fit_GPD_unconditional
+  - predict_unconditional_quantiles
+  - predict_GPD_semiconditional
+  - loss_GPD
+  - unconditional_train_valid_GPD_loss
+  - semiconditional_train_valid_GPD_loss
+  - GPD_quantiles
+- title: Intermediate Models
+  desc: 
+  contents:
+  - QRN_seq_fit
+  - QRN_fit_multiple
+  - QRN_seq_predict
+  - QRN_seq_predict_foldwise
+  - QRN_seq_predict_foldwise_sep
+- title: Accuracy metrics
+  desc: 
+  contents:
+  - mean_squared_error
+  - mean_absolute_error
+  - square_loss
+  - quantile_loss
+  - prediction_bias
+  - prediction_residual_variance
+  - R_squared
+  - proportion_below
+  - quantile_prediction_error
+  - quantile_exceedance_proba_error
+  - multilevel_MSE
+  - multilevel_MAE
+  - multilevel_q_loss
+  - multilevel_pred_bias
+  - multilevel_resid_var
+  - multilevel_R_squared
+  - multilevel_prop_below
+  - multilevel_q_pred_error
+  - multilevel_exceedance_proba_error
+- title: Other Helpers
+  desc: 
+  contents:
+  - check_directory
+  - safe_save_rds
+  - last_elem
+  - roundm
+  - vec2mat
+  - make_folds
+  - lagged_features
+  - vector_insert
+  - get_doFuture_operator
+  - set_doFuture_strategy
+  - end_doFuture_strategy
+- title: internal
+  contents:
+  - onload_backend_installer
+  - EQRN_predict_internal
+  - EQRN_predict_internal_seq
+  - instantiate_EQRN_network
+  - setup_optimizer
+  - setup_optimizer_seq
+  - decay_learning_rate
+  - batch_size_default
+  - legacy_names
+  - fix_dimsimplif
+  - nn_dropout_nd
+  - nn_alpha_dropout
+  - rep_tibble
+  - rep_vector2matrix
+  - list2matrix
+  - matrix2list
+  - check_X_matrix
+  - start_doParallel_strategy
+  - stop_doParallel_strategy
 

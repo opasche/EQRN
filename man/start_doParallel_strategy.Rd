@@ -32,3 +32,4 @@ cl <- start_doParallel_strategy("parallel", n_workers=3)
 stop_doParallel_strategy("parallel", cl)
 }
 }
+\keyword{internal}

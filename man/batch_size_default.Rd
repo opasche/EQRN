@@ -20,3 +20,4 @@ Default batch size (internal)
 \examples{
 #TODO
 }
+\keyword{internal}
