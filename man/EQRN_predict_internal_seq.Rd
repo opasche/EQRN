@@ -8,7 +8,7 @@ EQRN_predict_internal_seq(
   fit_eqrn,
   X,
   Y,
-  quantile_predict,
+  prob_lvl_predict,
   intermediate_quantiles,
   interm_lvl,
   crop_predictions = FALSE,
@@ -23,7 +23,7 @@ EQRN_predict_internal_seq(
 
 \item{Y}{Response variable vector corresponding to the rows of \code{X}.}
 
-\item{quantile_predict}{Probability level at which to predict the conditional quantile.}
+\item{prob_lvl_predict}{Probability level at which to predict the conditional quantile.}
 
 \item{intermediate_quantiles}{Vector of intermediate conditional quantiles at level \code{fit_eqrn$interm_lvl}.}
 
@@ -42,8 +42,5 @@ containing the conditional quantile estimates of the response associated to each
 }
 \description{
 Internal predict function for an EQRN_seq fitted object
-}
-\examples{
-#TODO
 }
 \keyword{internal}

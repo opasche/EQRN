@@ -126,8 +126,9 @@ print(results)
 ```
 
 
+____
 
-Package created by Olivier Colin PASCHE\
-Research Center for Statistics, University of Geneva (CH), 2022.\
-Supported by the Swiss National Science Foundation.
+Package created by Olivier C. PASCHE  
+Research Center for Statistics, University of Geneva (CH), 2022.  
+Supported by the Swiss National Science Foundation.  
 

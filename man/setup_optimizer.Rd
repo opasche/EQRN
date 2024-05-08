@@ -25,7 +25,4 @@ A \code{torch::optimizer} object used in \code{\link[=EQRN_fit]{EQRN_fit()}} for
 \description{
 Instantiate an optimizer for training an EQRN_iid network
 }
-\examples{
-#TODO
-}
 \keyword{internal}

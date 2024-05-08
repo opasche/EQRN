@@ -28,6 +28,3 @@ Named list containing:
 \description{
 Performs feature scaling without overfitting
 }
-\examples{
-#TODO
-}

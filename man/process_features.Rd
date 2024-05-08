@@ -37,6 +37,3 @@ Named list containing:
 \description{
 Feature processor for EQRN
 }
-\examples{
-#TODO
-}

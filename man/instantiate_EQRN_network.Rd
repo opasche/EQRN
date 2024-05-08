@@ -39,7 +39,4 @@ A \code{torch::nn_module} network used to regress the GPD parameters in \code{\l
 \description{
 Instantiates the default networks for training a EQRN_iid model
 }
-\examples{
-#TODO
-}
 \keyword{internal}

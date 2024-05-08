@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">EQRN</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
   <span class="va">fit_eqrn</span>,
   <span class="va">X</span>,
   <span class="va">Y</span>,
-  <span class="va">quantiles_predict</span>,
+  <span class="va">prob_lvls_predict</span>,
   <span class="va">intermediate_quantiles</span>,
   <span class="va">interm_lvl</span>,
   crop_predictions <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -78,7 +78,7 @@
 <dd><p>Response variable vector corresponding to the rows of <code>X</code>.</p></dd>
 
 
-<dt>quantiles_predict</dt>
+<dt>prob_lvls_predict</dt>
 <dd><p>Vector of probability levels at which to predict the conditional quantiles.</p></dd>
 
 
@@ -107,20 +107,14 @@ By default, the training <code>fit_eqrn$seq_len</code> is used.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Matrix of size <code>nrow(X)</code> times <code>quantiles_predict</code></p>
+<p>Matrix of size <code>nrow(X)</code> times <code>prob_lvls_predict</code></p>
 
 
-<p>(or <code>nrow(X)-seq_len</code> times <code>quantiles_predict</code> if <code>crop_predictions</code>)
+<p>(or <code>nrow(X)-seq_len</code> times <code>prob_lvls_predict</code> if <code>crop_predictions</code>)
 containing the conditional quantile estimates of the corresponding response observations at each probability level.
-Simplifies to a vector if <code>length(quantiles_predict)==1</code>.</p>
+Simplifies to a vector if <code>length(prob_lvls_predict)==1</code>.</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#TODO</span></span>
-<span class="r-in"></span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

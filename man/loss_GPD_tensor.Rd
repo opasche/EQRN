@@ -33,6 +33,3 @@ whose dimensions depend on \code{return_agg}.
 \description{
 GPD tensor loss function for training a EQRN network
 }
-\examples{
-#TODO
-}

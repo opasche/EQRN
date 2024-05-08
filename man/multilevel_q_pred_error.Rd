@@ -37,6 +37,3 @@ If \code{give_names} is \code{TRUE}, the output vector is named \code{paste0(pre
 \description{
 Multilevel version of \code{\link[=quantile_prediction_error]{quantile_prediction_error()}}.
 }
-\examples{
-#TODO
-}

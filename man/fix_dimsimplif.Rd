@@ -19,7 +19,4 @@ The fixed dl_i object
 \description{
 (INTERNAL) Issue was raised to the \code{torch} maintainers and should be fixed, deprecating this function.
 }
-\examples{
-#TODO
-}
 \keyword{internal}

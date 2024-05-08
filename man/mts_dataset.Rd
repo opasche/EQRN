@@ -41,6 +41,3 @@ as well as in other recurrent methods such as \code{\link[=QRN_seq_fit]{QRN_seq_
 Can perform scaling of the response's past as a covariate, and compute excesses as a response when used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq()}}.
 Also allows for fold separation or sequential discontinuity in the data.
 }
-\examples{
-#TODO
-}

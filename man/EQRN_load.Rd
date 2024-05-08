@@ -22,6 +22,3 @@ The loaded \code{"EQRN"} model.
 \description{
 Loads in memory an \code{"EQRN"} object that has previously been saved on disc using \code{\link[=EQRN_save]{EQRN_save()}}.
 }
-\examples{
-#TODO
-}

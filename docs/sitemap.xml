@@ -82,6 +82,15 @@
     <loc>https://opasche.github.io/EQRN/reference/EQRN_save.html</loc>
   </url>
   <url>
+    <loc>https://opasche.github.io/EQRN/reference/excess_probability.EQRN_iid.html</loc>
+  </url>
+  <url>
+    <loc>https://opasche.github.io/EQRN/reference/excess_probability.EQRN_seq.html</loc>
+  </url>
+  <url>
+    <loc>https://opasche.github.io/EQRN/reference/excess_probability.html</loc>
+  </url>
+  <url>
     <loc>https://opasche.github.io/EQRN/reference/FC_GPD_net.html</loc>
   </url>
   <url>
@@ -185,6 +194,15 @@
   </url>
   <url>
     <loc>https://opasche.github.io/EQRN/reference/perform_scaling.html</loc>
+  </url>
+  <url>
+    <loc>https://opasche.github.io/EQRN/reference/predict.EQRN_iid.html</loc>
+  </url>
+  <url>
+    <loc>https://opasche.github.io/EQRN/reference/predict.EQRN_seq.html</loc>
+  </url>
+  <url>
+    <loc>https://opasche.github.io/EQRN/reference/predict.QRN_seq.html</loc>
   </url>
   <url>
     <loc>https://opasche.github.io/EQRN/reference/prediction_bias.html</loc>

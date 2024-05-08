@@ -39,6 +39,3 @@ If \code{give_names} is \code{TRUE}, the output vector is named \code{paste0(pre
 \description{
 Multilevel version of \code{\link[=R_squared]{R_squared()}}.
 }
-\examples{
-#TODO
-}

@@ -95,6 +95,15 @@ reference:
   - get_doFuture_operator
   - set_doFuture_strategy
   - end_doFuture_strategy
+- title: Prediction methods
+  desc: S3 class method support for classes `EQRN_iid`, `EQRN_seq` and `QRN_seq`, and methods `predict` and `excess_probability`, as a facultative alternative to their respective functions above.
+  contents:
+  - predict.EQRN_iid
+  - predict.EQRN_seq
+  - predict.QRN_seq
+  - excess_probability
+  - excess_probability.EQRN_iid
+  - excess_probability.EQRN_seq
 - title: internal
   contents:
   - onload_backend_installer

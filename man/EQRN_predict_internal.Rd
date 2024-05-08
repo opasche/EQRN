@@ -7,7 +7,7 @@
 EQRN_predict_internal(
   fit_eqrn,
   X,
-  quantile_predict,
+  prob_lvl_predict,
   intermediate_quantiles,
   interm_lvl,
   device = default_device()
@@ -18,7 +18,7 @@ EQRN_predict_internal(
 
 \item{X}{Matrix of covariates to predict the corresponding response's conditional quantiles.}
 
-\item{quantile_predict}{Probability level at which to predict the conditional quantiles.}
+\item{prob_lvl_predict}{Probability level at which to predict the conditional quantiles.}
 
 \item{intermediate_quantiles}{Vector of intermediate conditional quantiles at level \code{fit_eqrn$interm_lvl}.}
 
@@ -28,12 +28,9 @@ EQRN_predict_internal(
 }
 \value{
 Vector of length \code{nrow(X)} containing the conditional quantile estimates of the response associated to each covariate observation
-at each probability level \code{quantile_predict}.
+at each probability level \code{prob_lvl_predict}.
 }
 \description{
 Internal predict function for an EQRN_iid
-}
-\examples{
-#TODO
 }
 \keyword{internal}

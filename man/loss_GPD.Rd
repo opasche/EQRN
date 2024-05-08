@@ -34,6 +34,3 @@ GPD negative log-likelihood of the GPD parameters over the sample of observation
 \description{
 Generalized Pareto likelihood loss
 }
-\examples{
-#TODO
-}

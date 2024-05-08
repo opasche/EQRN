@@ -154,6 +154,8 @@ print(results)
 #> 10 0.1613134 0.52083200    2.045515      14.71575       32.11914    0.003049184
 ```
 
-Package created by Olivier Colin PASCHE  
+------------------------------------------------------------------------
+
+Package created by Olivier C. PASCHE  
 Research Center for Statistics, University of Geneva (CH), 2022.  
 Supported by the Swiss National Science Foundation.

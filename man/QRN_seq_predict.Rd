@@ -34,6 +34,3 @@ containing the conditional quantile estimates of the corresponding response obse
 \description{
 Predict function for a QRN_seq fitted object
 }
-\examples{
-#TODO
-}

@@ -41,6 +41,3 @@ Vector of probabilities (and possibly a few \code{body_proba} values if \code{va
 \description{
 Tail excess probability prediction using an EQRN_iid object
 }
-\examples{
-#TODO
-}

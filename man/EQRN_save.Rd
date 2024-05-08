@@ -22,6 +22,3 @@ Nothing
 Creates a folder named \code{name} and located in \code{path}, containing binary save files,
 so that the given \code{"EQRN"} object \code{fit_eqrn} can be loaded back in memory from disc using \code{\link[=EQRN_load]{EQRN_load()}}.
 }
-\examples{
-#TODO
-}

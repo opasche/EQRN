@@ -42,6 +42,3 @@ Named list containing:
 \description{
 Computes rescaled excesses over the conditional quantiles
 }
-\examples{
-#TODO
-}

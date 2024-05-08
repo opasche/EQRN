@@ -41,8 +41,6 @@
 #' @export
 #' @import torch
 #' @importFrom coro loop
-#'
-#' @examples #TODO
 QRN_seq_fit <- function(X, Y, q_level, hidden_size=10, num_layers=1, rnn_type=c("lstm","gru"), p_drop=0,
                         learning_rate=1e-4, L2_pen=0, seq_len=10, scale_features=TRUE, n_epochs=1e4, batch_size=256,
                         X_valid=NULL, Y_valid=NULL, lr_decay=1, patience_decay=n_epochs, min_lr=0, patience_stop=n_epochs,
@@ -222,8 +220,6 @@ QRN_seq_fit <- function(X, Y, q_level, hidden_size=10, num_layers=1, rnn_type=c(
 #' @export
 #' @import torch
 #' @importFrom coro loop
-#'
-#' @examples #TODO
 QRN_seq_predict <- function(fit_qrn_ts, X, Y, q_level=fit_qrn_ts$interm_lvl, crop_predictions=FALSE, device=default_device()){
   if(q_level!=fit_qrn_ts$interm_lvl){stop("QRN q_level does not match in train and predict.")}
   
@@ -250,6 +246,21 @@ QRN_seq_predict <- function(fit_qrn_ts, X, Y, q_level=fit_qrn_ts$interm_lvl, cro
 }
 
 
+#' Predict method for a QRN_seq fitted object
+#'
+#' @param object Fitted `"QRN_seq"` object.
+#' @inheritDotParams QRN_seq_predict -fit_qrn_ts
+#' 
+#' @details See [QRN_seq_predict()] for more details.
+#'
+#' @inherit QRN_seq_predict return
+#' @method predict QRN_seq
+#' @export
+predict.QRN_seq <- function(object, ...){
+  return(QRN_seq_predict(fit_qrn_ts=object, ...))
+}
+
+
 #' Wrapper for fitting a recurrent QRN with restart for stability
 #'
 #' @param X Matrix of covariates, for training.
@@ -264,8 +275,6 @@ QRN_seq_predict <- function(fit_qrn_ts, X, Y, q_level=fit_qrn_ts$interm_lvl, cro
 #' @return An QRN object of classes `c("QRN_seq", "QRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
-#'
-#' @examples #TODO
 QRN_fit_multiple <- function(X, y, q_level, number_fits=3, ..., seed=NULL, data_type=c("seq","iid")){
   #
   data_type <- match.arg(data_type)
@@ -328,6 +337,7 @@ QRN_fit_multiple <- function(X, y, q_level, number_fits=3, ..., seed=NULL, data_
   return(fit_final)
 }
 
+
 #' Foldwise fit-predict function using a recurrent QRN
 #'
 #' @param X Matrix of covariates, for training. Entries must be in sequential order.
@@ -353,8 +363,6 @@ QRN_fit_multiple <- function(X, y, q_level, number_fits=3, ..., seed=NULL, data_
 #' \item{min_valid_e}{the epoch index of the minimal validation losses obtained on each fold.}
 #' }
 #' @export
-#'
-#' @examples #TODO
 QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, seq_len=10, seed=NULL, ...){
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
   Y <- matrix(y, ncol=1)
@@ -399,6 +407,7 @@ QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, se
               train_losses=train_losses, valid_losses=valid_losses, min_valid_losses=min_valid_losses, min_valid_e=min_valid_e))
 }
 
+
 #' Sigle-fold foldwise fit-predict function using a recurrent QRN
 #'
 #' @description Separated single-fold version of [QRN_seq_predict_foldwise()], for computation purposes.
@@ -427,8 +436,6 @@ QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, se
 #' \item{min_valid_e}{the epoch index of the minimal validation losses obtained on each fold.}
 #' }
 #' @export
-#'
-#' @examples #TODO
 QRN_seq_predict_foldwise_sep <- function(X, y, q_level, n_folds=3, fold_todo=1, number_fits=3, seq_len=10, seed=NULL, ...){
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
   Y <- matrix(y, ncol=1)
@@ -488,8 +495,6 @@ QRN_seq_predict_foldwise_sep <- function(X, y, q_level, n_folds=3, fold_todo=1, 
 #' whose dimensions depend on `return_agg`.
 #' @export
 #' @import torch
-#'
-#' @examples #TODO
 quantile_loss_tensor <- function(out, y, q=0.5, return_agg=c("mean", "sum", "vector", "nanmean", "nansum")){
   return_agg <- match.arg(return_agg)
   

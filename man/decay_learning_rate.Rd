@@ -17,7 +17,4 @@ The \code{optimizer} with a decayed learning rate.
 \description{
 Performs a learning rate decay step on an optimizer
 }
-\examples{
-#TODO
-}
 \keyword{internal}

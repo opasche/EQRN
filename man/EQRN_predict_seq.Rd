@@ -8,7 +8,7 @@ EQRN_predict_seq(
   fit_eqrn,
   X,
   Y,
-  quantiles_predict,
+  prob_lvls_predict,
   intermediate_quantiles,
   interm_lvl,
   crop_predictions = FALSE,
@@ -23,7 +23,7 @@ EQRN_predict_seq(
 
 \item{Y}{Response variable vector corresponding to the rows of \code{X}.}
 
-\item{quantiles_predict}{Vector of probability levels at which to predict the conditional quantiles.}
+\item{prob_lvls_predict}{Vector of probability levels at which to predict the conditional quantiles.}
 
 \item{intermediate_quantiles}{Vector of intermediate conditional quantiles at level \code{fit_eqrn$interm_lvl}.}
 
@@ -37,14 +37,11 @@ By default, the training \code{fit_eqrn$seq_len} is used.}
 \item{device}{(optional) A \code{\link[torch:torch_device]{torch::torch_device()}}. Defaults to \code{\link[=default_device]{default_device()}}.}
 }
 \value{
-Matrix of size \code{nrow(X)} times \code{quantiles_predict}
-(or \code{nrow(X)-seq_len} times \code{quantiles_predict} if \code{crop_predictions})
+Matrix of size \code{nrow(X)} times \code{prob_lvls_predict}
+(or \code{nrow(X)-seq_len} times \code{prob_lvls_predict} if \code{crop_predictions})
 containing the conditional quantile estimates of the corresponding response observations at each probability level.
-Simplifies to a vector if \code{length(quantiles_predict)==1}.
+Simplifies to a vector if \code{length(prob_lvls_predict)==1}.
 }
 \description{
 Predict function for an EQRN_seq fitted object
-}
-\examples{
-#TODO
 }

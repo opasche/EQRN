@@ -21,7 +21,4 @@ A \code{torch::optimizer} object used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq
 \description{
 Instantiate an optimizer for training an EQRN_seq network
 }
-\examples{
-#TODO
-}
 \keyword{internal}

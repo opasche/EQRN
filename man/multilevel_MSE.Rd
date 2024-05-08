@@ -44,6 +44,3 @@ If \code{sd==TRUE} a named list is instead returned, containing the \code{"MSEs"
 \description{
 Multilevel version of \code{\link[=mean_squared_error]{mean_squared_error()}}.
 }
-\examples{
-#TODO
-}

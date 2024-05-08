@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">EQRN</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">EQRN_predict_internal</span><span class="op">(</span>
   <span class="va">fit_eqrn</span>,
   <span class="va">X</span>,
-  <span class="va">quantile_predict</span>,
+  <span class="va">prob_lvl_predict</span>,
   <span class="va">intermediate_quantiles</span>,
   <span class="va">interm_lvl</span>,
   device <span class="op">=</span> <span class="fu"><a href="default_device.html">default_device</a></span><span class="op">(</span><span class="op">)</span>
@@ -71,7 +71,7 @@
 <dd><p>Matrix of covariates to predict the corresponding response's conditional quantiles.</p></dd>
 
 
-<dt>quantile_predict</dt>
+<dt>prob_lvl_predict</dt>
 <dd><p>Probability level at which to predict the conditional quantiles.</p></dd>
 
 
@@ -92,15 +92,9 @@
     
 
 <p>Vector of length <code>nrow(X)</code> containing the conditional quantile estimates of the response associated to each covariate observation
-at each probability level <code>quantile_predict</code>.</p>
+at each probability level <code>prob_lvl_predict</code>.</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#TODO</span></span>
-<span class="r-in"></span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -44,6 +44,3 @@ If \code{sd==TRUE} a named list is instead returned, containing the \code{"MAEs"
 \description{
 Multilevel version of \code{\link[=mean_absolute_error]{mean_absolute_error()}}.
 }
-\examples{
-#TODO
-}

@@ -23,6 +23,3 @@ The quantile value at probability level \code{p}.
 \description{
 Compute extreme quantile from GPD parameters
 }
-\examples{
-#TODO
-}

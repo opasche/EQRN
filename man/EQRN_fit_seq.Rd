@@ -115,6 +115,3 @@ as well as all the relevant information for its usage in other functions.
 \description{
 Use the \code{\link[=EQRN_fit_restart]{EQRN_fit_restart()}} wrapper instead, with \code{data_type="seq"}, for better stability using fitting restart.
 }
-\examples{
-#TODO
-}

@@ -45,8 +45,6 @@
 #' @export
 #' @import torch
 #' @importFrom coro loop
-#'
-#' @examples #TODO
 EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE, hidden_size=10, num_layers=1, rnn_type=c("lstm","gru"), p_drop=0,
                          intermediate_q_feature=TRUE, learning_rate=1e-4, L2_pen=0, seq_len=10, shape_penalty=0,
                          scale_features=TRUE, n_epochs=500, batch_size=256, X_valid=NULL, y_valid=NULL, quant_valid=NULL,
@@ -227,7 +225,7 @@ EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=F
 #' @param fit_eqrn Fitted `"EQRN_seq"` object.
 #' @param X Matrix of covariates to predict the corresponding response's conditional quantiles.
 #' @param Y Response variable vector corresponding to the rows of `X`.
-#' @param quantiles_predict Vector of probability levels at which to predict the conditional quantiles.
+#' @param prob_lvls_predict Vector of probability levels at which to predict the conditional quantiles.
 #' @param intermediate_quantiles Vector of intermediate conditional quantiles at level `fit_eqrn$interm_lvl`.
 #' @param interm_lvl Optional, checks that `interm_lvl == fit_eqrn$interm_lvl`.
 #' @param crop_predictions Whether to crop out the fist `seq_len` observations (which are `NA`) from the returned matrix.
@@ -235,43 +233,57 @@ EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=F
 #' By default, the training `fit_eqrn$seq_len` is used.
 #' @param device (optional) A [torch::torch_device()]. Defaults to [default_device()].
 #'
-#' @return Matrix of size `nrow(X)` times `quantiles_predict`
-#' (or `nrow(X)-seq_len` times `quantiles_predict` if `crop_predictions`)
+#' @return Matrix of size `nrow(X)` times `prob_lvls_predict`
+#' (or `nrow(X)-seq_len` times `prob_lvls_predict` if `crop_predictions`)
 #' containing the conditional quantile estimates of the corresponding response observations at each probability level.
-#' Simplifies to a vector if `length(quantiles_predict)==1`.
+#' Simplifies to a vector if `length(prob_lvls_predict)==1`.
 #' @export
-#'
-#' @examples #TODO
-EQRN_predict_seq <- function(fit_eqrn, X, Y, quantiles_predict, intermediate_quantiles, interm_lvl,
+EQRN_predict_seq <- function(fit_eqrn, X, Y, prob_lvls_predict, intermediate_quantiles, interm_lvl,
                              crop_predictions=FALSE, seq_len=fit_eqrn$seq_len, device=default_device()){
   
-  if(length(dim(quantiles_predict))>1){
-    stop("Please provide a single value or 1D vector as quantiles_predict in EQRN_predict_seq.")
+  if(length(dim(prob_lvls_predict))>1){
+    stop("Please provide a single value or 1D vector as prob_lvls_predict in EQRN_predict_seq.")
   }
   
-  if(length(quantiles_predict)==1){
-    return(EQRN_predict_internal_seq(fit_eqrn, X, Y, quantiles_predict, intermediate_quantiles,
+  if(length(prob_lvls_predict)==1){
+    return(EQRN_predict_internal_seq(fit_eqrn, X, Y, prob_lvls_predict, intermediate_quantiles,
                                      interm_lvl, crop_predictions=crop_predictions, seq_len=seq_len, device=device))
-  } else if(length(quantiles_predict)>1){
-    nb_quantiles_predict <- length(quantiles_predict)
+  } else if(length(prob_lvls_predict)>1){
+    nb_prob_lvls_predict <- length(prob_lvls_predict)
     length_preds <- if(crop_predictions){nrow(X)-seq_len}else{nrow(X)}
-    predicted_quantiles <- matrix(as.double(NA), nrow=length_preds, ncol=nb_quantiles_predict)
-    for(i in 1:nb_quantiles_predict){
-      predicted_quantiles[,i] <- EQRN_predict_internal_seq(fit_eqrn, X, Y, quantiles_predict[i], intermediate_quantiles,
+    predicted_quantiles <- matrix(as.double(NA), nrow=length_preds, ncol=nb_prob_lvls_predict)
+    for(i in 1:nb_prob_lvls_predict){
+      predicted_quantiles[,i] <- EQRN_predict_internal_seq(fit_eqrn, X, Y, prob_lvls_predict[i], intermediate_quantiles,
                                                            interm_lvl, crop_predictions=crop_predictions, seq_len=seq_len, device=device)
     }
     return(predicted_quantiles)
   } else {
-    stop("Please provide a single value or 1D vector as quantiles_predict in EQRN_predict_seq.")
+    stop("Please provide a single value or 1D vector as prob_lvls_predict in EQRN_predict_seq.")
   }
 }
+
+
+#' Predict method for an EQRN_seq fitted object
+#'
+#' @param object Fitted `"EQRN_seq"` object.
+#' @inheritDotParams EQRN_predict_seq -fit_eqrn
+#' 
+#' @details See [EQRN_predict_seq()] for more details.
+#'
+#' @inherit EQRN_predict_seq return
+#' @method predict EQRN_seq
+#' @export
+predict.EQRN_seq <- function(object, ...){
+  return(EQRN_predict_seq(fit_eqrn=object, ...))
+}
+
 
 #' Internal predict function for an EQRN_seq fitted object
 #'
 #' @param fit_eqrn Fitted `"EQRN_seq"` object.
 #' @param X Matrix of covariates to predict the corresponding response's conditional quantiles.
 #' @param Y Response variable vector corresponding to the rows of `X`.
-#' @param quantile_predict Probability level at which to predict the conditional quantile.
+#' @param prob_lvl_predict Probability level at which to predict the conditional quantile.
 #' @param intermediate_quantiles Vector of intermediate conditional quantiles at level `fit_eqrn$interm_lvl`.
 #' @param interm_lvl Optional, checks that `interm_lvl == fit_eqrn$interm_lvl`.
 #' @param crop_predictions Whether to crop out the fist `seq_len` observations (which are `NA`) from the returned vector
@@ -281,10 +293,9 @@ EQRN_predict_seq <- function(fit_eqrn, X, Y, quantiles_predict, intermediate_qua
 #'
 #' @return Vector of length `nrow(X)` (or `nrow(X)-seq_len` if `crop_predictions`)
 #' containing the conditional quantile estimates of the response associated to each covariate observation at each probability level.
-#'
-#' @examples #TODO
+#' 
 #' @keywords internal
-EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, quantile_predict, intermediate_quantiles, interm_lvl,
+EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, prob_lvl_predict, intermediate_quantiles, interm_lvl,
                                       crop_predictions=FALSE, seq_len=fit_eqrn$seq_len, device=default_device()){
   
   GPD_params_pred <- EQRN_predict_params_seq(fit_eqrn, X, Y, intermediate_quantiles,
@@ -292,7 +303,7 @@ EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, quantile_predict, intermed
   sigmas <- GPD_params_pred$scales
   xis <- GPD_params_pred$shapes
   
-  predicted_quantiles <- matrix(GPD_quantiles(quantile_predict, interm_lvl,
+  predicted_quantiles <- matrix(GPD_quantiles(prob_lvl_predict, interm_lvl,
                                               intermediate_quantiles[(seq_len+1):length(intermediate_quantiles)],
                                               sigmas, xis), ncol=1)
   
@@ -302,6 +313,7 @@ EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, quantile_predict, intermed
   }
   return(predicted_quantiles)
 }
+
 
 #' GPD parameters prediction function for an EQRN_seq fitted object
 #'
@@ -320,8 +332,6 @@ EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, quantile_predict, intermed
 #' @export
 #' @import torch
 #' @importFrom coro loop
-#'
-#' @examples #TODO
 EQRN_predict_params_seq <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL, return_parametrization=c("classical","orthogonal"),
                                     interm_lvl=fit_eqrn$interm_lvl, seq_len=fit_eqrn$seq_len, device=default_device()){
   ## return_parametrization controls the desired parametrization of the output parameters
@@ -360,6 +370,7 @@ EQRN_predict_params_seq <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL,
   return(list(scales=scales, shapes=shapes, seq_len=seq_len))
 }
 
+
 #' Tail excess probability prediction using an EQRN_seq object
 #'
 #' @param val Quantile value(s) used to estimate the conditional excess probability or cdf.
@@ -381,8 +392,6 @@ EQRN_predict_params_seq <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL,
 #' @return Vector of probabilities (and possibly a few `body_proba` values if `val` is not large enough) of length `nrow(X)`
 #' (or `nrow(X)-seq_len` if `crop_predictions`).
 #' @export
-#'
-#' @examples #TODO
 EQRN_excess_probability_seq <- function(val, fit_eqrn, X, Y, intermediate_quantiles, interm_lvl=fit_eqrn$interm_lvl,
                                         crop_predictions=FALSE, body_proba="default", proba_type=c("excess","cdf"),
                                         seq_len=fit_eqrn$seq_len, device=default_device()){
@@ -404,6 +413,22 @@ EQRN_excess_probability_seq <- function(val, fit_eqrn, X, Y, intermediate_quanti
   return(Probs)
 }
 
+
+#' Tail excess probability prediction method using an EQRN_iid object
+#'
+#' @param object Fitted `"EQRN_seq"` object.
+#' @inheritDotParams EQRN_excess_probability_seq -fit_eqrn
+#' 
+#' @details See [EQRN_excess_probability_seq()] for more details.
+#'
+#' @inherit EQRN_excess_probability_seq return
+#' @method excess_probability EQRN_seq
+#' @export
+excess_probability.EQRN_seq <- function(object, ...){
+  return(EQRN_excess_probability_seq(fit_eqrn=object, ...))
+}
+
+
 #' Generalized Pareto likelihood loss of a EQRN_seq predictor
 #'
 #' @param fit_eqrn Fitted `"EQRN_seq"` object.
@@ -418,8 +443,6 @@ EQRN_excess_probability_seq <- function(val, fit_eqrn, X, Y, intermediate_quanti
 #' @return Negative GPD log likelihood of the conditional EQRN predicted parameters
 #' over the response exceedances over the intermediate quantiles.
 #' @export
-#'
-#' @examples #TODO
 compute_EQRN_seq_GPDLoss <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL, interm_lvl=fit_eqrn$interm_lvl,
                                      seq_len=fit_eqrn$seq_len, device=default_device()){
   params <- EQRN_predict_params_seq(fit_eqrn, X, Y, intermediate_quantiles=intermediate_quantiles, return_parametrization="classical",
@@ -439,8 +462,7 @@ compute_EQRN_seq_GPDLoss <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL
 #'
 #' @return A `torch::optimizer` object used in [EQRN_fit_seq()] for training.
 #' @import torch
-#'
-#' @examples #TODO
+#' 
 #' @keywords internal
 setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"){
   if(optim_met!="adam"){stop("Other optim methods are deprecated.")}
@@ -472,8 +494,6 @@ setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"
 #' @export
 #' @import torch
 #' @importFrom stats sd
-#'
-#' @examples #TODO
 mts_dataset <- torch::dataset(
   name = "mts_dataset",
   

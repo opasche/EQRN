@@ -7,7 +7,7 @@
 EQRN_predict(
   fit_eqrn,
   X,
-  quantiles_predict,
+  prob_lvls_predict,
   intermediate_quantiles,
   interm_lvl = fit_eqrn$interm_lvl,
   device = default_device()
@@ -18,7 +18,7 @@ EQRN_predict(
 
 \item{X}{Matrix of covariates to predict the corresponding response's conditional quantiles.}
 
-\item{quantiles_predict}{Vector of probability levels at which to predict the conditional quantiles.}
+\item{prob_lvls_predict}{Vector of probability levels at which to predict the conditional quantiles.}
 
 \item{intermediate_quantiles}{Vector of intermediate conditional quantiles at level \code{fit_eqrn$interm_lvl}.}
 
@@ -27,13 +27,10 @@ EQRN_predict(
 \item{device}{(optional) A \code{\link[torch:torch_device]{torch::torch_device()}}. Defaults to \code{\link[=default_device]{default_device()}}.}
 }
 \value{
-Matrix of size \code{nrow(X)} times \code{quantiles_predict}
+Matrix of size \code{nrow(X)} times \code{prob_lvls_predict}
 containing the conditional quantile estimates of the response associated to each covariate observation at each probability level.
-Simplifies to a vector if \code{length(quantiles_predict)==1}.
+Simplifies to a vector if \code{length(prob_lvls_predict)==1}.
 }
 \description{
 Predict function for an EQRN_iid fitted object
-}
-\examples{
-#TODO
 }

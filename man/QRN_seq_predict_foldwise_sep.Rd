@@ -53,6 +53,3 @@ A named list containing the foldwise predictions and fits. It namely contains:
 \description{
 Separated single-fold version of \code{\link[=QRN_seq_predict_foldwise]{QRN_seq_predict_foldwise()}}, for computation purposes.
 }
-\examples{
-#TODO
-}

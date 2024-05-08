@@ -9,7 +9,7 @@ predict_GPD_semiconditional(
   interm_lvl,
   thresh_quantiles,
   interm_quantiles_test = thresh_quantiles,
-  quantiles_predict = c(0.99)
+  prob_lvls_predict = c(0.99)
 )
 }
 \arguments{
@@ -23,12 +23,12 @@ representing the varying intermediate threshold on the train set.}
 \item{interm_quantiles_test}{Numerical vector of the same length as \code{Y}
 representing the varying intermediate threshold used for prediction on the test set.}
 
-\item{quantiles_predict}{Probability levels at which to predict the extreme semi-conditional quantiles.}
+\item{prob_lvls_predict}{Probability levels at which to predict the extreme semi-conditional quantiles.}
 }
 \value{
 Named list containing:
 \itemize{
-\item{predictions}{matrix of dimension \code{length(interm_quantiles_test)} times \code{length(quantiles_predict)}
+\item{predictions}{matrix of dimension \code{length(interm_quantiles_test)} times \code{length(prob_lvls_predict)}
 containing the estimated extreme quantile at levels \code{quantile}, for each \code{interm_quantiles_test},}
 \item{pars}{matrix of dimension \code{ntest} times \code{2}
 containing the two GPD parameter MLEs, repeated \code{length(interm_quantiles_test)} times.}
@@ -36,7 +36,4 @@ containing the two GPD parameter MLEs, repeated \code{length(interm_quantiles_te
 }
 \description{
 Predict semi-conditional extreme quantiles using peaks over threshold
-}
-\examples{
-#TODO
 }

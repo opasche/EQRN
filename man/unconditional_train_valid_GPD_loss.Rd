@@ -25,6 +25,3 @@ Named list containing:
 \description{
 Unconditional GPD MLEs and their train-validation likelihoods
 }
-\examples{
-#TODO
-}

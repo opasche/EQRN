@@ -32,6 +32,3 @@ Named list containing:
 \description{
 Semi-conditional GPD MLEs and their train-validation likelihoods
 }
-\examples{
-#TODO
-}

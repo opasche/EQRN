@@ -33,6 +33,3 @@ over the response exceedances over the intermediate quantiles.
 \description{
 Generalized Pareto likelihood loss of a EQRN_iid predictor
 }
-\examples{
-#TODO
-}

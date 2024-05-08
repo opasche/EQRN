@@ -27,6 +27,3 @@ whose dimensions depend on \code{return_agg}.
 \description{
 Tensor quantile loss function for training a QRN network
 }
-\examples{
-#TODO
-}

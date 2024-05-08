@@ -17,7 +17,4 @@ The \code{eqrn_fit} object with updated attribute names and classes.
 \description{
 Internal renaming function for back-compatibility
 }
-\examples{
-#TODO
-}
 \keyword{internal}

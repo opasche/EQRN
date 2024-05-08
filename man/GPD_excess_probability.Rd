@@ -39,6 +39,3 @@ of the same length as the longest vector between \code{val}, \code{sigma}, \code
 \description{
 Tail excess probability prediction based on conditional GPD parameters
 }
-\examples{
-#TODO
-}

@@ -26,6 +26,3 @@ Named list containing:
 \description{
 Maximum likelihood estimates for the GPD distribution using peaks over threshold
 }
-\examples{
-#TODO
-}

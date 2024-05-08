@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">EQRN</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
   <span class="va">interm_lvl</span>,
   <span class="va">thresh_quantiles</span>,
   interm_quantiles_test <span class="op">=</span> <span class="va">thresh_quantiles</span>,
-  quantiles_predict <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.99</span><span class="op">)</span>
+  prob_lvls_predict <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.99</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -80,7 +80,7 @@ representing the varying intermediate threshold on the train set.</p></dd>
 representing the varying intermediate threshold used for prediction on the test set.</p></dd>
 
 
-<dt>quantiles_predict</dt>
+<dt>prob_lvls_predict</dt>
 <dd><p>Probability levels at which to predict the extreme semi-conditional quantiles.</p></dd>
 
 </dl></div>
@@ -88,18 +88,12 @@ representing the varying intermediate threshold used for prediction on the test 
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Named list containing:</p><ul><li><p>predictionsmatrix of dimension <code>length(interm_quantiles_test)</code> times <code>length(quantiles_predict)</code>
+<p>Named list containing:</p><ul><li><p>predictionsmatrix of dimension <code>length(interm_quantiles_test)</code> times <code>length(prob_lvls_predict)</code>
 containing the estimated extreme quantile at levels <code>quantile</code>, for each <code>interm_quantiles_test</code>,</p></li>
 <li><p>parsmatrix of dimension <code>ntest</code> times <code>2</code>
 containing the two GPD parameter MLEs, repeated <code>length(interm_quantiles_test)</code> times.</p></li>
 </ul></div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#TODO</span></span>
-<span class="r-in"></span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

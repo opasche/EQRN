@@ -75,6 +75,7 @@ FC_GPD_net <- torch::nn_module(
   }
 )
 
+
 #' Dropout module
 #'
 #' @description
@@ -104,6 +105,7 @@ nn_dropout_nd <- torch::nn_module(
   }
 )
 
+
 #' Alpha-dropout module
 #'
 #' @description
@@ -131,6 +133,7 @@ nn_alpha_dropout <- torch::nn_module(
     torch::nnf_alpha_dropout(input, self$p, self$training, self$inplace)
   }
 )
+
 
 #' Self-normalized fully-connected network module for GPD parameter prediction
 #'
@@ -195,6 +198,7 @@ FC_GPD_SNN <- torch::nn_module(
     x
   }
 )
+
 
 #' Self-normalized separated network module for GPD parameter prediction
 #'

@@ -16,8 +16,6 @@
 #' of the same length as the longest vector between `val`, `sigma`, `xi` and `interm_threshold`.
 #' @export
 #' @importFrom evd pgpd
-#'
-#' @examples #TODO
 GPD_excess_probability <- function(val, sigma, xi, interm_threshold, threshold_p, body_proba="default", proba_type=c("excess","cdf")){
   
   proba_type <- match.arg(proba_type)
@@ -73,8 +71,6 @@ GPD_excess_probability <- function(val, sigma, xi, interm_threshold, threshold_p
 #' @export
 #' @importFrom stats quantile
 #' @importFrom ismev gpd.fit
-#'
-#' @examples #TODO
 fit_GPD_unconditional <- function(Y, interm_lvl=NULL, thresh_quantiles=NULL){
   ##
   if(is.null(interm_lvl) & is.null(thresh_quantiles)){
@@ -93,6 +89,7 @@ fit_GPD_unconditional <- function(Y, interm_lvl=NULL, thresh_quantiles=NULL){
   xi <- fit$mle[2]
   return(list(scale = sigma, shape = xi, fit = fit))
 }
+
 
 #' Predict unconditional extreme quantiles using peaks over threshold
 #'
@@ -113,8 +110,6 @@ fit_GPD_unconditional <- function(Y, interm_lvl=NULL, thresh_quantiles=NULL){
 #' @export
 #' @importFrom stats quantile
 #' @importFrom ismev gpd.fit
-#'
-#' @examples #TODO
 predict_unconditional_quantiles <- function(interm_lvl, quantiles = c(0.99), Y, ntest=1){
   
   p0 <- interm_lvl
@@ -130,6 +125,7 @@ predict_unconditional_quantiles <- function(interm_lvl, quantiles = c(0.99), Y, 
   return(list(predictions = predictions, pars = pars, threshold=t0))
 }
 
+
 #' Predict semi-conditional extreme quantiles using peaks over threshold
 #'
 #' @param Y Vector of ("training") observations.
@@ -138,26 +134,24 @@ predict_unconditional_quantiles <- function(interm_lvl, quantiles = c(0.99), Y, 
 #' representing the varying intermediate threshold on the train set.
 #' @param interm_quantiles_test Numerical vector of the same length as `Y`
 #' representing the varying intermediate threshold used for prediction on the test set.
-#' @param quantiles_predict Probability levels at which to predict the extreme semi-conditional quantiles.
+#' @param prob_lvls_predict Probability levels at which to predict the extreme semi-conditional quantiles.
 #'
 #' @return Named list containing:
 #' \itemize{
-#' \item{predictions}{matrix of dimension `length(interm_quantiles_test)` times `length(quantiles_predict)`
+#' \item{predictions}{matrix of dimension `length(interm_quantiles_test)` times `length(prob_lvls_predict)`
 #' containing the estimated extreme quantile at levels `quantile`, for each `interm_quantiles_test`,}
 #' \item{pars}{matrix of dimension `ntest` times `2`
 #' containing the two GPD parameter MLEs, repeated `length(interm_quantiles_test)` times.}
 #' }
 #' @export
-#'
-#' @examples #TODO
 predict_GPD_semiconditional <- function(Y, interm_lvl, thresh_quantiles, interm_quantiles_test=thresh_quantiles,
-                                        quantiles_predict = c(0.99)){
+                                        prob_lvls_predict = c(0.99)){
   ##
   fit <- fit_GPD_unconditional(Y, interm_lvl=interm_lvl, thresh_quantiles=thresh_quantiles)
-  nb_quantiles_predict <- length(quantiles_predict)
-  predicted_quantiles <- matrix(as.double(NA),nrow=length(interm_quantiles_test), ncol=nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
-    predicted_quantiles[,i] <- GPD_quantiles(quantiles_predict[i], interm_lvl, interm_quantiles_test, fit$scale, fit$shape)
+  nb_prob_lvls_predict <- length(prob_lvls_predict)
+  predicted_quantiles <- matrix(as.double(NA),nrow=length(interm_quantiles_test), ncol=nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
+    predicted_quantiles[,i] <- GPD_quantiles(prob_lvls_predict[i], interm_lvl, interm_quantiles_test, fit$scale, fit$shape)
   }
   return(list(predictions=predicted_quantiles, pars=c(scale=fit$scale, shape=fit$shape)))
 }
@@ -177,8 +171,6 @@ predict_GPD_semiconditional <- function(Y, interm_lvl, thresh_quantiles, interm_
 #' @return GPD negative log-likelihood of the GPD parameters over the sample of observations
 #' @export
 #' @importFrom stats quantile
-#'
-#' @examples #TODO
 loss_GPD <- function(sigma, xi, y, rescaled=TRUE, interm_lvl=NULL, return_vector=FALSE){
   if(!rescaled){
     if(is.null(interm_lvl)){stop("Must provide POT interm_lvl value to rescale y vector in 'loss_GPD'.")}
@@ -195,6 +187,7 @@ loss_GPD <- function(sigma, xi, y, rescaled=TRUE, interm_lvl=NULL, return_vector
   return(loss)
 }
 
+
 #' Unconditional GPD MLEs and their train-validation likelihoods
 #'
 #' @param Y_train Vector of "training" observations on which to estimate the MLEs.
@@ -209,8 +202,6 @@ loss_GPD <- function(sigma, xi, y, rescaled=TRUE, interm_lvl=NULL, return_vector
 #' \item{valid_loss}{the negative log-likelihoods of the MLEs over the validation samples.}
 #' }
 #' @export
-#'
-#' @examples #TODO
 unconditional_train_valid_GPD_loss <- function(Y_train, interm_lvl, Y_valid){
   ##
   fit <- fit_GPD_unconditional(Y_train, interm_lvl=interm_lvl, thresh_quantiles=NULL)
@@ -218,6 +209,7 @@ unconditional_train_valid_GPD_loss <- function(Y_train, interm_lvl, Y_valid){
   valid_loss <- loss_GPD(fit$scale, fit$shape, Y_valid, rescaled=FALSE, interm_lvl=interm_lvl, return_vector=FALSE)
   return(list(train_loss = train_loss, valid_loss = valid_loss, scale = fit$scale, shape = fit$shape))
 }
+
 
 #' Semi-conditional GPD MLEs and their train-validation likelihoods
 #'
@@ -234,8 +226,6 @@ unconditional_train_valid_GPD_loss <- function(Y_train, interm_lvl, Y_valid){
 #' \item{valid_loss}{the negative log-likelihoods of the MLEs over the validation samples.}
 #' }
 #' @export
-#'
-#' @examples #TODO
 semiconditional_train_valid_GPD_loss <- function(Y_train, Y_valid, interm_quant_train, interm_quant_valid){
   ##
   Y_tr_rescaled <- Y_train - interm_quant_train
@@ -248,6 +238,7 @@ semiconditional_train_valid_GPD_loss <- function(Y_train, Y_valid, interm_quant_
   return(list(train_loss = train_loss, valid_loss = valid_loss, scale = fit$scale, shape = fit$shape))
 }
 
+
 #' Compute extreme quantile from GPD parameters
 #'
 #' @param p Probability level of the desired extreme quantile.
@@ -258,8 +249,6 @@ semiconditional_train_valid_GPD_loss <- function(Y_train, Y_valid, interm_quant_
 #'
 #' @return The quantile value at probability level `p`.
 #' @export
-#'
-#' @examples #TODO
 GPD_quantiles <- function(p, p0, t_x0, sigma, xi){
   ## numeric(0, 1) numeric(0, 1) numeric_vector numeric_vector numeric_vector
   ## -> numeric_vector

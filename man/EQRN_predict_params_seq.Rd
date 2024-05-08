@@ -40,6 +40,3 @@ and the \code{seq_len} used.
 \description{
 GPD parameters prediction function for an EQRN_seq fitted object
 }
-\examples{
-#TODO
-}

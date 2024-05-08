@@ -50,6 +50,3 @@ A named list containing the foldwise predictions and fits. It namely contains:
 \description{
 Foldwise fit-predict function using a recurrent QRN
 }
-\examples{
-#TODO
-}

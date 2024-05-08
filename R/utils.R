@@ -20,6 +20,7 @@ check_directory <- function(dir_name, recursive=TRUE, no_warning=FALSE){
   }
 }
 
+
 #' Safe RDS save
 #'
 #' @description Safe version of [saveRDS()].
@@ -42,6 +43,7 @@ safe_save_rds <- function(object, file_path, recursive=TRUE, no_warning=FALSE){
   
 }
 
+
 #' Last element of a vector
 #'
 #' @param x Vector.
@@ -58,6 +60,7 @@ safe_save_rds <- function(object, file_path, recursive=TRUE, no_warning=FALSE){
 last_elem <- function(x){
   x[length(x)]
 }
+
 
 #' Mathematical number rounding
 #'
@@ -80,6 +83,7 @@ roundm = function(x, decimals=0){
   z*posneg
 }
 
+
 #' Convert a vector to a matrix
 #'
 #' @param v Vector.
@@ -98,6 +102,7 @@ vec2mat <- function(v, axis=c("col","row")){
   }
   return(v)
 }
+
 
 #' Tibble replicatior
 #'
@@ -119,6 +124,7 @@ rep_tibble <- function(tbl, m){
     dplyr::left_join(tbl, by = "rowname") %>%
     dplyr::select(-rowname)
 }
+
 
 #' Replicated vector to matrix
 #'
@@ -147,6 +153,7 @@ rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
   }
 }
 
+
 #' Convert a list to a matrix
 #'
 #' @param lst A list.
@@ -171,6 +178,7 @@ list2matrix <- function(lst, dim = c("row", "col")){
   }
 }
 
+
 #' Convert a matrix to a list
 #'
 #' @param mat A matrix.
@@ -182,6 +190,7 @@ list2matrix <- function(lst, dim = c("row", "col")){
 matrix2list <- function(mat){
   split(mat, rep(1:nrow(mat), times = ncol(mat)))
 }
+
 
 #' Check the simulation X matrix
 #'
@@ -209,6 +218,7 @@ check_X_matrix <- function(X, n, p){
                 " rows and ", deparse(substitute(p)), " columns."))
   }
 }
+
 
 #' Create cross-validation folds
 #'
@@ -239,6 +249,7 @@ make_folds <- function(y, num_folds, stratified=FALSE){
   return(folds)
 }
 
+
 #' Covariate lagged replication for temporal dependence
 #'
 #' @param X Covariate matrix.
@@ -265,6 +276,7 @@ lagged_features <- function(X, max_lag, drop_present=TRUE){
   }
   return(Xl)
 }
+
 
 #' Insert value in vector
 #'
@@ -316,6 +328,7 @@ get_doFuture_operator <- function(strategy=c("sequential", "multisession", "mult
     return(foreach::`%dopar%`)
   }
 }
+
 
 #' Set a doFuture execution strategy
 #'
@@ -369,6 +382,7 @@ set_doFuture_strategy <- function(strategy=c("sequential", "multisession", "mult
   return(get_doFuture_operator(strategy))
 }
 
+
 #' End the currently set doFuture strategy
 #'
 #' @description Resets the default strategy using `future::plan("default")`.
@@ -382,10 +396,10 @@ set_doFuture_strategy <- function(strategy=c("sequential", "multisession", "mult
 #' end_doFuture_strategy()
 #' }
 end_doFuture_strategy <- function(){
-  ## ends the doFuture execution strategy
   
   future::plan("default")
 }
+
 
 #' Start a doParallel execution strategy
 #'
@@ -427,6 +441,7 @@ start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
   return(list(par_operator=`%fun%`, cl=cl))
 }
 
+
 #' Stop the current doParallel strategy
 #'
 #' @description Stops the given cluster, using [parallel::stopCluster()], if `strategy=="parallel"`.
@@ -442,10 +457,26 @@ start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
 #' }
 #' @keywords internal
 stop_doParallel_strategy <- function(strategy=c("sequential", "parallel"), cl){
-  ## closes the doParallel execution strategy
   
   strategy <- match.arg(strategy)
   if(strategy=="parallel"){
     parallel::stopCluster(cl)
   }
 }
+
+
+#' Excess Probability Predictions
+#'
+#' @description A generic function (method) for excess probability predictions from various fitted EQR models. 
+#' The function invokes particular methods which depend on the class of the first argument.
+#'
+#' @param object A model object for which excess probability prediction is desired.
+#' @param ... additional model-specific arguments affecting the predictions produced. 
+#' See the corresponding method documentation.
+#'
+#' @export
+excess_probability <- function(object, ...){
+  UseMethod("excess_probability")
+}
+
+

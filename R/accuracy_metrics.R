@@ -216,13 +216,11 @@ quantile_exceedance_proba_error <- function(Probs, prob_level=NULL, return_years
 #' If `sd==TRUE` a named list is instead returned, containing the `"MSEs"` described above and
 #' `"SDs"`, their standard deviations.
 #' @export
-#'
-#' @examples #TODO
 multilevel_MSE <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE, sd=FALSE){
-  nb_quantiles_predict <- length(proba_levels)
-  MSEs <- rep(as.double(NA), nb_quantiles_predict)
-  if(sd){SDs <- rep(as.double(NA), nb_quantiles_predict)}
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  MSEs <- rep(as.double(NA), nb_prob_lvls_predict)
+  if(sd){SDs <- rep(as.double(NA), nb_prob_lvls_predict)}
+  for(i in 1:nb_prob_lvls_predict){
     MSEs[i] <- mean_squared_error(True_Q[,i], Pred_Q[,i], return_agg="mean", na.rm=na.rm)
     if(sd){SDs[i] <- sd(mean_squared_error(True_Q[,i], Pred_Q[,i], return_agg="vector", na.rm=na.rm), na.rm=na.rm)}
   }
@@ -257,13 +255,11 @@ multilevel_MSE <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE,
 #' If `sd==TRUE` a named list is instead returned, containing the `"MAEs"` described above and
 #' `"SDs"`, their standard deviations.
 #' @export
-#'
-#' @examples #TODO
 multilevel_MAE <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE, sd=FALSE){
-  nb_quantiles_predict <- length(proba_levels)
-  MAEs <- rep(as.double(NA), nb_quantiles_predict)
-  if(sd){SDs <- rep(as.double(NA), nb_quantiles_predict)}
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  MAEs <- rep(as.double(NA), nb_prob_lvls_predict)
+  if(sd){SDs <- rep(as.double(NA), nb_prob_lvls_predict)}
+  for(i in 1:nb_prob_lvls_predict){
     MAEs[i] <- mean_absolute_error(True_Q[,i], Pred_Q[,i], return_agg="mean", na.rm=na.rm)
     if(sd){SDs[i] <- sd(mean_absolute_error(True_Q[,i], Pred_Q[,i], return_agg="vector", na.rm=na.rm), na.rm=na.rm)}
   }
@@ -293,12 +289,10 @@ multilevel_MAE <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE,
 #' between each column of `Pred_Q` and the observations.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "qloss_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_q_loss <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  q_losses <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  q_losses <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     q_losses[i] <- quantile_loss(y=y, y_hat=Pred_Q[,i], q=proba_levels[i], return_agg="mean", na.rm=na.rm)
   }
   if(give_names){names(q_losses) <- paste0(prefix, "qloss_q", proba_levels)}
@@ -326,12 +320,10 @@ multilevel_q_loss <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FALSE, g
 #' of each columns of predictions in `Pred_Q` for the respective `True_Q`.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "MSE_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_pred_bias <- function(True_Q, Pred_Q, proba_levels, square_bias=FALSE, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  biases <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  biases <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     biases[i] <- prediction_bias(True_Q[,i], Pred_Q[,i], square_bias=square_bias, na.rm=na.rm)
   }
   if(give_names){names(biases) <- paste0(prefix, "bias_q", proba_levels)}
@@ -358,12 +350,10 @@ multilevel_pred_bias <- function(True_Q, Pred_Q, proba_levels, square_bias=FALSE
 #' of each columns of predictions in `Pred_Q` for the respective `True_Q`.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "MSE_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_resid_var <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  vars <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  vars <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     vars[i] <- prediction_residual_variance(True_Q[,i], Pred_Q[,i], na.rm=na.rm)
   }
   if(give_names){names(vars) <- paste0(prefix, "rvar_q", proba_levels)}
@@ -390,12 +380,10 @@ multilevel_resid_var <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=
 #' of each columns of predictions in `Pred_Q` for the respective `True_Q`.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "MSE_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_R_squared <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  R2s <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  R2s <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     R2s[i] <- R_squared(True_Q[,i], Pred_Q[,i], na.rm=na.rm)
   }
   if(give_names){names(R2s) <- paste0(prefix, "R2_q", proba_levels)}
@@ -420,12 +408,10 @@ multilevel_R_squared <- function(True_Q, Pred_Q, proba_levels, prefix="", na.rm=
 #' below the predictions (`Pred_Q`) at each probability level.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "propBelow_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_prop_below <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  props <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  props <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     props[i] <- proportion_below(y=y, Q_hat=Pred_Q[,i], na.rm=na.rm)
   }
   if(give_names){names(props) <- paste0(prefix, "propBelow_q", proba_levels)}#"Pred_loss_q"
@@ -450,12 +436,10 @@ multilevel_prop_below <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FALS
 #' between each column of `Pred_Q` and the observations.
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "qPredErr_q", proba_levels)`.
 #' @export
-#'
-#' @examples #TODO
 multilevel_q_pred_error <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FALSE, give_names=TRUE){
-  nb_quantiles_predict <- length(proba_levels)
-  Pred_errs <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- length(proba_levels)
+  Pred_errs <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     Pred_errs[i] <- quantile_prediction_error(y=y, Q_hat=Pred_Q[,i], prob_level=proba_levels[i], na.rm=na.rm)
   }
   if(give_names){names(Pred_errs) <- paste0(prefix, "qPredErr_q", proba_levels)}#"Pred_loss_q"
@@ -481,16 +465,14 @@ multilevel_q_pred_error <- function(y, Pred_Q, proba_levels, prefix="", na.rm=FA
 #' If `give_names` is `TRUE`, the output vector is named `paste0(prefix, "exPrErr_q", proba_levels)`
 #' (or `paste0(prefix, "exPrErr_", return_years,"y")` if `return_years` are given instead of `proba_levels`).
 #' @export
-#'
-#' @examples #TODO
 multilevel_exceedance_proba_error <- function(Probs, proba_levels=NULL, return_years=NULL,
                                               type_probs=c("cdf","exceedance"), prefix="", na.rm=FALSE, give_names=TRUE){
   if((is.null(proba_levels)+is.null(return_years))!=1){
     stop("Exactly one of proba_levels or return_years should be provided in 'multilevel_exceedance_proba_error'.")
   }
-  nb_quantiles_predict <- if(is.null(return_years)){length(proba_levels)}else{length(return_years)}
-  cdf_errs <- rep(as.double(NA), nb_quantiles_predict)
-  for(i in 1:nb_quantiles_predict){
+  nb_prob_lvls_predict <- if(is.null(return_years)){length(proba_levels)}else{length(return_years)}
+  cdf_errs <- rep(as.double(NA), nb_prob_lvls_predict)
+  for(i in 1:nb_prob_lvls_predict){
     cdf_errs[i] <- quantile_exceedance_proba_error(Probs=Probs[,i], prob_level=proba_levels[i], return_years=return_years[i],
                                                    type_probs=type_probs, na.rm=na.rm)
   }

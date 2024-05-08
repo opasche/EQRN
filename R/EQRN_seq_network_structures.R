@@ -82,7 +82,6 @@ Recurrent_GPD_net <- torch::nn_module(
 )
 
 
-
 #' Recurrent quantile regression neural network module
 #'
 #' @description

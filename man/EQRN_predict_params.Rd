@@ -32,6 +32,3 @@ Named list containing: \code{"scales"} and \code{"shapes"} as numerical vectors 
 \description{
 GPD parameters prediction function for an EQRN_iid fitted object
 }
-\examples{
-#TODO
-}

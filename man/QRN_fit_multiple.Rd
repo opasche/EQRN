@@ -37,6 +37,3 @@ as well as all the relevant information for its usage in other functions.
 \description{
 Wrapper for fitting a recurrent QRN with restart for stability
 }
-\examples{
-#TODO
-}

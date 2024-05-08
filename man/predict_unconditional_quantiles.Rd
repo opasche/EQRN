@@ -29,6 +29,3 @@ It is the empirical quantile of \code{Y} at level \code{interm_lvl}, i.e. \code{
 \description{
 Predict unconditional extreme quantiles using peaks over threshold
 }
-\examples{
-#TODO
-}

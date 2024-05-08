@@ -17,7 +17,4 @@ The fixed batch_size.
 \description{
 Default batch size (internal)
 }
-\examples{
-#TODO
-}
 \keyword{internal}

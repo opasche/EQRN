@@ -100,6 +100,3 @@ as well as all the relevant information for its usage in other functions.
 Used to fit a recurrent quantile regression neural network on a data sample.
 Use the \code{\link[=QRN_fit_multiple]{QRN_fit_multiple()}} wrapper instead, with \code{data_type="seq"}, for better stability using fitting restart.
 }
-\examples{
-#TODO
-}
