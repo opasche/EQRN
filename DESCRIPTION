@@ -1,7 +1,7 @@
 Package: EQRN
 Type: Package
 Title: Extreme Quantile Regression Neural Networks
-Version: 0.0.1
+Version: 0.1.0
 Author: Olivier C. Pasche <olivier_pasche@alumni.epfl.ch>
 Maintainer: Olivier C. Pasche <olivier_pasche@alumni.epfl.ch>
 Description: A user-friendly framework for forecasting and extrapolating 
