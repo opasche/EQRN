@@ -17,14 +17,12 @@ predict_unconditional_quantiles(interm_lvl, quantiles = c(0.99), Y, ntest = 1)
 }
 \value{
 Named list containing:
-\itemize{
 \item{predictions}{matrix of dimension \code{ntest} times \code{length(quantiles)}
 containing the estimated extreme quantile at levels \code{quantile}, repeated \code{ntest} times,}
 \item{pars}{matrix of dimension \code{ntest} times \code{2}
 containing the two GPD parameter MLEs, repeated \code{ntest} times.}
 \item{threshold}{The threshold for the peaks-over-threshold GPD model.
 It is the empirical quantile of \code{Y} at level \code{interm_lvl}, i.e. \code{stats::quantile(Y, interm_lvl)}.}
-}
 }
 \description{
 Predict unconditional extreme quantiles using peaks over threshold

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EQRN: Extreme Quantile Regression Neural Networks for Conditionnal Risk Assessment
+# EQRN: Extreme Quantile Regression Neural Networks for Conditionnal Risk Prediction
 
 <!-- badges: start -->
 
@@ -12,11 +12,10 @@ A user-friendly framework for forecasting and extrapolating extreme
 measures of conditional risk using flexible neural network
 architectures. It allows for capturing complex multivariate
 dependencies, including dependencies between observations, such as
-sequential dependence (time-series). The implementation is based on the
-article “Neural Networks for Extreme Quantile Regression with an
-Application to Forecasting of Flood Risk” by Olivier C. Pasche and
-Sebastian Engelke
-([ArXiv:2208.07590](https://arxiv.org/abs/2208.07590)).
+sequential (time) dependence. The implementation is based on the article
+“Neural networks for extreme quantile regression with an application to
+forecasting of flood risk” (Pasche and Engelke, 2024,
+[DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907)).
 
 ## Installation
 
@@ -57,11 +56,12 @@ to distributional shifts as experienced in a changing climate. Our model
 can help authorities to manage flooding more effectively and to minimize
 their disastrous impacts through early warning systems.
 
-## Basic Usage Example for Exchangeable Data
+## Basic usage example for exchangeable data
 
-The example below shows in three simple steps how to fit the EQRN model
-and predict extreme conditional quantiles and other metrics on new test
-data. In this example, a toy i.i.d. dataset is used.
+The minimal example below illustrates, in three simple steps, how to use
+the package functions to fit the EQRN model and predict extreme
+conditional quantiles and other metrics on new test data. In this
+example, a toy i.i.d. dataset is used.
 
 ### 0. Generate a toy dataset
 
@@ -101,21 +101,30 @@ intermediateq_train <- predict(fit_grf, newdata=NULL, quantiles=c(interm_lvl))$p
 Fit the EQRN network on the training set, with the intermediate
 quantiles as a varying threshold. Here:
 
--   the argument `shape_fixed=TRUE` removes covariate dependence from
-    the shape output,
--   the argument `net_structure=c(5,5)` sets two hidden layers of 5
-    neurons each as an architecture,
--   the network is trained for 100 epochs (with a seed for
-    reproducibility).
+- the argument `shape_fixed=TRUE` removes covariate dependence from the
+  shape output,
+- the argument `net_structure=c(5,5)` sets two hidden layers of 5
+  neurons each as an architecture,
+- the network is trained for 100 epochs (with a seed for
+  reproducibility).
 
 ``` r
 library(EQRN)
 
 fit_eqrn <- EQRN_fit(X_train, y_train, intermediateq_train, interm_lvl,
                      shape_fixed=TRUE, net_structure=c(5,5), n_epochs=100, seed=42)
-#> Epoch: 1 out of 100 , average train loss: 2.404647
-#> Epoch: 100 out of 100 , average train loss: 2.311854
+#> Epoch: 1 out of 100 , average train loss: 2.371921
+#> Epoch: 100 out of 100 , average train loss: 2.281698
 ```
+
+The arguments values are here arbitrarily chosen for illustration. As
+for any machine learning approach, hyperparameters should be tuned using
+set-aside validation data to obtain an accurate fit. Stopping criteria
+are also available for the number of fitting epochs. Refer to the
+[documentation](https://opasche.github.io/EQRN/reference/index.html#fitting-eqrn-tail-neural-networks)
+for a detailed description of the arguments, and to the [article’s
+repository](https://github.com/opasche/EQRN_Results) for more advanced
+examples.
 
 ### Step 3. Predict conditional quantiles and risk metrics for new test observations
 
@@ -142,17 +151,34 @@ results <- data.frame(X1=X_test[1:hn,1], X2=X_test[1:hn,2], pred_Y_Q_80=intermed
 
 print(results)
 #>           X1         X2 pred_Y_Q_80 pred_Y_Q_99.9 pred_Y_Q_99.99 Pr_Y_exceed_10
-#> 1  0.5876351 0.83797214    2.741546      15.87502       33.91469    0.004054095
-#> 2  0.9493471 0.74616973    2.123687      15.33688       33.48605    0.003427602
-#> 3  0.7456916 0.24237508    2.698117      15.73987       33.65356    0.003939998
-#> 4  0.2319869 0.70261432    3.041587      15.96008       33.70446    0.004288765
-#> 5  0.7706744 0.19874048    4.725495      18.06010       36.37603    0.008155741
-#> 6  0.7746018 0.03440777    5.414535      18.79252       37.16805    0.010750530
-#> 7  0.7776956 0.33728896    3.136478      16.29012       34.35749    0.004594990
-#> 8  0.2586140 0.49574342    3.457248      16.39834       34.17376    0.004917901
-#> 9  0.7935616 0.60815766    2.557475      15.71578       33.78956    0.003852441
-#> 10 0.1613134 0.52083200    2.045515      14.71575       32.11914    0.003049184
+#> 1  0.5876351 0.83797214    2.763170      15.98885       34.31405    0.004118278
+#> 2  0.9493471 0.74616973    2.123687      15.42404       33.85271    0.003459142
+#> 3  0.7456916 0.24237508    2.335307      15.40873       33.52297    0.003537242
+#> 4  0.2319869 0.70261432    3.041587      16.04881       34.07131    0.004325655
+#> 5  0.7706744 0.19874048    4.725495      18.14131       36.72995    0.008187589
+#> 6  0.7746018 0.03440777    5.414535      18.87249       37.51951    0.010778085
+#> 7  0.7776956 0.33728896    2.796728      15.98395       34.25587    0.004133910
+#> 8  0.2586140 0.49574342    3.775091      16.84983       34.96588    0.005546904
+#> 9  0.7935616 0.60815766    2.608452      15.86056       34.22237    0.003949164
+#> 10 0.1613134 0.52083200    1.770021      14.48766       32.10893    0.002831878
 ```
+
+## References and links
+
+> Pasche, O. C. and Engelke, S. (2024). “Neural networks for extreme
+> quantile regression with an application to forecasting of flood risk”.
+> <i>Annals of Applied Statistics</i> 18(4), 2818–2839.
+> <https://doi.org/10.1214/24-AOAS1907>
+
+**Published article:**
+[DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907)
+([PDF](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/24-AOAS1907.pdf),
+[Supplement](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/aoas1907suppa.pdf)).  
+**Article’s usage examples:** <https://github.com/opasche/EQRN_Results>
+
+Preprint (obsolete):
+[ArXiv:2208.07590](https://arxiv.org/abs/2208.07590)
+([PDF](https://arxiv.org/pdf/2208.07590)).
 
 ------------------------------------------------------------------------
 

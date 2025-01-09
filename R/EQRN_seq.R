@@ -497,7 +497,8 @@ setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"
 mts_dataset <- torch::dataset(
   name = "mts_dataset",
   
-  initialize = function(Y, X, seq_len, intermediate_quantiles=NULL, scale_Y=TRUE, fold_separation=NULL, sample_frac=1, device=default_device()) {
+  initialize = function(Y, X, seq_len, intermediate_quantiles=NULL, scale_Y=TRUE, 
+                        fold_separation=NULL, sample_frac=1, device=EQRN::default_device()) {
     
     self$seq_len <- seq_len
     if(is.logical(scale_Y)){

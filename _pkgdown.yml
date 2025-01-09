@@ -1,6 +1,7 @@
 url: https://opasche.github.io/EQRN/
 template:
   bootstrap: 5
+  light-switch: true
 reference:
 - title: Fitting EQRN Tail Neural Networks
   desc: Functions to fit a tail GPD EQRN network to intermediate quantile exceedences

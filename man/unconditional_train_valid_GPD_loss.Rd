@@ -15,12 +15,10 @@ unconditional_train_valid_GPD_loss(Y_train, interm_lvl, Y_valid)
 }
 \value{
 Named list containing:
-\itemize{
 \item{scale}{GPD scale MLE inferred from the train set,}
 \item{shape}{GPD shape MLE inferred from the train set,}
 \item{train_loss}{the negative log-likelihoods of the MLEs over the training samples,}
 \item{valid_loss}{the negative log-likelihoods of the MLEs over the validation samples.}
-}
 }
 \description{
 Unconditional GPD MLEs and their train-validation likelihoods

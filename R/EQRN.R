@@ -749,12 +749,10 @@ loss_GPD_tensor <- function(out, y, orthogonal_gpd=TRUE, shape_penalty=0, prior_
 #' in order to avoid overfitting. This is performed automatically in the `"EQRN"` objects.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{Y_excesses}{thematrix of response excesses,}
 #' \item{X_excesses}{the (possibly rescaled and q_feat transformed) covariate matrix,}
 #' \item{X_scaling}{object of class `"X_scaling"` to use for consistent scaling on future datasets,}
 #' \item{excesses_ratio}{and the ratio of escesses for troubleshooting.}
-#' }
 #' @export
 get_excesses <- function(X=NULL, y, quantiles, intermediate_q_feature=FALSE, scale_features=FALSE, X_scaling=NULL){
   # Preprocess y
@@ -797,10 +795,8 @@ get_excesses <- function(X=NULL, y, quantiles, intermediate_q_feature=FALSE, sca
 #' If `X_scaling` is given, `X_scaling$scaling` overrides `scale_features`.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{X_excesses}{the (possibly rescaled and q_feat transformed) covariate matrix,}
 #' \item{X_scaling}{object of class `"X_scaling"` to use for consistent scaling on future datasets.}
-#' }
 #' @export
 process_features <- function(X, intermediate_q_feature, intermediate_quantiles=NULL, X_scaling=NULL, scale_features=TRUE){
   X_feats <- vec2mat(X) #verify X is matrix (otherwise transform it to 1-row matrix)
@@ -824,10 +820,8 @@ process_features <- function(X, intermediate_q_feature, intermediate_quantiles=N
 #' @param stat_attr DEPRECATED. Whether to keep attributes in the returned covariate matrix itself.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{X_excesses}{the (possibly rescaled and q_feat transformed) covariate matrix,}
 #' \item{X_scaling}{object of class `"X_scaling"` to use for consistent scaling on future datasets.}
-#' }
 #' @export
 perform_scaling <- function(X, X_scaling=NULL, scale_features=TRUE, stat_attr=FALSE){
   

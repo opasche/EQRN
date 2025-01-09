@@ -16,7 +16,7 @@ An alpha-dropout layer as a \code{\link[torch:nn_module]{torch::nn_module}}, use
 }
 \details{
 The constructor allows specifying:
-\itemize{
+\describe{
 \item{p}{probability of an element to be zeroed (default is 0.5),}
 \item{inplace}{if set to TRUE, will do the operation in-place (default is FALSE).}
 }

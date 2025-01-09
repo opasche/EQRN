@@ -12,7 +12,7 @@ mts_dataset(
   scale_Y = TRUE,
   fold_separation = NULL,
   sample_frac = 1,
-  device = default_device()
+  device = EQRN::default_device()
 )
 }
 \arguments{

@@ -18,7 +18,7 @@
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{type}{the type of recurrent architecture, can be one of `"lstm"` (default) or `"gru"`,}
 #' \item{nb_input_features}{the input size (i.e. the number of features),}
 #' \item{hidden_size}{the dimension of the hidden latent state variables in the recurrent network,}
@@ -30,7 +30,7 @@
 Recurrent_GPD_net <- torch::nn_module(
   "Recurrent_GPD_net",
   initialize = function(type=c("lstm","gru"), nb_input_features, hidden_size,
-                        num_layers=1, dropout=0, shape_fixed=FALSE, device=default_device()) {
+                        num_layers=1, dropout=0, shape_fixed=FALSE, device=EQRN::default_device()) {
     
     self$device <- device
     self$type <- match.arg(type)
@@ -99,7 +99,7 @@ Recurrent_GPD_net <- torch::nn_module(
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{type}{the type of recurrent architecture, can be one of `"lstm"` (default) or `"gru"`,}
 #' \item{nb_input_features}{the input size (i.e. the number of features),}
 #' \item{hidden_size}{the dimension of the hidden latent state variables in the recurrent network,}

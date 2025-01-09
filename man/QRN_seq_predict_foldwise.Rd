@@ -34,7 +34,6 @@ QRN_seq_predict_foldwise(
 }
 \value{
 A named list containing the foldwise predictions and fits. It namely contains:
-\itemize{
 \item{predictions}{the numerical vector of quantile predictions for each observation entry in y,}
 \item{fits}{a list containing the \code{"QRN_seq"} fitted networks for each fold,}
 \item{cuts}{the fold cuts indices,}
@@ -45,7 +44,6 @@ A named list containing the foldwise predictions and fits. It namely contains:
 \item{valid_losses}{the vector of validation losses on each fold,}
 \item{min_valid_losses}{the minimal validation losses obtained on each fold,}
 \item{min_valid_e}{the epoch index of the minimal validation losses obtained on each fold.}
-}
 }
 \description{
 Foldwise fit-predict function using a recurrent QRN

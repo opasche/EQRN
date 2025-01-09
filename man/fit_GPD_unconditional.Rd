@@ -17,11 +17,9 @@ representing either a fixed or a varying threshold, respectively.}
 }
 \value{
 Named list containing:
-\itemize{
 \item{scale}{the GPD scale MLE,}
 \item{shape}{the GPD shape MLE,}
 \item{fit}{the fitted \code{\link[ismev:gpd.fit]{ismev::gpd.fit()}} object.}
-}
 }
 \description{
 Maximum likelihood estimates for the GPD distribution using peaks over threshold

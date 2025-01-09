@@ -32,12 +32,10 @@ in order to avoid overfitting. This is performed automatically in the \code{"EQR
 }
 \value{
 Named list containing:
-\itemize{
 \item{Y_excesses}{thematrix of response excesses,}
 \item{X_excesses}{the (possibly rescaled and q_feat transformed) covariate matrix,}
 \item{X_scaling}{object of class \code{"X_scaling"} to use for consistent scaling on future datasets,}
 \item{excesses_ratio}{and the ratio of escesses for troubleshooting.}
-}
 }
 \description{
 Computes rescaled excesses over the conditional quantiles

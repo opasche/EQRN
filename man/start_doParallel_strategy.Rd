@@ -18,10 +18,8 @@ Ignored if \code{strategy=="sequential"}.}
 }
 \value{
 A named list containing:
-\itemize{
 \item{par_operator}{the relevant \code{\link[foreach:foreach]{foreach::foreach()}} loop operator,}
 \item{cl}{the cluster object.}
-}
 }
 \description{
 Start a doParallel execution strategy

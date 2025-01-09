@@ -13,15 +13,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-# EQRN: Extreme Quantile Regression Neural Networks for Conditionnal Risk Assessment
+# EQRN: Extreme Quantile Regression Neural Networks for Conditionnal Risk Prediction
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
-A user-friendly framework for forecasting and extrapolating extreme measures of conditional risk using flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series).
-The implementation is based on the article "Neural Networks for Extreme Quantile Regression with an Application to Forecasting of Flood Risk" by Olivier C. Pasche and Sebastian Engelke ([ArXiv:2208.07590](https://arxiv.org/abs/2208.07590)).
+A user-friendly framework for forecasting and extrapolating extreme measures of conditional risk using flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential (time) dependence.
+The implementation is based on the article "Neural networks for extreme quantile regression with an application to forecasting of flood risk" (Pasche and Engelke, 2024, [DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907)).
 
 
 ## Installation
@@ -43,10 +43,10 @@ Risk assessment for extreme events requires accurate estimation of high quantile
 In [the corresponding article](https://arxiv.org/abs/2208.07590), EQRN is applied to forecasting of flood risk in the Swiss Aare catchment. It exploits information from multiple covariates in space and time to provide one-day-ahead predictions of return levels and exceedances probabilities. This output complements the static return level from a traditional extreme value analysis and the predictions are able to adapt to distributional shifts as experienced in a changing climate. Our model can help authorities to manage flooding more effectively and to minimize their disastrous impacts through early warning systems.
 
 
-## Basic Usage Example for Exchangeable Data
+## Basic usage example for exchangeable data
 
 
-The example below shows in three simple steps how to fit the EQRN model and predict extreme conditional quantiles and other metrics on new test data. In this example, a toy i.i.d. dataset is used.
+The minimal example below illustrates, in three simple steps, how to use the package functions to fit the EQRN model and predict extreme conditional quantiles and other metrics on new test data. In this example, a toy i.i.d. dataset is used.
 
 
 
@@ -97,6 +97,11 @@ fit_eqrn <- EQRN_fit(X_train, y_train, intermediateq_train, interm_lvl,
                      shape_fixed=TRUE, net_structure=c(5,5), n_epochs=100, seed=42)
 ```
 
+The arguments values are here arbitrarily chosen for illustration. 
+As for any machine learning approach, hyperparameters should be tuned using set-aside validation data to obtain an accurate fit. 
+Stopping criteria are also available for the number of fitting epochs. 
+Refer to the [documentation](https://opasche.github.io/EQRN/reference/index.html#fitting-eqrn-tail-neural-networks) for a detailed description of the arguments, and to the [article's repository](https://github.com/opasche/EQRN_Results) for more advanced examples. 
+
 
 ### Step 3. Predict conditional quantiles and risk metrics for new test observations
 
@@ -124,6 +129,16 @@ results <- data.frame(X1=X_test[1:hn,1], X2=X_test[1:hn,2], pred_Y_Q_80=intermed
 
 print(results)
 ```
+
+
+## References and links
+
+> Pasche, O. C. and Engelke, S. (2024). "Neural networks for extreme quantile regression with an application to forecasting of flood risk". <i>Annals of Applied Statistics</i> 18(4), 2818–2839. https://doi.org/10.1214/24-AOAS1907 
+
+**Published article:** [DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907) ([PDF](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/24-AOAS1907.pdf), [Supplement](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/aoas1907suppa.pdf)).  
+**Article's usage examples:** <https://github.com/opasche/EQRN_Results>
+
+Preprint (obsolete): [ArXiv:2208.07590](https://arxiv.org/abs/2208.07590) ([PDF](https://arxiv.org/pdf/2208.07590)).  
 
 
 ____

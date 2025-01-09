@@ -19,7 +19,7 @@
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{D_in}{the input size (i.e. the number of features),}
 #' \item{Hidden_vect}{a vector of integers whose length determines the number of layers in the neural network
 #' and entries the number of neurons in each corresponding successive layer,}
@@ -32,7 +32,7 @@
 FC_GPD_net <- torch::nn_module(
   "FC_GPD_net",
   initialize = function(D_in, Hidden_vect=c(5,5,5), activation=torch::nnf_sigmoid, p_drop=0,
-                        shape_fixed=FALSE, device=default_device()) {
+                        shape_fixed=FALSE, device=EQRN::default_device()) {
     self$device <- device
     self$activ <- activation
     
@@ -88,7 +88,7 @@ FC_GPD_net <- torch::nn_module(
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{p}{probability of an element to be zeroed (default is 0.5),}
 #' \item{inplace}{if set to TRUE, will do the operation in-place (default is FALSE).}
 #' }
@@ -117,7 +117,7 @@ nn_dropout_nd <- torch::nn_module(
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{p}{probability of an element to be zeroed (default is 0.5),}
 #' \item{inplace}{if set to TRUE, will do the operation in-place (default is FALSE).}
 #' }
@@ -151,7 +151,7 @@ nn_alpha_dropout <- torch::nn_module(
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{D_in}{the input size (i.e. the number of features),}
 #' \item{Hidden_vect}{a vector of integers whose length determines the number of layers in the neural network
 #' and entries the number of neurons in each corresponding successive layer,}
@@ -218,7 +218,7 @@ FC_GPD_SNN <- torch::nn_module(
 #'
 #' @details
 #' The constructor allows specifying:
-#' \itemize{
+#' \describe{
 #' \item{D_in}{the input size (i.e. the number of features),}
 #' \item{Hidden_vect_scale}{a vector of integers whose length determines the number of layers in the sub-network
 #' for the scale parameter and entries the number of neurons in each corresponding successive layer,}

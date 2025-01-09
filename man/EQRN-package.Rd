@@ -12,6 +12,7 @@ A user-friendly framework for forecasting and extrapolating extreme measures of 
 Useful links:
 \itemize{
   \item \url{https://github.com/opasche/EQRN}
+  \item \url{https://opasche.github.io/EQRN/}
   \item Report bugs at \url{https://github.com/opasche/EQRN/issues}
 }
 

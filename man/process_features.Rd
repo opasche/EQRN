@@ -29,10 +29,8 @@ If \code{X_scaling} is given, \code{X_scaling$scaling} overrides \code{scale_fea
 }
 \value{
 Named list containing:
-\itemize{
 \item{X_excesses}{the (possibly rescaled and q_feat transformed) covariate matrix,}
 \item{X_scaling}{object of class \code{"X_scaling"} to use for consistent scaling on future datasets.}
-}
 }
 \description{
 Feature processor for EQRN

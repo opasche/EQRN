@@ -122,7 +122,7 @@ rep_tibble <- function(tbl, m){
   
   tidyr::expand_grid(rep_id = 1:m, rowname = tbl$rowname) %>%
     dplyr::left_join(tbl, by = "rowname") %>%
-    dplyr::select(-rowname)
+    dplyr::select(-"rowname")
 }
 
 
@@ -409,10 +409,8 @@ end_doFuture_strategy <- function(){
 #' Ignored if `strategy=="sequential"`.
 #'
 #' @return A named list containing:
-#' \itemize{
 #' \item{par_operator}{the relevant [foreach::foreach()] loop operator,}
 #' \item{cl}{the cluster object.}
-#' }
 #' @importFrom foreach %do% %dopar%
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom doParallel registerDoParallel

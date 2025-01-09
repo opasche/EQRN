@@ -63,11 +63,9 @@ GPD_excess_probability <- function(val, sigma, xi, interm_threshold, threshold_p
 #' representing either a fixed or a varying threshold, respectively.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{scale}{the GPD scale MLE,}
 #' \item{shape}{the GPD shape MLE,}
 #' \item{fit}{the fitted [ismev::gpd.fit()] object.}
-#' }
 #' @export
 #' @importFrom stats quantile
 #' @importFrom ismev gpd.fit
@@ -99,14 +97,12 @@ fit_GPD_unconditional <- function(Y, interm_lvl=NULL, thresh_quantiles=NULL){
 #' @param ntest Number of "test" observations.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{predictions}{matrix of dimension `ntest` times `length(quantiles)`
 #' containing the estimated extreme quantile at levels `quantile`, repeated `ntest` times,}
 #' \item{pars}{matrix of dimension `ntest` times `2`
 #' containing the two GPD parameter MLEs, repeated `ntest` times.}
 #' \item{threshold}{The threshold for the peaks-over-threshold GPD model.
 #' It is the empirical quantile of `Y` at level `interm_lvl`, i.e. `stats::quantile(Y, interm_lvl)`.}
-#' }
 #' @export
 #' @importFrom stats quantile
 #' @importFrom ismev gpd.fit
@@ -137,12 +133,10 @@ predict_unconditional_quantiles <- function(interm_lvl, quantiles = c(0.99), Y, 
 #' @param prob_lvls_predict Probability levels at which to predict the extreme semi-conditional quantiles.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{predictions}{matrix of dimension `length(interm_quantiles_test)` times `length(prob_lvls_predict)`
 #' containing the estimated extreme quantile at levels `quantile`, for each `interm_quantiles_test`,}
 #' \item{pars}{matrix of dimension `ntest` times `2`
 #' containing the two GPD parameter MLEs, repeated `length(interm_quantiles_test)` times.}
-#' }
 #' @export
 predict_GPD_semiconditional <- function(Y, interm_lvl, thresh_quantiles, interm_quantiles_test=thresh_quantiles,
                                         prob_lvls_predict = c(0.99)){
@@ -195,12 +189,10 @@ loss_GPD <- function(sigma, xi, y, rescaled=TRUE, interm_lvl=NULL, return_vector
 #' @param Y_valid Vector of "validation" observations, on which to estimate the out of training sample GPD loss.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{scale}{GPD scale MLE inferred from the train set,}
 #' \item{shape}{GPD shape MLE inferred from the train set,}
 #' \item{train_loss}{the negative log-likelihoods of the MLEs over the training samples,}
 #' \item{valid_loss}{the negative log-likelihoods of the MLEs over the validation samples.}
-#' }
 #' @export
 unconditional_train_valid_GPD_loss <- function(Y_train, interm_lvl, Y_valid){
   ##
@@ -219,12 +211,10 @@ unconditional_train_valid_GPD_loss <- function(Y_train, interm_lvl, Y_valid){
 #' @param interm_quant_valid Vector of intermediate quantiles serving as a varying threshold for each validation observation.
 #'
 #' @return Named list containing:
-#' \itemize{
 #' \item{scale}{GPD scale MLE inferred from the train set,}
 #' \item{shape}{GPD shape MLE inferred from the train set,}
 #' \item{train_loss}{the negative log-likelihoods of the MLEs over the training samples,}
 #' \item{valid_loss}{the negative log-likelihoods of the MLEs over the validation samples.}
-#' }
 #' @export
 semiconditional_train_valid_GPD_loss <- function(Y_train, Y_valid, interm_quant_train, interm_quant_valid){
   ##

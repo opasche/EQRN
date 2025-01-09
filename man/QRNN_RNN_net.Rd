@@ -29,7 +29,7 @@ designed for quantile regression.
 }
 \details{
 The constructor allows specifying:
-\itemize{
+\describe{
 \item{type}{the type of recurrent architecture, can be one of \code{"lstm"} (default) or \code{"gru"},}
 \item{nb_input_features}{the input size (i.e. the number of features),}
 \item{hidden_size}{the dimension of the hidden latent state variables in the recurrent network,}

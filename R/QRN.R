@@ -350,7 +350,6 @@ QRN_fit_multiple <- function(X, y, q_level, number_fits=3, ..., seed=NULL, data_
 #' @param ... Other parameters given to [QRN_seq_fit()].
 #'
 #' @return A named list containing the foldwise predictions and fits. It namely contains:
-#' \itemize{
 #' \item{predictions}{the numerical vector of quantile predictions for each observation entry in y,}
 #' \item{fits}{a list containing the `"QRN_seq"` fitted networks for each fold,}
 #' \item{cuts}{the fold cuts indices,}
@@ -361,7 +360,6 @@ QRN_fit_multiple <- function(X, y, q_level, number_fits=3, ..., seed=NULL, data_
 #' \item{valid_losses}{the vector of validation losses on each fold,}
 #' \item{min_valid_losses}{the minimal validation losses obtained on each fold,}
 #' \item{min_valid_e}{the epoch index of the minimal validation losses obtained on each fold.}
-#' }
 #' @export
 QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, seq_len=10, seed=NULL, ...){
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
@@ -423,7 +421,6 @@ QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, se
 #' @param ... Other parameters given to [QRN_seq_fit()].
 #'
 #' @return A named list containing the foldwise predictions and fits. It namely contains:
-#' \itemize{
 #' \item{predictions}{the numerical vector of quantile predictions for each observation entry in y,}
 #' \item{fits}{a list containing the `"QRN_seq"` fitted networks for each fold,}
 #' \item{cuts}{the fold cuts indices,}
@@ -434,7 +431,6 @@ QRN_seq_predict_foldwise <- function(X, y, q_level, n_folds=3, number_fits=3, se
 #' \item{valid_losses}{the vector of validation losses on each fold,}
 #' \item{min_valid_losses}{the minimal validation losses obtained on each fold,}
 #' \item{min_valid_e}{the epoch index of the minimal validation losses obtained on each fold.}
-#' }
 #' @export
 QRN_seq_predict_foldwise_sep <- function(X, y, q_level, n_folds=3, fold_todo=1, number_fits=3, seq_len=10, seed=NULL, ...){
   if(!is.null(seed)){torch::torch_manual_seed(seed)}

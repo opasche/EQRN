@@ -28,7 +28,7 @@ designed for generalized Pareto distribution parameter prediction.
 }
 \details{
 The constructor allows specifying:
-\itemize{
+\describe{
 \item{D_in}{the input size (i.e. the number of features),}
 \item{Hidden_vect_scale}{a vector of integers whose length determines the number of layers in the sub-network
 for the scale parameter and entries the number of neurons in each corresponding successive layer,}

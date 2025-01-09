@@ -27,12 +27,10 @@ representing the varying intermediate threshold used for prediction on the test 
 }
 \value{
 Named list containing:
-\itemize{
 \item{predictions}{matrix of dimension \code{length(interm_quantiles_test)} times \code{length(prob_lvls_predict)}
 containing the estimated extreme quantile at levels \code{quantile}, for each \code{interm_quantiles_test},}
 \item{pars}{matrix of dimension \code{ntest} times \code{2}
 containing the two GPD parameter MLEs, repeated \code{length(interm_quantiles_test)} times.}
-}
 }
 \description{
 Predict semi-conditional extreme quantiles using peaks over threshold

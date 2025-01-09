@@ -11,7 +11,7 @@ Recurrent_GPD_net(
   num_layers = 1,
   dropout = 0,
   shape_fixed = FALSE,
-  device = default_device()
+  device = EQRN::default_device()
 )
 }
 \arguments{
@@ -35,7 +35,7 @@ designed for generalized Pareto distribution parameter prediction, with sequenti
 }
 \details{
 The constructor allows specifying:
-\itemize{
+\describe{
 \item{type}{the type of recurrent architecture, can be one of \code{"lstm"} (default) or \code{"gru"},}
 \item{nb_input_features}{the input size (i.e. the number of features),}
 \item{hidden_size}{the dimension of the hidden latent state variables in the recurrent network,}
