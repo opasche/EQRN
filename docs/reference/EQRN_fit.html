@@ -52,7 +52,7 @@
 <span>  <span class="va">interm_lvl</span>,</span>
 <span>  shape_fixed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  net_structure <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
-<span>  hidden_fct <span class="op">=</span> <span class="fu">torch</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/torch/man/nnf_sigmoid.html" class="external-link">nnf_sigmoid</a></span>,</span>
+<span>  hidden_fct <span class="op">=</span> <span class="fu">torch</span><span class="fu">::</span><span class="va"><a href="https://torch.mlverse.org/docs/reference/nnf_sigmoid.html" class="external-link">nnf_sigmoid</a></span>,</span>
 <span>  p_drop <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  intermediate_q_feature <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  learning_rate <span class="op">=</span> <span class="fl">1e-04</span>,</span>
@@ -106,7 +106,7 @@
 <dd><p>Vector of integers whose length determines the number of layers in the neural network
 and entries the number of neurons in each corresponding successive layer.
 If <code>hidden_fct=="SSNN"</code>, should instead be a named list with <code>"scale"</code> and <code>"shape"</code> vectors for the two respective sub-networks.
-Can also be a <code><a href="https://rdrr.io/pkg/torch/man/nn_module.html" class="external-link">torch::nn_module</a></code> network with correct input and output dimensions,
+Can also be a <code><a href="https://torch.mlverse.org/docs/reference/nn_module.html" class="external-link">torch::nn_module</a></code> network with correct input and output dimensions,
 which overrides the <code>hidden_fct</code>, <code>shape_fixed</code> and <code>p_drop</code> arguments.</p></dd>
 
 
@@ -205,7 +205,7 @@ Used for monitoring validation loss during training, enabling learning-rate deca
 
 
 <dt id="arg-device">device<a class="anchor" aria-label="anchor" href="#arg-device"></a></dt>
-<dd><p>(optional) A <code><a href="https://rdrr.io/pkg/torch/man/torch_device.html" class="external-link">torch::torch_device()</a></code>. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
+<dd><p>(optional) A <code><a href="https://torch.mlverse.org/docs/reference/torch_device.html" class="external-link">torch::torch_device()</a></code>. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

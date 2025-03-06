@@ -42,7 +42,7 @@ designed for generalized Pareto distribution parameter prediction."></head><body
     </div>
 
     <div class="ref-description section level2">
-    <p>A fully-connected network (or multi-layer perception) as a <code><a href="https://rdrr.io/pkg/torch/man/nn_module.html" class="external-link">torch::nn_module</a></code>,
+    <p>A fully-connected network (or multi-layer perception) as a <code><a href="https://torch.mlverse.org/docs/reference/nn_module.html" class="external-link">torch::nn_module</a></code>,
 designed for generalized Pareto distribution parameter prediction.</p>
     </div>
 
@@ -51,7 +51,7 @@ designed for generalized Pareto distribution parameter prediction.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">FC_GPD_net</span><span class="op">(</span></span>
 <span>  <span class="va">D_in</span>,</span>
 <span>  Hidden_vect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span>  activation <span class="op">=</span> <span class="fu">torch</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/torch/man/nnf_sigmoid.html" class="external-link">nnf_sigmoid</a></span>,</span>
+<span>  activation <span class="op">=</span> <span class="fu">torch</span><span class="fu">::</span><span class="va"><a href="https://torch.mlverse.org/docs/reference/nnf_sigmoid.html" class="external-link">nnf_sigmoid</a></span>,</span>
 <span>  p_drop <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  shape_fixed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  device <span class="op">=</span> <span class="fu">EQRN</span><span class="fu">::</span><span class="fu"><a href="default_device.html">default_device</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -85,7 +85,7 @@ and entries the number of neurons in each corresponding successive layer,</p></d
 
 
 <dt id="arg-device">device<a class="anchor" aria-label="anchor" href="#arg-device"></a></dt>
-<dd><p>a <code><a href="https://rdrr.io/pkg/torch/man/torch_device.html" class="external-link">torch::torch_device()</a></code> for an internal constant vector. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
+<dd><p>a <code><a href="https://torch.mlverse.org/docs/reference/torch_device.html" class="external-link">torch::torch_device()</a></code> for an internal constant vector. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -108,7 +108,7 @@ and entries the number of neurons in each corresponding successive layer,</p></d
 <dd><p>whether the shape estimate depends on the covariates or not (bool),</p></dd>
 
 <dt>device</dt>
-<dd><p>a <code><a href="https://rdrr.io/pkg/torch/man/torch_device.html" class="external-link">torch::torch_device()</a></code> for an internal constant vector. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
+<dd><p>a <code><a href="https://torch.mlverse.org/docs/reference/torch_device.html" class="external-link">torch::torch_device()</a></code> for an internal constant vector. Defaults to <code><a href="default_device.html">default_device()</a></code>.</p></dd>
 
 
 </dl></div>

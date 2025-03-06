@@ -4,9 +4,9 @@
 \name{EQRN-package}
 \alias{EQRN}
 \alias{EQRN-package}
-\title{EQRN: Extreme Quantile Regression Neural Networks}
+\title{EQRN: Extreme Quantile Regression Neural Networks for Risk Forecasting}
 \description{
-A user-friendly framework for forecasting and extrapolating extreme measures of conditional risk using flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series).
+A framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The methodology was introduced in Pasche and Engelke (2024) \doi{10.1214/24-AOAS1907} (also available in preprint: Pasche and Engelke (2022) \doi{10.48550/arXiv.2208.07590}).
 }
 \seealso{
 Useful links:
@@ -15,6 +15,10 @@ Useful links:
   \item \url{https://opasche.github.io/EQRN/}
   \item Report bugs at \url{https://github.com/opasche/EQRN/issues}
 }
+
+}
+\author{
+\strong{Maintainer}: Olivier C. Pasche \email{olivier_pasche@alumni.epfl.ch} (\href{https://orcid.org/0000-0002-1202-9199}{ORCID})
 
 }
 \keyword{internal}
