@@ -24,10 +24,4 @@ A named list containing:
 \description{
 Start a doParallel execution strategy
 }
-\examples{
-\dontrun{
-cl <- start_doParallel_strategy("parallel", n_workers=3)
-stop_doParallel_strategy("parallel", cl)
-}
-}
 \keyword{internal}

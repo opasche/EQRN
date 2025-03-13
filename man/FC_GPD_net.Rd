@@ -28,6 +28,9 @@ and entries the number of neurons in each corresponding successive layer,}
 
 \item{device}{a \code{\link[torch:torch_device]{torch::torch_device()}} for an internal constant vector. Defaults to \code{\link[=default_device]{default_device()}}.}
 }
+\value{
+The specified MLP GPD network as a \code{\link[torch:nn_module]{torch::nn_module}}.
+}
 \description{
 A fully-connected network (or multi-layer perception) as a \code{\link[torch:nn_module]{torch::nn_module}},
 designed for generalized Pareto distribution parameter prediction.

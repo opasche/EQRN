@@ -17,7 +17,4 @@ The tibble is replicated \code{m} times and colums names appended with \code{rep
 \description{
 Tibble replicatior
 }
-\examples{
-#rep_tibble(tibble::tibble(a=c(2,3), b=c(5,6)), 3)
-}
 \keyword{internal}

@@ -8,9 +8,17 @@
 #' If `TRUE`, behaves like the Unix command `mkdir -p`.
 #' @param no_warning Whether to cancel the warning issued if a directory is created (bool).
 #'
+#' @return No return value.
 #' @export
 #'
-#' @examples \dontrun{check_directory("./results/my_new_folder")}
+#' @examples 
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
+#' check_directory("./some_folder/my_new_folder")
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 check_directory <- function(dir_name, recursive=TRUE, no_warning=FALSE){
   if (!dir.exists(dir_name)){
     dir.create(dir_name, recursive=recursive)
@@ -32,9 +40,17 @@ check_directory <- function(dir_name, recursive=TRUE, no_warning=FALSE){
 #' If `TRUE`, behaves like the Unix command `mkdir -p`.
 #' @param no_warning Whether to cancel the warning issued if a directory is created (bool).
 #'
+#' @return No return value.
 #' @export
 #'
-#' @examples \dontrun{safe_save_rds(c(1, 2, 8), "./results/my_new_folder/my_vector.rds")}
+#' @examples 
+#' \dontshow{
+#' .old_wd <- setwd(tempdir())
+#' }
+#' safe_save_rds(c(1, 2, 8), "./some_folder/my_new_folder/my_vector.rds")
+#' \dontshow{
+#' setwd(.old_wd)
+#' }
 safe_save_rds <- function(object, file_path, recursive=TRUE, no_warning=FALSE){
   dir_name <- dirname(file_path)
   check_directory(dir_name, recursive=recursive, no_warning=no_warning)
@@ -74,7 +90,7 @@ last_elem <- function(x){
 #' @export
 #'
 #' @examples roundm(2.25, 1)
-roundm = function(x, decimals=0){
+roundm <- function(x, decimals=0){
   posneg <- sign(x)
   z <- abs(x)*10^decimals
   z <- z + 0.5 + sqrt(.Machine$double.eps)
@@ -115,7 +131,6 @@ vec2mat <- function(v, axis=c("col","row")){
 #' @importFrom tidyr expand_grid
 #' @importFrom dplyr left_join select
 #'
-#' @examples #rep_tibble(tibble::tibble(a=c(2,3), b=c(5,6)), 3)
 #' @keywords internal
 rep_tibble <- function(tbl, m){
   tbl <-  tbl %>% tibble::rownames_to_column()
@@ -134,7 +149,6 @@ rep_tibble <- function(tbl, m){
 #'
 #' @return Matrix of replicated vector.
 #'
-#' @examples #rep_vector2matrix(c(2, 7, 3, 8), 3, "row")
 #' @keywords internal
 rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
   ## stack nrep of vec in (row|col) of a matrix
@@ -161,7 +175,6 @@ rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
 #'
 #' @return The list converted to a matrix, by stacking the elements of `lst` in the rows or columns of a matrix.
 #'
-#' @examples #list2matrix(list(2, 7, 3, 8), "row")
 #' @keywords internal
 list2matrix <- function(lst, dim = c("row", "col")){
   dim <- match.arg(dim)
@@ -185,7 +198,6 @@ list2matrix <- function(lst, dim = c("row", "col")){
 #'
 #' @return A list with elements corresponding to rows of `mat`.
 #'
-#' @examples #matrix2list(matrix(c(1, 2, 3, 4, 5, 6), ncol=2))
 #' @keywords internal
 matrix2list <- function(mat){
   split(mat, rep(1:nrow(mat), times = ncol(mat)))
@@ -200,7 +212,6 @@ matrix2list <- function(mat){
 #'
 #' @return Returns TRUE if X is a matrix with dimension n * p. Otherwise an error is raised.
 #'
-#' @examples #check_X_matrix(matrix(c(1, 2, 3, 4, 5, 6), ncol=2), n=3, p=2)
 #' @keywords internal
 check_X_matrix <- function(X, n, p){
   cond_1 <- is.matrix(X)
@@ -223,7 +234,7 @@ check_X_matrix <- function(X, n, p){
 #' Create cross-validation folds
 #'
 #' @description Utility function to create folds of data, used in cross-validation proceidures.
-#' The implementation is from the `gbex` `R` package
+#' The implementation is originally from the `gbex` `R` package
 #'
 #' @param y Numerical vector of observations
 #' @param num_folds Number of folds to create.
@@ -340,15 +351,17 @@ get_doFuture_operator <- function(strategy=c("sequential", "multisession", "mult
 #' Defaults to [future::availableCores()]`-1` if `NULL` (default), with `"multicore"` constraint in the relevant case.
 #' Ignored if `strategy=="sequential"`.
 #'
-#' @return The corresponding [get_doFuture_operator()] operator to use in a [foreach::foreach()] loop.
+#' @return The appropriate [get_doFuture_operator()] operator to use in a [foreach::foreach()] loop.
+#' The \code{\link[foreach]{\%do\%}} operator is returned if `strategy=="sequential"`.
+#' Otherwise, the \code{\link[foreach]{\%dopar\%}} operator is returned.
 #' @export
 #' @importFrom foreach %do% %dopar%
 #' @importFrom future availableCores plan sequential multisession multicore tweak
 #' @importFrom doFuture registerDoFuture
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' `%fun%` <- set_doFuture_strategy("multisession", n_workers=3)
-#' # perform foreach::foreach loop
+#' # perform foreach::foreach loop using the %fun% operator
 #' end_doFuture_strategy()
 #' }
 set_doFuture_strategy <- function(strategy=c("sequential", "multisession", "multicore", "mixed"),
@@ -387,12 +400,13 @@ set_doFuture_strategy <- function(strategy=c("sequential", "multisession", "mult
 #'
 #' @description Resets the default strategy using `future::plan("default")`.
 #'
+#' @return No return value.
 #' @export
 #' @importFrom future plan
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' `%fun%` <- set_doFuture_strategy("multisession", n_workers=3)
-#' # perform foreach::foreach loop
+#' # perform foreach::foreach loop using the %fun% operator
 #' end_doFuture_strategy()
 #' }
 end_doFuture_strategy <- function(){
@@ -415,10 +429,6 @@ end_doFuture_strategy <- function(){
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom doParallel registerDoParallel
 #'
-#' @examples \dontrun{
-#' cl <- start_doParallel_strategy("parallel", n_workers=3)
-#' stop_doParallel_strategy("parallel", cl)
-#' }
 #' @keywords internal
 start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
                                       n_workers=NULL){
@@ -449,10 +459,6 @@ start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
 #'
 #' @importFrom parallel stopCluster
 #'
-#' @examples \dontrun{
-#' cl <- start_doParallel_strategy("parallel", n_workers=3)
-#' stop_doParallel_strategy("parallel", cl)
-#' }
 #' @keywords internal
 stop_doParallel_strategy <- function(strategy=c("sequential", "parallel"), cl){
   
@@ -472,6 +478,7 @@ stop_doParallel_strategy <- function(strategy=c("sequential", "parallel"), cl){
 #' @param ... additional model-specific arguments affecting the predictions produced. 
 #' See the corresponding method documentation.
 #'
+#' @return The excess probability estimates from the given EQR model.
 #' @export
 excess_probability <- function(object, ...){
   UseMethod("excess_probability")

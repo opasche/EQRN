@@ -20,15 +20,17 @@ Defaults to \code{\link[future:re-exports]{future::availableCores()}}\code{-1} i
 Ignored if \code{strategy=="sequential"}.}
 }
 \value{
-The corresponding \code{\link[=get_doFuture_operator]{get_doFuture_operator()}} operator to use in a \code{\link[foreach:foreach]{foreach::foreach()}} loop.
+The appropriate \code{\link[=get_doFuture_operator]{get_doFuture_operator()}} operator to use in a \code{\link[foreach:foreach]{foreach::foreach()}} loop.
+The \code{\link[foreach]{\%do\%}} operator is returned if \code{strategy=="sequential"}.
+Otherwise, the \code{\link[foreach]{\%dopar\%}} operator is returned.
 }
 \description{
 Set a doFuture execution strategy
 }
 \examples{
-\dontrun{
+\donttest{
 `\%fun\%` <- set_doFuture_strategy("multisession", n_workers=3)
-# perform foreach::foreach loop
+# perform foreach::foreach loop using the \%fun\% operator
 end_doFuture_strategy()
 }
 }

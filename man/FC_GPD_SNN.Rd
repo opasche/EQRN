@@ -14,8 +14,11 @@ and entries the number of neurons in each corresponding successive layer,}
 
 \item{p_drop}{probability parameter for the \code{alpha-dropout} before each hidden layer for regularization during training.}
 }
+\value{
+The specified SNN MLP GPD network as a \code{\link[torch:nn_module]{torch::nn_module}}.
+}
 \description{
-A fully-connected self-normalizing network (or multi-layer perception) as a \code{\link[torch:nn_module]{torch::nn_module}},
+A fully-connected self-normalizing network as a \code{\link[torch:nn_module]{torch::nn_module}},
 designed for generalized Pareto distribution parameter prediction.
 }
 \details{

@@ -18,7 +18,7 @@ Vector of indices of the assigned folds for each observation.
 }
 \description{
 Utility function to create folds of data, used in cross-validation proceidures.
-The implementation is from the \code{gbex} \code{R} package
+The implementation is originally from the \code{gbex} \code{R} package
 }
 \examples{
 make_folds(rnorm(30), 5)

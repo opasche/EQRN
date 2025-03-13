@@ -19,7 +19,4 @@ Matrix of replicated vector.
 \description{
 Replicated vector to matrix
 }
-\examples{
-#rep_vector2matrix(c(2, 7, 3, 8), 3, "row")
-}
 \keyword{internal}

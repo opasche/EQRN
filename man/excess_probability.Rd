@@ -12,6 +12,9 @@ excess_probability(object, ...)
 \item{...}{additional model-specific arguments affecting the predictions produced.
 See the corresponding method documentation.}
 }
+\value{
+The excess probability estimates from the given EQR model.
+}
 \description{
 A generic function (method) for excess probability predictions from various fitted EQR models.
 The function invokes particular methods which depend on the class of the first argument.

@@ -23,6 +23,9 @@ QRNN_RNN_net(
 
 \item{dropout}{probability parameter for dropout before each hidden layer for regularization during training.}
 }
+\value{
+The specified recurrent QRN as a \code{\link[torch:nn_module]{torch::nn_module}}.
+}
 \description{
 A recurrent neural network as a \code{\link[torch:nn_module]{torch::nn_module}},
 designed for quantile regression.

@@ -162,7 +162,7 @@ predict_GPD_semiconditional <- function(Y, interm_lvl, thresh_quantiles, interm_
 #' @param return_vector Whether to return the the vector of GPD losses for each observation
 #' instead of the negative log-likelihood (average loss).
 #'
-#' @return GPD negative log-likelihood of the GPD parameters over the sample of observations
+#' @return GPD negative log-likelihood of the GPD parameters over the sample of observations.
 #' @export
 #' @importFrom stats quantile
 loss_GPD <- function(sigma, xi, y, rescaled=TRUE, interm_lvl=NULL, return_vector=FALSE){

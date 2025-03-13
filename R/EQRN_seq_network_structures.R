@@ -13,6 +13,7 @@
 #' @param shape_fixed whether the shape estimate depends on the covariates or not (bool),
 #' @param device a [torch::torch_device()] for an internal constant vector. Defaults to [default_device()].
 #'
+#' @return The specified recurrent GPD network as a [`torch::nn_module`].
 #' @export
 #' @import torch
 #'
@@ -94,6 +95,7 @@ Recurrent_GPD_net <- torch::nn_module(
 #' @param num_layers the number of recurrent layers,
 #' @param dropout probability parameter for dropout before each hidden layer for regularization during training.
 #'
+#' @return The specified recurrent QRN as a [`torch::nn_module`].
 #' @export
 #' @import torch
 #'

@@ -19,7 +19,4 @@ Returns TRUE if X is a matrix with dimension n * p. Otherwise an error is raised
 \description{
 Check the simulation X matrix
 }
-\examples{
-#check_X_matrix(matrix(c(1, 2, 3, 4, 5, 6), ncol=2), n=3, p=2)
-}
 \keyword{internal}

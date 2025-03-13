@@ -22,8 +22,11 @@ for the shape parameter and entries the number of neurons in each corresponding 
 
 \item{p_drop}{probability parameter for the \code{alpha-dropout} before each hidden layer for regularization during training.}
 }
+\value{
+The specified parameter-separated SNN MLP GPD network as a \code{\link[torch:nn_module]{torch::nn_module}}.
+}
 \description{
-A parameter-separated self-normalizing network (or multi-layer perception) as a \code{\link[torch:nn_module]{torch::nn_module}},
+A parameter-separated self-normalizing network as a \code{\link[torch:nn_module]{torch::nn_module}},
 designed for generalized Pareto distribution parameter prediction.
 }
 \details{

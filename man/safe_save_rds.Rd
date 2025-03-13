@@ -16,10 +16,19 @@ If \code{TRUE}, behaves like the Unix command \code{mkdir -p}.}
 
 \item{no_warning}{Whether to cancel the warning issued if a directory is created (bool).}
 }
+\value{
+No return value.
+}
 \description{
 Safe version of \code{\link[=saveRDS]{saveRDS()}}.
 If the given save path (i.e. \code{dirname(file_path)}) does not exist, it is created instead of raising an error.
 }
 \examples{
-\dontrun{safe_save_rds(c(1, 2, 8), "./results/my_new_folder/my_vector.rds")}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
+safe_save_rds(c(1, 2, 8), "./some_folder/my_new_folder/my_vector.rds")
+\dontshow{
+setwd(.old_wd)
+}
 }

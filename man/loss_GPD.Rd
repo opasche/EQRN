@@ -29,7 +29,7 @@ to compute the excesses, if \code{rescaled==FALSE}.}
 instead of the negative log-likelihood (average loss).}
 }
 \value{
-GPD negative log-likelihood of the GPD parameters over the sample of observations
+GPD negative log-likelihood of the GPD parameters over the sample of observations.
 }
 \description{
 Generalized Pareto likelihood loss

@@ -6,13 +6,16 @@
 \usage{
 end_doFuture_strategy()
 }
+\value{
+No return value.
+}
 \description{
 Resets the default strategy using \code{future::plan("default")}.
 }
 \examples{
-\dontrun{
+\donttest{
 `\%fun\%` <- set_doFuture_strategy("multisession", n_workers=3)
-# perform foreach::foreach loop
+# perform foreach::foreach loop using the \%fun\% operator
 end_doFuture_strategy()
 }
 }

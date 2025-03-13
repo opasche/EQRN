@@ -14,6 +14,7 @@
 #' @param shape_fixed whether the shape estimate depends on the covariates or not (bool),
 #' @param device a [torch::torch_device()] for an internal constant vector. Defaults to [default_device()].
 #'
+#' @return The specified MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @import torch
 #'
@@ -138,7 +139,7 @@ nn_alpha_dropout <- torch::nn_module(
 #' Self-normalized fully-connected network module for GPD parameter prediction
 #'
 #' @description
-#' A fully-connected self-normalizing network (or multi-layer perception) as a [`torch::nn_module`],
+#' A fully-connected self-normalizing network as a [`torch::nn_module`],
 #' designed for generalized Pareto distribution parameter prediction.
 #'
 #' @param D_in the input size (i.e. the number of features),
@@ -146,6 +147,7 @@ nn_alpha_dropout <- torch::nn_module(
 #' and entries the number of neurons in each corresponding successive layer,
 #' @param p_drop probability parameter for the `alpha-dropout` before each hidden layer for regularization during training.
 #'
+#' @return The specified SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @import torch
 #'
@@ -203,7 +205,7 @@ FC_GPD_SNN <- torch::nn_module(
 #' Self-normalized separated network module for GPD parameter prediction
 #'
 #' @description
-#' A parameter-separated self-normalizing network (or multi-layer perception) as a [`torch::nn_module`],
+#' A parameter-separated self-normalizing network as a [`torch::nn_module`],
 #' designed for generalized Pareto distribution parameter prediction.
 #'
 #' @param D_in the input size (i.e. the number of features),
@@ -213,6 +215,7 @@ FC_GPD_SNN <- torch::nn_module(
 #' for the shape parameter and entries the number of neurons in each corresponding successive layer,
 #' @param p_drop probability parameter for the `alpha-dropout` before each hidden layer for regularization during training.
 #'
+#' @return The specified parameter-separated SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @import torch
 #'

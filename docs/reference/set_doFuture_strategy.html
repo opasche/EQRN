@@ -70,16 +70,18 @@ Ignored if <code>strategy=="sequential"</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The corresponding <code><a href="get_doFuture_operator.html">get_doFuture_operator()</a></code> operator to use in a <code><a href="https://rdrr.io/pkg/foreach/man/foreach.html" class="external-link">foreach::foreach()</a></code> loop.</p>
+    <p>The appropriate <code><a href="get_doFuture_operator.html">get_doFuture_operator()</a></code> operator to use in a <code><a href="https://rdrr.io/pkg/foreach/man/foreach.html" class="external-link">foreach::foreach()</a></code> loop.
+The <code><a href="https://rdrr.io/pkg/foreach/man/foreach.html" class="external-link">%do%</a></code> operator is returned if <code>strategy=="sequential"</code>.
+Otherwise, the <code><a href="https://rdrr.io/pkg/foreach/man/foreach.html" class="external-link">%dopar%</a></code> operator is returned.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">`%fun%`</span> <span class="op">&lt;-</span> <span class="fu">set_doFuture_strategy</span><span class="op">(</span><span class="st">"multisession"</span>, n_workers<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># perform foreach::foreach loop</span></span></span>
+<span class="r-in"><span><span class="co"># perform foreach::foreach loop using the %fun% operator</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="end_doFuture_strategy.html">end_doFuture_strategy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

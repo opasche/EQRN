@@ -14,9 +14,18 @@ If \code{TRUE}, behaves like the Unix command \code{mkdir -p}.}
 
 \item{no_warning}{Whether to cancel the warning issued if a directory is created (bool).}
 }
+\value{
+No return value.
+}
 \description{
 Checks if the desired directory exists. If not, the desired directory is created.
 }
 \examples{
-\dontrun{check_directory("./results/my_new_folder")}
+\dontshow{
+.old_wd <- setwd(tempdir())
+}
+check_directory("./some_folder/my_new_folder")
+\dontshow{
+setwd(.old_wd)
+}
 }

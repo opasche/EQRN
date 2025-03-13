@@ -27,7 +27,7 @@ loss_GPD_tensor(
 \item{return_agg}{The return aggregation of the computed loss over the batch. Must be one of \verb{"mean", "sum", "vector", "nanmean", "nansum"}.}
 }
 \value{
-The GPD loss over the batch between the network output ans the observed responses as a \code{torch::Tensor},
+The GPD loss over the batch between the network output and the observed responses as a \code{torch::Tensor},
 whose dimensions depend on \code{return_agg}.
 }
 \description{

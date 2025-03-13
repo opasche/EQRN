@@ -20,9 +20,11 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-A user-friendly framework for forecasting and extrapolating extreme measures of conditional risk using flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential (time) dependence.
-The implementation is based on the article "Neural networks for extreme quantile regression with an application to forecasting of flood risk" (Pasche and Engelke, 2024, [DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907)).
-
+EQRN is a framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), 
+including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. 
+It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential (time) dependence.
+This implementation is based on the methodology introduced in [Pasche and Engelke (2024)](#references-and-links) 
+[[doi](https://doi.org/10.1214/24-AOAS1907), [pdf](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/24-AOAS1907.pdf), [suppl.](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/aoas1907suppa.pdf)]. 
 
 ## Installation
 
@@ -33,14 +35,17 @@ To install the development version of EQRN, simply run from R:
 devtools::install_github("opasche/EQRN")
 ```
 
-When the package is first loaded after installation (e.g. with `library(EQRN)` or `EQRN::fct()`), the necessary backend software from the [`torch`](https://torch.mlverse.org/) dependency is automatically installed. (Alternatively, `EQRN::install_backend()` can be called to perform the backend installation manually.) For more information about the torch backend and troubleshooting, visit the [torch installation guide](https://torch.mlverse.org/docs/articles/installation.html).
+When the package is first loaded interactively after installation (e.g. with `library(EQRN)` or with any `EQRN::fct()`), 
+the necessary backend software from the [`torch`](https://torch.mlverse.org/) dependency is automatically installed. 
+Alternatively, `EQRN::install_backend()` can be called to perform the backend installation manually (necessary for non-interactive environments). 
+For more information about the torch backend and troubleshooting, visit the [torch installation guide](https://torch.mlverse.org/docs/articles/installation.html).
 
 
 ## Motivation
 
 Risk assessment for extreme events requires accurate estimation of high quantiles that go beyond the range of historical observations. When the risk depends on the values of observed predictors, regression techniques are used to interpolate in the predictor space. In this package we propose the EQRN model that combines tools from neural networks and extreme value theory into a method capable of extrapolation in the presence of complex predictor dependence. Neural networks can naturally incorporate additional structure in the data. The recurrent version of EQRN is able to capture complex sequential dependence in time series. 
 
-In [the corresponding article](https://arxiv.org/abs/2208.07590), EQRN is applied to forecasting of flood risk in the Swiss Aare catchment. It exploits information from multiple covariates in space and time to provide one-day-ahead predictions of return levels and exceedances probabilities. This output complements the static return level from a traditional extreme value analysis and the predictions are able to adapt to distributional shifts as experienced in a changing climate. Our model can help authorities to manage flooding more effectively and to minimize their disastrous impacts through early warning systems.
+In [the corresponding article](https://doi.org/10.1214/24-AOAS1907), EQRN is applied to forecasting of flood risk in the Swiss Aare catchment. It exploits information from multiple covariates in space and time to provide one-day-ahead predictions of return levels and exceedances probabilities. This output complements the static return level from a traditional extreme value analysis and the predictions are able to adapt to distributional shifts as experienced in a changing climate. Our model can help authorities to manage flooding more effectively and to minimize their disastrous impacts through early warning systems.
 
 
 ## Basic usage example for exchangeable data
@@ -138,7 +143,7 @@ print(results)
 **Published article:** [DOI:10.1214/24-AOAS1907](https://doi.org/10.1214/24-AOAS1907) ([PDF](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/24-AOAS1907.pdf), [Supplement](https://raw.githubusercontent.com/opasche/EQRN_Results/main/article/aoas1907suppa.pdf)).  
 **Article's usage examples:** <https://github.com/opasche/EQRN_Results>
 
-Preprint (obsolete): [ArXiv:2208.07590](https://arxiv.org/abs/2208.07590) ([PDF](https://arxiv.org/pdf/2208.07590)).  
+Preprint (2022): [ArXiv:2208.07590](https://arxiv.org/abs/2208.07590) ([PDF](https://arxiv.org/pdf/2208.07590)).  
 
 
 ____

@@ -9,6 +9,9 @@ onload_backend_installer(...)
 \arguments{
 \item{...}{Arguments passed to \code{\link[torch:install_torch]{torch::install_torch()}}.}
 }
+\value{
+No return value.
+}
 \description{
 On-Load Torch Backend Internal Install helper
 }

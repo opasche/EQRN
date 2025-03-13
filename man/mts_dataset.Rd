@@ -33,11 +33,14 @@ to zero mean and unit covariance before applying the network (recommended).}
 
 \item{device}{(optional) A \code{\link[torch:torch_device]{torch::torch_device()}}. Defaults to \code{\link[=default_device]{default_device()}}.}
 }
+\value{
+The \code{\link[torch:dataset]{torch::dataset}} containing the given data, to be used with a recurrent neural network.
+}
 \description{
 A \code{torch::dataset} object that can be initialized with sequential data,
 used to feed a recurrent network during training or prediction.
-Is used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq()}} and corresponding predict functions,
+It is used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq()}} and corresponding predict functions,
 as well as in other recurrent methods such as \code{\link[=QRN_seq_fit]{QRN_seq_fit()}} and its predict functions.
-Can perform scaling of the response's past as a covariate, and compute excesses as a response when used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq()}}.
-Also allows for fold separation or sequential discontinuity in the data.
+It can perform scaling of the response's past as a covariate, and compute excesses as a response when used in \code{\link[=EQRN_fit_seq]{EQRN_fit_seq()}}.
+It also allows for fold separation or sequential discontinuity in the data.
 }

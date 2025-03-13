@@ -9,15 +9,15 @@ install_backend(...)
 \arguments{
 \item{...}{Arguments passed to \code{\link[torch:install_torch]{torch::install_torch()}}.}
 }
+\value{
+No return value.
+}
 \description{
 This function can be called just after installing the EQRN package.
-It installs the necessary LibTorch backend by calling \code{\link[torch:install_torch]{torch::install_torch()}}.
-See \url{https://torch.mlverse.org/docs/articles/installation.html} for more details.
-Calling this function shouldn't be necessary in most cases, as loading EQRN
-(e.g. with \code{library(EQRN)} or \code{EQRN::fct()}) should do it automatically (via \code{.onLoad()}).
-}
-\examples{
-\dontrun{
-EQRN::install_backend()
-}
+Calling \code{EQRN::install_backend()} installs the necessary LibTorch and LibLantern backends of the
+\href{https://torch.mlverse.org/}{\code{torch}} dependency by calling \code{\link[torch:install_torch]{torch::install_torch()}}.
+See \url{https://torch.mlverse.org/docs/articles/installation.html} for more details and troubleshooting.
+Calling this function shouldn't be necessary in interactive environments, as loading EQRN
+(e.g. with \code{library(EQRN)} or with any \code{EQRN::fct()}) should do it automatically (via \code{.onLoad()}).
+This bahaviour is inherited from the \href{https://torch.mlverse.org/}{\code{torch}} package.
 }

@@ -16,7 +16,7 @@ EQRN_save(fit_eqrn, path, name = NULL, no_warning = TRUE)
 \item{no_warning}{Whether to silence the warning raised if a save folder needed beeing created (bool).}
 }
 \value{
-Nothing
+No return value.
 }
 \description{
 Creates a folder named \code{name} and located in \code{path}, containing binary save files,

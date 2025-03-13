@@ -476,10 +476,10 @@ setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"
 #'
 #' @description A `torch::dataset` object that can be initialized with sequential data,
 #' used to feed a recurrent network during training or prediction.
-#' Is used in [EQRN_fit_seq()] and corresponding predict functions,
+#' It is used in [EQRN_fit_seq()] and corresponding predict functions,
 #' as well as in other recurrent methods such as [QRN_seq_fit()] and its predict functions.
-#' Can perform scaling of the response's past as a covariate, and compute excesses as a response when used in [EQRN_fit_seq()].
-#' Also allows for fold separation or sequential discontinuity in the data.
+#' It can perform scaling of the response's past as a covariate, and compute excesses as a response when used in [EQRN_fit_seq()].
+#' It also allows for fold separation or sequential discontinuity in the data.
 #'
 #' @param X Matrix of covariates, for training. Entries must be in sequential order.
 #' @param Y Response variable vector to model the extreme conditional quantile of, for training. Entries must be in sequential order.
@@ -491,6 +491,7 @@ setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"
 #' @param sample_frac Value between `0` and `1`. If `sample_frac < 1`, a subsample of the data is used. Defaults to `1`.
 #' @param device (optional) A [torch::torch_device()]. Defaults to [default_device()].
 #'
+#' @return The [`torch::dataset`] containing the given data, to be used with a recurrent neural network.
 #' @export
 #' @import torch
 #' @importFrom stats sd

@@ -33,8 +33,8 @@ EQRN_fit_restart(
 \item{data_type}{Type of data dependence, must be one of \code{"iid"} (for iid observations) or \code{"seq"} (for sequentially dependent observations).}
 }
 \value{
-An EQRN object of classes \code{c("EQRN_iid", "EQRN")} or \code{c("EQRN_seq", "EQRN")}, containing the fitted network,
-as well as all the relevant information for its usage in other functions.
+An EQRN object of classes \code{c("EQRN_iid", "EQRN")}, if \verb{data_type=="iid",} or \code{c("EQRN_seq", "EQRN")}, if `data_type=="seq",
+containing the fitted network, as well as all the relevant information for its usage in other functions.
 }
 \description{
 Wrapper for fitting EQRN with restart for stability

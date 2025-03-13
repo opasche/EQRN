@@ -10,8 +10,8 @@
 #' @param seed Integer random seed for reproducibility in network weight initialization.
 #' @param data_type Type of data dependence, must be one of `"iid"` (for iid observations) or `"seq"` (for sequentially dependent observations).
 #'
-#' @return An EQRN object of classes `c("EQRN_iid", "EQRN")` or `c("EQRN_seq", "EQRN")`, containing the fitted network,
-#' as well as all the relevant information for its usage in other functions.
+#' @return An EQRN object of classes `c("EQRN_iid", "EQRN")`, if `data_type=="iid",` or `c("EQRN_seq", "EQRN")`, if `data_type=="seq", 
+#' containing the fitted network, as well as all the relevant information for its usage in other functions.
 #' @export
 EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fits=3, ..., seed=NULL, data_type=c("iid","seq")){#TODO: force_trainloss_select arg
   #
@@ -631,7 +631,7 @@ decay_learning_rate <- function(optimizer, decay_rate){
 #' @param name String name of the save.
 #' @param no_warning Whether to silence the warning raised if a save folder needed beeing created (bool).
 #'
-#' @return Nothing
+#' @return No return value.
 #' @export
 #' @import torch
 #' @importFrom utils packageVersion
@@ -703,7 +703,7 @@ EQRN_load <- function(path, name=NULL, device=default_device(), ...){
 #' @param prior_shape Prior estimate for the shape, used only if `shape_penalty>0`.
 #' @param return_agg The return aggregation of the computed loss over the batch. Must be one of `"mean", "sum", "vector", "nanmean", "nansum"`.
 #'
-#' @return The GPD loss over the batch between the network output ans the observed responses as a `torch::Tensor`,
+#' @return The GPD loss over the batch between the network output and the observed responses as a `torch::Tensor`,
 #' whose dimensions depend on `return_agg`.
 #' @export
 #' @import torch

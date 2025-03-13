@@ -14,10 +14,4 @@ stop_doParallel_strategy(strategy = c("sequential", "parallel"), cl)
 \description{
 Stops the given cluster, using \code{\link[parallel:makeCluster]{parallel::stopCluster()}}, if \code{strategy=="parallel"}.
 }
-\examples{
-\dontrun{
-cl <- start_doParallel_strategy("parallel", n_workers=3)
-stop_doParallel_strategy("parallel", cl)
-}
-}
 \keyword{internal}

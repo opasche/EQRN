@@ -15,7 +15,4 @@ A list with elements corresponding to rows of \code{mat}.
 \description{
 Convert a matrix to a list
 }
-\examples{
-#matrix2list(matrix(c(1, 2, 3, 4, 5, 6), ncol=2))
-}
 \keyword{internal}
