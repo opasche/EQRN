@@ -1,12 +1,12 @@
 Package: EQRN
 Type: Package
 Title: Extreme Quantile Regression Neural Networks for Risk Forecasting
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person(c("Olivier", "C."), "Pasche",
                     email = "olivier_pasche@alumni.epfl.ch", role = c("aut", "cre", "cph"),
                     comment = c(ORCID = "0000-0002-1202-9199"))
              )
-Description: EQRN is a framework for forecasting and extrapolating measures of conditional risk
+Description: This framework enables forecasting and extrapolating measures of conditional risk
     (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities,
     using extreme value statistics and flexible neural network architectures.
     It allows for capturing complex multivariate dependencies,
@@ -19,17 +19,12 @@ LazyData: true
 Imports: 
     coro,
     doFuture,
-    doParallel,
-    dplyr,
     evd,
     foreach,
     future,
     ismev,
     magrittr,
-    parallel,
     stats,
-    tibble,
-    tidyr,
     torch,
     utils
 Roxygen: list(markdown = TRUE)

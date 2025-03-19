@@ -16,6 +16,7 @@
 #'
 #' @return The specified MLP GPD network as a [`torch::nn_module`].
 #' @export
+#' @importFrom magrittr %>%
 #' @import torch
 #'
 #' @details
@@ -149,6 +150,7 @@ nn_alpha_dropout <- torch::nn_module(
 #'
 #' @return The specified SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
+#' @importFrom magrittr %>%
 #' @import torch
 #'
 #' @details
@@ -217,6 +219,7 @@ FC_GPD_SNN <- torch::nn_module(
 #'
 #' @return The specified parameter-separated SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
+#' @importFrom magrittr %>%
 #' @import torch
 #'
 #' @details

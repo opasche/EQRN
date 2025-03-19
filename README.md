@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/EQRN)](https://CRAN.R-project.org/package=EQRN)
 [![R-CMD-check](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -22,7 +24,13 @@ is based on the methodology introduced in [Pasche and Engelke
 
 ## Installation
 
-To install the development version of EQRN, simply run from R:
+To install EQRN from CRAN, simply run from R:
+
+``` r
+install.packages("EQRN")
+```
+
+Or, to install the development version of EQRN, run:
 
 ``` r
 # install.packages("devtools")

@@ -1,16 +1,16 @@
 url: https://opasche.github.io/EQRN/
 template:
   bootstrap: 5
-  light-switch: true
+  light-switch: yes
 reference:
 - title: Fitting EQRN Tail Neural Networks
   desc: Functions to fit a tail GPD EQRN network to intermediate quantile exceedences
-  contents: 
+  contents:
   - EQRN_fit_restart
   - EQRN_fit
   - EQRN_fit_seq
 - title: Predicting using fitted EQRN networks
-  desc: 
+  desc: ~
   contents:
   - EQRN_predict
   - EQRN_predict_seq
@@ -21,12 +21,12 @@ reference:
   - compute_EQRN_GPDLoss
   - compute_EQRN_seq_GPDLoss
 - title: Saving and Loading
-  desc: 
+  desc: ~
   contents:
   - EQRN_save
   - EQRN_load
 - title: Neural Networks Helpers
-  desc: 
+  desc: ~
   contents:
   - install_backend
   - default_device
@@ -42,7 +42,7 @@ reference:
   - Recurrent_GPD_net
   - QRNN_RNN_net
 - title: Extreme Value Analysis Helpers
-  desc: 
+  desc: ~
   contents:
   - GPD_excess_probability
   - fit_GPD_unconditional
@@ -53,7 +53,7 @@ reference:
   - semiconditional_train_valid_GPD_loss
   - GPD_quantiles
 - title: Intermediate Models
-  desc: 
+  desc: ~
   contents:
   - QRN_seq_fit
   - QRN_fit_multiple
@@ -61,7 +61,7 @@ reference:
   - QRN_seq_predict_foldwise
   - QRN_seq_predict_foldwise_sep
 - title: Accuracy metrics
-  desc: 
+  desc: ~
   contents:
   - mean_squared_error
   - mean_absolute_error
@@ -83,7 +83,7 @@ reference:
   - multilevel_q_pred_error
   - multilevel_exceedance_proba_error
 - title: Other Helpers
-  desc: 
+  desc: ~
   contents:
   - check_directory
   - safe_save_rds
@@ -97,7 +97,9 @@ reference:
   - set_doFuture_strategy
   - end_doFuture_strategy
 - title: Prediction methods
-  desc: S3 class method support for classes `EQRN_iid`, `EQRN_seq` and `QRN_seq`, and methods `predict` and `excess_probability`, as a facultative alternative to their respective functions above.
+  desc: S3 class method support for classes `EQRN_iid`, `EQRN_seq` and `QRN_seq`,
+    and methods `predict` and `excess_probability`, as a facultative alternative to
+    their respective functions above.
   contents:
   - predict.EQRN_iid
   - predict.EQRN_seq
@@ -119,11 +121,5 @@ reference:
   - fix_dimsimplif
   - nn_dropout_nd
   - nn_alpha_dropout
-  - rep_tibble
-  - rep_vector2matrix
   - list2matrix
-  - matrix2list
-  - check_X_matrix
-  - start_doParallel_strategy
-  - stop_doParallel_strategy
 

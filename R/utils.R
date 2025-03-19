@@ -120,54 +120,6 @@ vec2mat <- function(v, axis=c("col","row")){
 }
 
 
-#' Tibble replicatior
-#'
-#' @param tbl A [tibble::tibble()].
-#' @param m An integer.
-#'
-#' @return The tibble is replicated `m` times and colums names appended with `rep_id = 1:m`.
-#' @importFrom magrittr %>%
-#' @importFrom tibble rownames_to_column
-#' @importFrom tidyr expand_grid
-#' @importFrom dplyr left_join select
-#'
-#' @keywords internal
-rep_tibble <- function(tbl, m){
-  tbl <-  tbl %>% tibble::rownames_to_column()
-  
-  tidyr::expand_grid(rep_id = 1:m, rowname = tbl$rowname) %>%
-    dplyr::left_join(tbl, by = "rowname") %>%
-    dplyr::select(-"rowname")
-}
-
-
-#' Replicated vector to matrix
-#'
-#' @param vec Vector.
-#' @param nrep Number of repetitions.
-#' @param dim One of `"row"` (default) or `"col"`.
-#'
-#' @return Matrix of replicated vector.
-#'
-#' @keywords internal
-rep_vector2matrix <- function(vec, nrep, dim = c("row", "col")){
-  ## stack nrep of vec in (row|col) of a matrix
-  
-  dim <- match.arg(dim)
-  l <- length(vec)
-  
-  if (l == 0){
-    stop("vec must contain at least one element.")
-  }
-  
-  if (dim == "col"){
-    matrix(vec, nrow = l, ncol = nrep)
-  } else {
-    matrix(vec, nrow = nrep, ncol = l, byrow = TRUE)
-  }
-}
-
-
 #' Convert a list to a matrix
 #'
 #' @param lst A list.
@@ -188,45 +140,6 @@ list2matrix <- function(lst, dim = c("row", "col")){
     matrix(unlist(lst), ncol = l)
   } else {
     matrix(unlist(lst), nrow = l, byrow = TRUE)
-  }
-}
-
-
-#' Convert a matrix to a list
-#'
-#' @param mat A matrix.
-#'
-#' @return A list with elements corresponding to rows of `mat`.
-#'
-#' @keywords internal
-matrix2list <- function(mat){
-  split(mat, rep(1:nrow(mat), times = ncol(mat)))
-}
-
-
-#' Check the simulation X matrix
-#'
-#' @param X Covariate matrix.
-#' @param n Number of observations.
-#' @param p Number of covariates.
-#'
-#' @return Returns TRUE if X is a matrix with dimension n * p. Otherwise an error is raised.
-#'
-#' @keywords internal
-check_X_matrix <- function(X, n, p){
-  cond_1 <- is.matrix(X)
-  
-  if (cond_1){
-    cond_2 <- all.equal(dim(X), c(n, p))
-  } else {
-    cond_2 <- FALSE
-  }
-  
-  if (cond_1 & cond_2){
-    return(TRUE)
-  } else {
-    stop(paste0("X must be a matrix with ", deparse(substitute(n)),
-                " rows and ", deparse(substitute(p)), " columns."))
   }
 }
 
@@ -412,60 +325,6 @@ set_doFuture_strategy <- function(strategy=c("sequential", "multisession", "mult
 end_doFuture_strategy <- function(){
   
   future::plan("default")
-}
-
-
-#' Start a doParallel execution strategy
-#'
-#' @param strategy One of `"sequential"` (default) or `"parallel"`.
-#' @param n_workers Number of parallel workers as an integer.
-#' Defaults to [parallel::detectCores()]`-1` if `NULL` (default).
-#' Ignored if `strategy=="sequential"`.
-#'
-#' @return A named list containing:
-#' \item{par_operator}{the relevant [foreach::foreach()] loop operator,}
-#' \item{cl}{the cluster object.}
-#' @importFrom foreach %do% %dopar%
-#' @importFrom parallel detectCores makeCluster
-#' @importFrom doParallel registerDoParallel
-#'
-#' @keywords internal
-start_doParallel_strategy <- function(strategy=c("sequential", "parallel"),
-                                      n_workers=NULL){
-  
-  strategy <- match.arg(strategy)
-  
-  if(is.null(n_workers)){
-    n_workers <- max(parallel::detectCores() - 1, 1)
-  }
-  if(strategy=="parallel"){
-    cl <- parallel::makeCluster(n_workers)
-    doParallel::registerDoParallel(cl)
-    `%fun%` <- foreach::`%dopar%`
-  } else {
-    cl <- NULL
-    `%fun%` <- foreach::`%do%`
-  }
-  return(list(par_operator=`%fun%`, cl=cl))
-}
-
-
-#' Stop the current doParallel strategy
-#'
-#' @description Stops the given cluster, using [parallel::stopCluster()], if `strategy=="parallel"`.
-#'
-#' @param strategy One of `"sequential"` (default) or `"parallel"`.
-#' @param cl Cluster object, returned by [start_doParallel_strategy()], called with the same `strategy`.
-#'
-#' @importFrom parallel stopCluster
-#'
-#' @keywords internal
-stop_doParallel_strategy <- function(strategy=c("sequential", "parallel"), cl){
-  
-  strategy <- match.arg(strategy)
-  if(strategy=="parallel"){
-    parallel::stopCluster(cl)
-  }
 }
 
 

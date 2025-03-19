@@ -12,8 +12,8 @@
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Extreme Quantile Regression Neural Networks for Risk Forecasting">
-<meta name="description" content="EQRN is a framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The methodology was introduced in Pasche and Engelke (2024) &lt;doi:10.1214/24-AOAS1907&gt; (also available in preprint: Pasche and Engelke (2022) &lt;doi:10.48550/arXiv.2208.07590&gt;).">
-<meta property="og:description" content="EQRN is a framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The methodology was introduced in Pasche and Engelke (2024) &lt;doi:10.1214/24-AOAS1907&gt; (also available in preprint: Pasche and Engelke (2022) &lt;doi:10.48550/arXiv.2208.07590&gt;).">
+<meta name="description" content="This framework enables forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The methodology was introduced in Pasche and Engelke (2024) &lt;doi:10.1214/24-AOAS1907&gt; (also available in preprint: Pasche and Engelke (2022) &lt;doi:10.48550/arXiv.2208.07590&gt;).">
+<meta property="og:description" content="This framework enables forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. It allows for capturing complex multivariate dependencies, including dependencies between observations, such as sequential dependence (time-series). The methodology was introduced in Pasche and Engelke (2024) &lt;doi:10.1214/24-AOAS1907&gt; (also available in preprint: Pasche and Engelke (2022) &lt;doi:10.48550/arXiv.2208.07590&gt;).">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="index.html">EQRN</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,8 +64,11 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To install the development version of EQRN, simply run from R:</p>
+<p>To install EQRN from CRAN, simply run from R:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"EQRN"</span><span class="op">)</span></span></code></pre></div>
+<p>Or, to install the development version of EQRN, run:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"opasche/EQRN"</span><span class="op">)</span></span></code></pre></div>
 <p>When the package is first loaded interactively after installation (e.g. with <code><a href="https://github.com/opasche/EQRN" class="external-link">library(EQRN)</a></code> or with any <code>EQRN::fct()</code>), the necessary backend software from the <a href="https://torch.mlverse.org/" class="external-link"><code>torch</code></a> dependency is automatically installed. Alternatively, <code><a href="reference/install_backend.html">EQRN::install_backend()</a></code> can be called to perform the backend installation manually (necessary for non-interactive environments). For more information about the torch backend and troubleshooting, visit the <a href="https://torch.mlverse.org/docs/articles/installation.html" class="external-link">torch installation guide</a>.</p>
@@ -83,7 +86,7 @@
 <div class="section level3">
 <h3 id="id_0-generate-a-toy-dataset">0. Generate a toy dataset<a class="anchor" aria-label="anchor" href="#id_0-generate-a-toy-dataset"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scale_fct</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span><span class="op">)</span><span class="op">{</span> <span class="fl">3</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
@@ -96,7 +99,7 @@
 <h3 id="step-1-construct-intermediate-quantiles">Step 1. Construct intermediate quantiles<a class="anchor" aria-label="anchor" href="#step-1-construct-intermediate-quantiles"></a>
 </h3>
 <p>This can be achieved with any suitable quantile regression method. We here use generalised random forests from the <a href="https://grf-labs.github.io/grf/" class="external-link"><code>grf</code></a> package, as they are very easy to use and already quite flexible. One could for example use a quantile regression neural network instead.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grf-labs/grf" class="external-link">grf</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Choose an intermediate probability level.</span></span>
@@ -117,7 +120,7 @@
 <li>the argument <code>net_structure=c(5,5)</code> sets two hidden layers of 5 neurons each as an architecture,</li>
 <li>the network is trained for 100 epochs (with a seed for reproducibility).</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/opasche/EQRN" class="external-link">EQRN</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_eqrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/EQRN_fit.html">EQRN_fit</a></span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span>, <span class="va">intermediateq_train</span>, <span class="va">interm_lvl</span>,</span>
@@ -129,7 +132,7 @@
 <div class="section level3">
 <h3 id="step-3-predict-conditional-quantiles-and-risk-metrics-for-new-test-observations">Step 3. Predict conditional quantiles and risk metrics for new test observations<a class="anchor" aria-label="anchor" href="#step-3-predict-conditional-quantiles-and-risk-metrics-for-new-test-observations"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Desired probability levels at which to predict the conditional quantiles.</span></span>
 <span><span class="va">levels_predict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.999</span>, <span class="fl">0.9999</span><span class="op">)</span></span>
 <span></span>
@@ -142,7 +145,7 @@
 <span><span class="co"># Forecast the probability that Y_test would exceed a certain large value.</span></span>
 <span><span class="va">large_value</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">ppred_eqrn</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/EQRN_excess_probability.html">EQRN_excess_probability</a></span><span class="op">(</span><span class="va">large_value</span>, <span class="va">fit_eqrn</span>, <span class="va">X_test</span>, <span class="va">intermediateq_test</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Print some predictions:</span></span>
 <span><span class="va">hn</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>X1<span class="op">=</span><span class="va">X_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">1</span><span class="op">]</span>, X2<span class="op">=</span><span class="va">X_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span>,<span class="fl">2</span><span class="op">]</span>, pred_Y_Q_80<span class="op">=</span><span class="va">intermediateq_test</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">hn</span><span class="op">]</span>,</span>
@@ -179,6 +182,7 @@ Supported by the Swiss National Science Foundation.</p>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=EQRN" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/opasche/EQRN/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/opasche/EQRN/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -210,6 +214,7 @@ Supported by the Swiss National Science Foundation.</p>
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=EQRN" class="external-link"><img src="https://www.r-pkg.org/badges/version/EQRN" alt="CRAN status"></a></li>
 <li><a href="https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/opasche/EQRN/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
