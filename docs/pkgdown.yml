@@ -1,8 +1,0 @@
-pandoc: '3.2'
-pkgdown: 2.1.1
-pkgdown_sha: ~
-articles: {}
-last_built: 2025-03-19T18:02Z
-urls:
-  reference: https://opasche.github.io/EQRN/reference
-  article: https://opasche.github.io/EQRN/articles
