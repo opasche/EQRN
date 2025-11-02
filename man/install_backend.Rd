@@ -16,8 +16,8 @@ No return value.
 This function can be called just after installing the EQRN package.
 Calling \code{EQRN::install_backend()} installs the necessary LibTorch and LibLantern backends of the
 \href{https://torch.mlverse.org/}{\code{torch}} dependency by calling \code{\link[torch:install_torch]{torch::install_torch()}}.
-See \url{https://torch.mlverse.org/docs/articles/installation.html} for more details and troubleshooting.
+See \url{https://torch.mlverse.org/docs/articles/installation} for more details and troubleshooting.
 Calling this function shouldn't be necessary in interactive environments, as loading EQRN
-(e.g. with \code{library(EQRN)} or with any \code{EQRN::fct()}) should do it automatically (via \code{.onLoad()}).
-This bahaviour is inherited from the \href{https://torch.mlverse.org/}{\code{torch}} package.
+(e.g. with \code{library(EQRN)} or with any \code{EQRN::fct()}) should prompt to do it automatically (via \code{.onLoad()}).
+This behaviour is inherited from the \href{https://torch.mlverse.org/}{\code{torch}} package.
 }

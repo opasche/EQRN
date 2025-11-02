@@ -1,7 +1,7 @@
 Package: EQRN
 Type: Package
 Title: Extreme Quantile Regression Neural Networks for Risk Forecasting
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: c(person(c("Olivier", "C."), "Pasche",
                     email = "olivier_pasche@alumni.epfl.ch", role = c("aut", "cre", "cph"),
                     comment = c(ORCID = "0000-0002-1202-9199"))

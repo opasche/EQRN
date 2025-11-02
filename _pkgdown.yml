@@ -110,6 +110,7 @@ reference:
 - title: internal
   contents:
   - onload_backend_installer
+  - check_backend_installed
   - EQRN_predict_internal
   - EQRN_predict_internal_seq
   - instantiate_EQRN_network

@@ -43,9 +43,9 @@ devtools::install_github("opasche/EQRN")
 ```
 
 When the package is first loaded interactively after installation (e.g. with `library(EQRN)` or with any `EQRN::fct()`), 
-the necessary backend software from the [`torch`](https://torch.mlverse.org/) dependency is automatically installed. 
+you'll be prompted to allow the automatic installation of the necessary backend software (LibTorch and LibLantern) for the [`torch`](https://torch.mlverse.org/) dependency. 
 Alternatively, `EQRN::install_backend()` can be called to perform the backend installation manually (necessary for non-interactive environments). 
-For more information about the torch backend and troubleshooting, visit the [torch installation guide](https://torch.mlverse.org/docs/articles/installation.html).
+For more information about the torch backends and troubleshooting, visit the [torch installation guide](https://torch.mlverse.org/docs/articles/installation).
 
 
 ## Motivation

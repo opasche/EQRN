@@ -38,14 +38,15 @@ devtools::install_github("opasche/EQRN")
 ```
 
 When the package is first loaded interactively after installation
-(e.g. with `library(EQRN)` or with any `EQRN::fct()`), the necessary
-backend software from the [`torch`](https://torch.mlverse.org/)
-dependency is automatically installed. Alternatively,
+(e.g. with `library(EQRN)` or with any `EQRN::fct()`), you’ll be
+prompted to allow the automatic installation of the necessary backend
+software (LibTorch and LibLantern) for the
+[`torch`](https://torch.mlverse.org/) dependency. Alternatively,
 `EQRN::install_backend()` can be called to perform the backend
 installation manually (necessary for non-interactive environments). For
-more information about the torch backend and troubleshooting, visit the
+more information about the torch backends and troubleshooting, visit the
 [torch installation
-guide](https://torch.mlverse.org/docs/articles/installation.html).
+guide](https://torch.mlverse.org/docs/articles/installation).
 
 ## Motivation
 
@@ -99,6 +100,10 @@ regression neural network instead.
 
 ``` r
 library(grf)
+#> Warning: le package 'grf' a été compilé avec la version R 4.4.3
+```
+
+``` r
 
 # Choose an intermediate probability level.
 interm_lvl <- 0.8
@@ -127,8 +132,8 @@ library(EQRN)
 
 fit_eqrn <- EQRN_fit(X_train, y_train, intermediateq_train, interm_lvl,
                      shape_fixed=TRUE, net_structure=c(5,5), n_epochs=100, seed=42)
-#> Epoch: 1 out of 100 , average train loss: 2.371921
-#> Epoch: 100 out of 100 , average train loss: 2.281698
+#> Epoch: 1 out of 100 , average train loss: 2.376662
+#> Epoch: 100 out of 100 , average train loss: 2.286281
 ```
 
 The arguments values are here arbitrarily chosen for illustration. As
@@ -165,16 +170,16 @@ results <- data.frame(X1=X_test[1:hn,1], X2=X_test[1:hn,2], pred_Y_Q_80=intermed
 
 print(results)
 #>           X1         X2 pred_Y_Q_80 pred_Y_Q_99.9 pred_Y_Q_99.99 Pr_Y_exceed_10
-#> 1  0.5876351 0.83797214    2.763170      15.98885       34.31405    0.004118278
-#> 2  0.9493471 0.74616973    2.123687      15.42404       33.85271    0.003459142
-#> 3  0.7456916 0.24237508    2.335307      15.40873       33.52297    0.003537242
-#> 4  0.2319869 0.70261432    3.041587      16.04881       34.07131    0.004325655
-#> 5  0.7706744 0.19874048    4.725495      18.14131       36.72994    0.008187588
-#> 6  0.7746018 0.03440777    5.414535      18.87249       37.51951    0.010778085
-#> 7  0.7776956 0.33728896    2.796728      15.98395       34.25587    0.004133909
-#> 8  0.2586140 0.49574342    3.775091      16.84983       34.96588    0.005546904
-#> 9  0.7935616 0.60815766    2.608452      15.86056       34.22237    0.003949164
-#> 10 0.1613134 0.52083200    1.770021      14.48766       32.10893    0.002831878
+#> 1  0.5876351 0.83797214    2.763170      16.03175       34.50030    0.004134081
+#> 2  0.9493471 0.74616973    2.213791      15.57176       34.16473    0.003572521
+#> 3  0.7456916 0.24237508    2.335307      15.45567       33.71791    0.003554994
+#> 4  0.2319869 0.70261432    3.041587      16.09128       34.25515    0.004341892
+#> 5  0.7706744 0.19874048    4.951373      18.44766       37.23316    0.008984023
+#> 6  0.7746018 0.03440777    5.414535      18.92438       37.72875    0.010807075
+#> 7  0.7776956 0.33728896    2.832306      16.07181       34.49989    0.004201208
+#> 8  0.2586140 0.49574342    3.363024      16.42048       34.59518    0.004812554
+#> 9  0.7935616 0.60815766    2.608452      15.90574       34.41425    0.003966196
+#> 10 0.1613134 0.52083200    1.770021      14.52928       32.28889    0.002845865
 ```
 
 ## References and links
