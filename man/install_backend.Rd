@@ -2,7 +2,7 @@
 % Please edit documentation in R/install.R
 \name{install_backend}
 \alias{install_backend}
-\title{Install Torch Backend}
+\title{Install Torch Backend Libraries}
 \usage{
 install_backend(...)
 }
@@ -14,7 +14,7 @@ No return value.
 }
 \description{
 This function can be called just after installing the EQRN package.
-Calling \code{EQRN::install_backend()} installs the necessary LibTorch and LibLantern backends of the
+Calling \code{EQRN::install_backend()} installs the necessary LibTorch and LibLantern backend libraries of the
 \href{https://torch.mlverse.org/}{\code{torch}} dependency by calling \code{\link[torch:install_torch]{torch::install_torch()}}.
 See \url{https://torch.mlverse.org/docs/articles/installation} for more details and troubleshooting.
 Calling this function shouldn't be necessary in interactive environments, as loading EQRN

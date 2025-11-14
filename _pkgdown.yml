@@ -29,6 +29,7 @@ reference:
   desc: ~
   contents:
   - install_backend
+  - backend_is_installed
   - default_device
   - loss_GPD_tensor
   - quantile_loss_tensor
@@ -110,7 +111,7 @@ reference:
 - title: internal
   contents:
   - onload_backend_installer
-  - check_backend_installed
+  - ensure_backend_installed
   - EQRN_predict_internal
   - EQRN_predict_internal_seq
   - instantiate_EQRN_network

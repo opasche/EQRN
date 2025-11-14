@@ -13,5 +13,8 @@ Returns \code{torch::torch_device("cuda")} if \code{torch::cuda_is_available()},
 Default torch device
 }
 \examples{
-device <- default_device()
+if(backend_is_installed()){
+  device <- default_device()
+  print(device)
+}
 }

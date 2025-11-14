@@ -16,6 +16,7 @@
 EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fits=3, ..., seed=NULL, data_type=c("iid","seq")){#TODO: force_trainloss_select arg
   #
   data_type <- match.arg(data_type)
+  ensure_backend_installed()
   if(number_fits<1){stop("'number_fits' must be at least 1 in 'EQRN_fit_restart'.")}
   
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
@@ -130,6 +131,7 @@ EQRN_fit <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE
                      X_valid=NULL, y_valid=NULL, quant_valid=NULL, lr_decay=1, patience_decay=n_epochs, min_lr=0, patience_stop=n_epochs,
                      tol=1e-6, orthogonal_gpd=TRUE, patience_lag=1, optim_met="adam", seed=NULL, verbose=2, device=default_device()){
   
+  ensure_backend_installed()
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
   
   data_excesses <- get_excesses(X=X, y=y, quantiles=intermediate_quantiles,
@@ -669,6 +671,7 @@ EQRN_save <- function(fit_eqrn, path, name=NULL, no_warning=TRUE){
 #' @import torch
 #' @importFrom utils packageVersion
 EQRN_load <- function(path, name=NULL, device=default_device(), ...){
+  ensure_backend_installed()
   if(substr(path, nchar(path), nchar(path)) != "/"){
     fpath <- paste0(path, "/")
   } else {
@@ -862,7 +865,11 @@ perform_scaling <- function(X, X_scaling=NULL, scale_features=TRUE, stat_attr=FA
 #' @export
 #' @import torch
 #'
-#' @examples device <- default_device()
+#' @examples 
+#' if(backend_is_installed()){
+#'   device <- default_device()
+#'   print(device)
+#' }
 default_device <- function(){
   if(torch::cuda_is_available()) {
     device <- torch::torch_device("cuda")

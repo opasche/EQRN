@@ -52,6 +52,7 @@ EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=F
                          tol=1e-5, orthogonal_gpd=TRUE, patience_lag=1, fold_separation=NULL, optim_met="adam",
                          seed=NULL, verbose=2, device=default_device()){
   
+  ensure_backend_installed()
   if(!is.null(seed)){torch::torch_manual_seed(seed)}
   
   rnn_type <- match.arg(rnn_type)
