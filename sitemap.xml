@@ -31,14 +31,15 @@
 <url><loc>https://opasche.github.io/EQRN/reference/R_squared.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/Recurrent_GPD_net.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/Separated_GPD_SNN.html</loc></url>
+<url><loc>https://opasche.github.io/EQRN/reference/backend_is_installed.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/batch_size_default.html</loc></url>
-<url><loc>https://opasche.github.io/EQRN/reference/check_backend_installed.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/check_directory.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/compute_EQRN_GPDLoss.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/compute_EQRN_seq_GPDLoss.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/decay_learning_rate.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/default_device.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/end_doFuture_strategy.html</loc></url>
+<url><loc>https://opasche.github.io/EQRN/reference/ensure_backend_installed.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/excess_probability.EQRN_iid.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/excess_probability.EQRN_seq.html</loc></url>
 <url><loc>https://opasche.github.io/EQRN/reference/excess_probability.html</loc></url>
