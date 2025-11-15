@@ -21,4 +21,5 @@ if(backend_is_installed()){
   device <- default_device()
   print(device)
 }
+#> torch_device(type='cpu') 
 ```

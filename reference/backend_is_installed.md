@@ -26,4 +26,5 @@ are installed.
 if(backend_is_installed()){
   cat("torch's LibTorch and LibLantern backend libraries are installed!\n")
 }
+#> torch's LibTorch and LibLantern backend libraries are installed!
 ```
