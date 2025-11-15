@@ -39,7 +39,6 @@
 #' @return An QRN object of classes `c("QRN_seq", "QRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 QRN_seq_fit <- function(X, Y, q_level, hidden_size=10, num_layers=1, rnn_type=c("lstm","gru"), p_drop=0,
                         learning_rate=1e-4, L2_pen=0, seq_len=10, scale_features=TRUE, n_epochs=1e4, batch_size=256,
@@ -218,7 +217,6 @@ QRN_seq_fit <- function(X, Y, q_level, hidden_size=10, num_layers=1, rnn_type=c(
 #' (or `nrow(X)-seq_len` times `1` if `crop_predictions`)
 #' containing the conditional quantile estimates of the corresponding response observations.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 QRN_seq_predict <- function(fit_qrn_ts, X, Y, q_level=fit_qrn_ts$interm_lvl, crop_predictions=FALSE, device=default_device()){
   if(q_level!=fit_qrn_ts$interm_lvl){stop("QRN q_level does not match in train and predict.")}
@@ -490,7 +488,6 @@ QRN_seq_predict_foldwise_sep <- function(X, y, q_level, n_folds=3, fold_todo=1, 
 #' @return The quantile loss over the batch between the network output ans the observed responses as a `torch::Tensor`,
 #' whose dimensions depend on `return_agg`.
 #' @export
-#' @import torch
 quantile_loss_tensor <- function(out, y, q=0.5, return_agg=c("mean", "sum", "vector", "nanmean", "nansum")){
   return_agg <- match.arg(return_agg)
   

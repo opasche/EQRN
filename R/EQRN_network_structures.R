@@ -17,7 +17,6 @@
 #' @return The specified MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @importFrom magrittr %>%
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
@@ -86,7 +85,6 @@ FC_GPD_net <- torch::nn_module(
 #' @param p probability for dropout.
 #' @param inplace whether the dropout in performed inplace.
 #'
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
@@ -115,7 +113,6 @@ nn_dropout_nd <- torch::nn_module(
 #'
 #' @inheritParams nn_dropout_nd
 #'
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
@@ -151,7 +148,6 @@ nn_alpha_dropout <- torch::nn_module(
 #' @return The specified SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @importFrom magrittr %>%
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
@@ -220,7 +216,6 @@ FC_GPD_SNN <- torch::nn_module(
 #' @return The specified parameter-separated SNN MLP GPD network as a [`torch::nn_module`].
 #' @export
 #' @importFrom magrittr %>%
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:

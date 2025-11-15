@@ -43,7 +43,6 @@
 #' @return An EQRN object of classes `c("EQRN_seq", "EQRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE, hidden_size=10, num_layers=1, rnn_type=c("lstm","gru"), p_drop=0,
                          intermediate_q_feature=TRUE, learning_rate=1e-4, L2_pen=0, seq_len=10, shape_penalty=0,
@@ -331,7 +330,6 @@ EQRN_predict_internal_seq <- function(fit_eqrn, X, Y, prob_lvl_predict, intermed
 #' @return Named list containing: `"scales"` and `"shapes"` as numerical vectors of length `nrow(X)`,
 #' and the `seq_len` used.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 EQRN_predict_params_seq <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL, return_parametrization=c("classical","orthogonal"),
                                     interm_lvl=fit_eqrn$interm_lvl, seq_len=fit_eqrn$seq_len, device=default_device()){
@@ -462,7 +460,6 @@ compute_EQRN_seq_GPDLoss <- function(fit_eqrn, X, Y, intermediate_quantiles=NULL
 #' @param optim_met DEPRECATED. Optimization algorithm to use during training. `"adam"` is the default.
 #'
 #' @return A `torch::optimizer` object used in [EQRN_fit_seq()] for training.
-#' @import torch
 #' 
 #' @keywords internal
 setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"){
@@ -494,7 +491,6 @@ setup_optimizer_seq <- function(network, learning_rate, L2_pen, optim_met="adam"
 #'
 #' @return The [`torch::dataset`] containing the given data, to be used with a recurrent neural network.
 #' @export
-#' @import torch
 #' @importFrom stats sd
 mts_dataset <- torch::dataset(
   name = "mts_dataset",

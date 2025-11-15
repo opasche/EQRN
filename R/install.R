@@ -18,7 +18,6 @@
 #' This behaviour is inherited from the [`torch`](https://torch.mlverse.org/) package.
 #'
 #' @param ... Arguments passed to [torch::install_torch()].
-#' @import torch
 #'
 #' @return No return value.
 #' @export
@@ -32,7 +31,6 @@ install_backend <- function(...) {
 #'
 #' @param ... Optional parameters passed to [torch::torch_is_installed()].
 #' @return Boolean indicating whether the LibTorch and LibLantern backend libraries are installed. 
-#' @import torch
 #' @export
 #'
 #' @examples 
@@ -50,7 +48,6 @@ backend_is_installed <- function(...) {
 #' @param ... Optional parameters passed to [torch::torch_is_installed()].
 #' @return Boolean indicating whether the LibTorch and LibLantern backend libraries are installed. 
 #' If `behaviour = "error"`, an error is raised if the backend libraries are not installed.
-#' @import torch
 #' @keywords internal
 ensure_backend_installed <- function(behaviour = c("error", "warn", "message", "bool"), ...) {
   behaviour <- match.arg(behaviour)
@@ -80,7 +77,6 @@ ensure_backend_installed <- function(behaviour = c("error", "warn", "message", "
 #'
 #' @param ... Arguments passed to [torch::install_torch()].
 #' @return No return value.
-#' @import torch
 #' @keywords internal
 onload_backend_installer <- function(...) {
   
@@ -90,7 +86,7 @@ onload_backend_installer <- function(...) {
   
   # Only install if not explicitly disabled or if requested explicitly by env. vars
   do_install <- (is_interactive && (Sys.getenv("TORCH_INSTALL", unset = 2) != 0) && (Sys.getenv("EQRN_INSTALL_BACKEND", unset = 2) != 0)) ||
-    (Sys.getenv("TORCH_INSTALL", unset = 2) == "1") || (Sys.getenv("EQRN_INSTALL_BACKEND", unset = 2) == 1)
+    (Sys.getenv("EQRN_INSTALL_BACKEND", unset = 2) == 1)
   
   force_install <- (Sys.getenv("EQRN_INSTALL_NOPROMPT", unset = 2) == 1)
   

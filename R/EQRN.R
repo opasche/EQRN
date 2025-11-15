@@ -124,7 +124,6 @@ EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fi
 #' @return An EQRN object of classes `c("EQRN_iid", "EQRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 EQRN_fit <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE, net_structure=c(5,3,3), hidden_fct=torch::nnf_sigmoid, p_drop=0,
                      intermediate_q_feature=TRUE, learning_rate=1e-4, L2_pen=0, shape_penalty=0, scale_features=TRUE, n_epochs=500, batch_size=256,
@@ -385,7 +384,6 @@ EQRN_predict_internal <- function(fit_eqrn, X, prob_lvl_predict, intermediate_qu
 #'
 #' @return Named list containing: `"scales"` and `"shapes"` as numerical vectors of length `nrow(X)`.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 EQRN_predict_params <- function(fit_eqrn, X, intermediate_quantiles=NULL, return_parametrization=c("classical","orthogonal"),
                                 interm_lvl=fit_eqrn$interm_lvl, device=default_device()){
@@ -488,7 +486,6 @@ excess_probability.EQRN_iid <- function(object, ...){
 #' @return Negative GPD log likelihood of the conditional EQRN predicted parameters
 #' over the response exceedances over the intermediate quantiles.
 #' @export
-#' @import torch
 #' @importFrom coro loop
 compute_EQRN_GPDLoss <- function(fit_eqrn, X, y, intermediate_quantiles=NULL, interm_lvl=fit_eqrn$interm_lvl, device=default_device()){#TODO: internal_fct shared with train
   if(interm_lvl!=fit_eqrn$interm_lvl){stop("EQRN intermediate quantiles interm_lvl does not match in train and predict.")}
@@ -529,7 +526,6 @@ compute_EQRN_GPDLoss <- function(fit_eqrn, X, y, intermediate_quantiles=NULL, in
 #' @param device (optional) A [torch::torch_device()]. Defaults to [default_device()].
 #'
 #' @return A `torch::nn_module` network used to regress the GPD parameters in [EQRN_fit()].
-#' @import torch
 #' 
 #' @keywords internal
 instantiate_EQRN_network <- function(net_structure, shape_fixed, D_in, hidden_fct, p_drop=0,
@@ -577,7 +573,6 @@ instantiate_EQRN_network <- function(net_structure, shape_fixed, D_in, hidden_fc
 #' @param optim_met DEPRECATED. Optimization algorithm to use during training. `"adam"` is the default.
 #'
 #' @return A `torch::optimizer` object used in [EQRN_fit()] for training.
-#' @import torch
 #' 
 #' @keywords internal
 setup_optimizer <- function(network, learning_rate, L2_pen, hidden_fct, optim_met="adam"){
@@ -612,7 +607,6 @@ setup_optimizer <- function(network, learning_rate, L2_pen, hidden_fct, optim_me
 #' @param decay_rate Learning rate decay factor.
 #'
 #' @return The `optimizer` with a decayed learning rate.
-#' @import torch
 #' 
 #' @keywords internal
 decay_learning_rate <- function(optimizer, decay_rate){
@@ -635,7 +629,6 @@ decay_learning_rate <- function(optimizer, decay_rate){
 #'
 #' @return No return value.
 #' @export
-#' @import torch
 #' @importFrom utils packageVersion
 EQRN_save <- function(fit_eqrn, path, name=NULL, no_warning=TRUE){
   if(is.null(name)){
@@ -668,7 +661,6 @@ EQRN_save <- function(fit_eqrn, path, name=NULL, no_warning=TRUE){
 #'
 #' @return The loaded `"EQRN"` model.
 #' @export
-#' @import torch
 #' @importFrom utils packageVersion
 EQRN_load <- function(path, name=NULL, device=default_device(), ...){
   ensure_backend_installed()
@@ -709,7 +701,6 @@ EQRN_load <- function(path, name=NULL, device=default_device(), ...){
 #' @return The GPD loss over the batch between the network output and the observed responses as a `torch::Tensor`,
 #' whose dimensions depend on `return_agg`.
 #' @export
-#' @import torch
 loss_GPD_tensor <- function(out, y, orthogonal_gpd=TRUE, shape_penalty=0, prior_shape=NULL, return_agg=c("mean", "sum", "vector", "nanmean", "nansum")){
   return_agg <- match.arg(return_agg)
   s <- torch::torch_split(out, 1, dim = 2)
@@ -863,7 +854,6 @@ perform_scaling <- function(X, X_scaling=NULL, scale_features=TRUE, stat_attr=FA
 #'
 #' @return Returns `torch::torch_device("cuda")` if `torch::cuda_is_available()`, or `torch::torch_device("cpu")` otherwise.
 #' @export
-#' @import torch
 #'
 #' @examples 
 #' if(backend_is_installed()){

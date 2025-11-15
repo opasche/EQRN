@@ -16,7 +16,6 @@
 #' @return The specified recurrent GPD network as a [`torch::nn_module`].
 #' @export
 #' @importFrom magrittr %>%
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
@@ -99,7 +98,6 @@ Recurrent_GPD_net <- torch::nn_module(
 #' @return The specified recurrent QRN as a [`torch::nn_module`].
 #' @export
 #' @importFrom magrittr %>%
-#' @import torch
 #'
 #' @details
 #' The constructor allows specifying:
