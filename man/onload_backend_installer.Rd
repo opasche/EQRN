@@ -2,7 +2,7 @@
 % Please edit documentation in R/install.R
 \name{onload_backend_installer}
 \alias{onload_backend_installer}
-\title{On-Load Torch Backend Internal Install helper}
+\title{(DEPRECATED) On-Load Torch Backend Internal Install helper}
 \usage{
 onload_backend_installer(...)
 }
@@ -13,6 +13,6 @@ onload_backend_installer(...)
 No return value.
 }
 \description{
-On-Load Torch Backend Internal Install helper
+(DEPRECATED) On-Load Torch Backend Internal Install helper
 }
 \keyword{internal}

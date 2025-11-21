@@ -124,6 +124,7 @@ EQRN_fit_restart <- function(X, y, intermediate_quantiles, interm_lvl, number_fi
 #' @return An EQRN object of classes `c("EQRN_iid", "EQRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
+#' @import torch
 #' @importFrom coro loop
 EQRN_fit <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE, net_structure=c(5,3,3), hidden_fct=torch::nnf_sigmoid, p_drop=0,
                      intermediate_q_feature=TRUE, learning_rate=1e-4, L2_pen=0, shape_penalty=0, scale_features=TRUE, n_epochs=500, batch_size=256,

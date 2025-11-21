@@ -43,6 +43,7 @@
 #' @return An EQRN object of classes `c("EQRN_seq", "EQRN")`, containing the fitted network,
 #' as well as all the relevant information for its usage in other functions.
 #' @export
+#' @import torch
 #' @importFrom coro loop
 EQRN_fit_seq <- function(X, y, intermediate_quantiles, interm_lvl, shape_fixed=FALSE, hidden_size=10, num_layers=1, rnn_type=c("lstm","gru"), p_drop=0,
                          intermediate_q_feature=TRUE, learning_rate=1e-4, L2_pen=0, seq_len=10, shape_penalty=0,

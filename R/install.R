@@ -1,10 +1,10 @@
 
-.onLoad <- function(libname, pkgname) {
-  
-  onload_backend_installer()
-  
-  invisible(TRUE)
-}
+# .onLoad <- function(libname, pkgname) {
+#   
+#   onload_backend_installer()
+#   
+#   invisible(TRUE)
+# }
 
 
 #' Install Torch Backend Libraries
@@ -21,6 +21,7 @@
 #'
 #' @return No return value.
 #' @export
+#' @import torch
 install_backend <- function(...) {
   torch::install_torch(...)
   ensure_backend_installed(behaviour="error")
@@ -73,7 +74,7 @@ ensure_backend_installed <- function(behaviour = c("error", "warn", "message", "
 }
 
 
-#' On-Load Torch Backend Internal Install helper
+#' (DEPRECATED) On-Load Torch Backend Internal Install helper
 #'
 #' @param ... Arguments passed to [torch::install_torch()].
 #' @return No return value.
@@ -93,6 +94,16 @@ onload_backend_installer <- function(...) {
   promp_msg <- paste0("LibTorch and LibLantern backend libraries need to be installed ",
                       "for EQRN's `torch` dependency to work properly. ",
                       "Do you want to install them now?")
+  
+  # is_installed_startup <- function() {
+  #   withCallingHandlers(
+  #     backend_is_installed(),
+  #     message = function(msg) {
+  #       # forward as startup messages
+  #       cli::cli_inform(conditionMessage(msg), class = "packageStartupMessage")
+  #     }
+  #   )
+  # }
   
   if(do_install || force_install){
     
