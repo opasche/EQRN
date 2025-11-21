@@ -1,6 +1,6 @@
-# On-Load Torch Backend Internal Install helper
+# (DEPRECATED) On-Load Torch Backend Internal Install helper
 
-On-Load Torch Backend Internal Install helper
+(DEPRECATED) On-Load Torch Backend Internal Install helper
 
 ## Usage
 

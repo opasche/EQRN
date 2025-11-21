@@ -1,11 +1,15 @@
 # Changelog
 
-## EQRN (development version)
+## EQRN 0.1.2
+
+CRAN release: 2025-11-21
 
 - Modified the backend auto-install behaviour to only happen in
   interactive environments, after prompting the user for confirmation.
   This reflects changes of the `torch` dependency and CRAN installation.
-  (Fixes issue [\#1](https://github.com/opasche/EQRN/issues/1)).
+  The on-load installation checks in interactive environments are now
+  only handled by `torch`, not by `EQRN`. (Fixes issue
+  [\#1](https://github.com/opasche/EQRN/issues/1))
 
 ## EQRN 0.1.1
 
