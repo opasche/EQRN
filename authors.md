@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/opasche/EQRN/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/opasche/EQRN/blob/v0.1.2/DESCRIPTION)
 
 Pasche OC (2025). *EQRN: Extreme Quantile Regression Neural Networks for
 Risk Forecasting*. R package version 0.1.2,
